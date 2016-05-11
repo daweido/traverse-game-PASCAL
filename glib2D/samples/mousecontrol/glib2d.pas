@@ -1,10 +1,8 @@
 Unit gLib2D;
 
 Interface
-
-Uses
+Uses 
     GL, SDL, SDL_Image, SDL_TTF, Math;
-
 
 Type
     gImage = ^_gImage;
@@ -13,59 +11,53 @@ Type
         ratio : real;
         id : GLuint;
     end;
-
+    
     gColor = record
         r, g, b, a : byte;
     end;
-
+    
     gAlpha          = byte;
     gEnum           = integer;
 
 Const
-{$IFDEF DARWIN}
-	SDL_ImageLibName = 'libSDL_image-1.2.0.dylib';
-	{$linklib libSDL_image-1.2.0}
-	SDLttfLibName = 'libSDL_ttf-2.0.0.dylib';
-	{$linklib libSDL_ttf-2.0.0.dylib}
-{$ENDIF}
     (* Screen constants *)
-    TITLE = 'Traverse';
-    G_SCR_W         = 1000;
-    G_SCR_H         = 750;
+    TITLE = 'Free Pascal - SDL Window';
+    G_SCR_W         = 800;
+    G_SCR_H         = 600;
     G_VOID          = 0;
 
     (* Colors *)
-    RED             : gColor = (r : 255; g : 0;   b : 0;   a : 255); //1
-    GREEN           : gColor = (r : 0;   g : 255; b : 0;   a : 255); //2
-    BLUE            : gColor = (r : 0;   g : 0;   b : 255; a : 255); //3
+    RED             : gColor = (r : 255; g : 0;   b : 0;   a : 255);
+    GREEN           : gColor = (r : 0;   g : 255; b : 0;   a : 255);
+    BLUE            : gColor = (r : 0;   g : 0;   b : 255; a : 255);
 
-    CYAN            : gColor = (r : 0;   g : 255; b : 255; a : 255);//4
-    MAGENTA         : gColor = (r : 255; g : 0;   b : 255; a : 255);//5
-    YELLOW          : gColor = (r : 255; g : 255; b : 0;   a : 255);//6
+    CYAN            : gColor = (r : 0;   g : 255; b : 255; a : 255);
+    MAGENTA         : gColor = (r : 255; g : 0;   b : 255; a : 255);
+    YELLOW          : gColor = (r : 255; g : 255; b : 0;   a : 255);
 
-    AZURE           : gColor = (r : 0;   g : 128; b : 255; a : 255);//7
-    VIOLET          : gColor = (r : 128; g : 0;   b : 255; a : 255);//8
-    PINK            : gColor = (r : 255; g : 128; b : 128; a : 255);//9
-    ORANGE          : gColor = (r : 255; g : 128; b : 0;   a : 255);//10
-    CHARTREUSE      : gColor = (r : 127; g : 255; b : 0;   a : 255);//11
-    SPRING_GREEN    : gColor = (r : 0;   g : 255; b : 128; a : 255);//12
+    AZURE           : gColor = (r : 0;   g : 128; b : 255; a : 255);
+    VIOLET          : gColor = (r : 128; g : 0;   b : 255; a : 255);
+    PINK            : gColor = (r : 255; g : 128; b : 128; a : 255);
+    ORANGE          : gColor = (r : 255; g : 128; b : 0;   a : 255);
+    CHARTREUSE      : gColor = (r : 127; g : 255; b : 0;   a : 255);
+    SPRING_GREEN    : gColor = (r : 0;   g : 255; b : 128; a : 255);
 
-    WHITE           : gColor = (r : 255; g : 255; b : 255; a : 255);//13
-    LITEGRAY        : gColor = (r : 159; g : 159; b : 159; a : 255);//14
-    GRAY            : gColor = (r : 128; g : 128; b : 128; a : 255);//15
-    DARKGRAY        : gColor = (r : 63;  g : 63;  b : 63;  a : 255);//16
-    BLACK           : gColor = (r : 0;   g : 0;   b : 0;   a : 255);//17
-
+    WHITE           : gColor = (r : 255; g : 255; b : 255; a : 255);
+    LITEGRAY        : gColor = (r : 159; g : 159; b : 159; a : 255);
+    GRAY            : gColor = (r : 128; g : 128; b : 128; a : 255);
+    DARKGRAY        : gColor = (r : 63;  g : 63;  b : 63;  a : 255);
+    BLACK           : gColor = (r : 0;   g : 0;   b : 0;   a : 255);
+    
     (* Coordinates modes *)
     G_UP_LEFT       = 0;
     G_UP_RIGHT      = 1;
     G_DOWN_RIGHT    = 2;
     G_DOWN_LEFT     = 3;
     G_CENTER        = 4;
-
+    
     (* Enable line strip, in gBeginLines(G_STRIP); *)
     G_STRIP         = 1;
-
+    
     PI              = 3.141592653589;
 
 
@@ -73,7 +65,7 @@ Const
 
 (*
     gClear(color);
-    * Clear the screen
+    * Clear the screen 
 *)
 
 procedure gClear(color : gColor);
@@ -129,7 +121,7 @@ procedure gEnd;
 procedure gReset;
 
 
-(*
+(* 
     gFlip;
     * Flip the screen
 *)
@@ -183,7 +175,7 @@ function  gTexLoad(path : AnsiString) : gImage;
     * Print a text in an image, to be able to blit it after
 *)
 
-function  gTextLoad(text : AnsiString; var font : PTTF_Font;code : integer) : gImage;
+function  gTextLoad(text : AnsiString; var font : PTTF_Font) : gImage;
 
 
 (*
@@ -508,16 +500,16 @@ procedure gSetScissor(x, y, w, h : integer);
 (* Procedures pour les tapettes :D
     gBlit(x, y, image, w, h);
     * Blit an image (calls gBeginRects, gSetCoord, gSetScale, gAdd, gEnd)
-
+    
     gDrawRect(x, y, w, h, color);
     * Draw an empty rectangle
-
+    
     gFillRect(x, y, w, h, color);
     * Draw a filled rectangle
-
+    
     gDrawCircle(cx, cy, radius, color);
     * Draw an empty circle
-
+    
     gFillRect(cx, cy, radius, color);
     * Draw a filled circle
 *)
@@ -536,45 +528,45 @@ procedure gFillCircle(cx, cy, radius : real; color : gColor);
         sdl_update;
         * Update SDL events
     *)
-
+    
     function sdl_update : integer;
-
-
+    
+    
     (*
         sdl_do_quit;
         * Check if the user clicks on the cross to close the window
     *)
-
+    
     function sdl_do_quit : boolean;
-
-
+    
+    
     (*
         sdl_get_mouse_x; sdl_get_mouse_y;
         * Get the X or Y cooridinate of the mouse
     *)
-
+    
     function sdl_get_mouse_x : Uint16;
     function sdl_get_mouse_y : Uint16;
-
+    
     (*
         sdl_mouse_left_up; sdl_mouse_right_up;
         sdl_mouse_left_down; sdl_mouse_right_down;
         * Check if the user left clicks, or right clicks
     *)
-
+    
     function sdl_mouse_left_up: boolean;
     function sdl_mouse_right_up : boolean;
     function sdl_mouse_left_down : boolean;
     function sdl_mouse_right_down : boolean;
-
-
+    
+    
     (*
         sdl_get_keypressed
         * If a key is pressed, return its value
-        * See the keys list :
+        * See the keys list : 
             http://www.siteduzero.com/uploads/fr/ftp/mateo21/sdlkeysym.html
     *)
-
+    
     function sdl_get_keypressed : integer;
 
 
@@ -582,7 +574,7 @@ Implementation
 
 Const
 	TRANSFORM_STACK_MAX = 128;
-
+	
 	DEFAULT_SIZE = 20;
 	DEFAULT_COORD_MODE = G_UP_LEFT;
 	DEFAULT_X = 0.0;
@@ -601,7 +593,7 @@ Type
 		rot, rot_sin, rot_cos : real;
 		scale_w, scale_h : real;
 	end;
-
+	
 	Object_ = record
 		x, y : real;
 		rot_x, rot_y : real;
@@ -618,7 +610,7 @@ var
 	transform_stack : Array[0..(TRANSFORM_STACK_MAX - 1)] of Transform;
 	transform_stack_size : integer;
 	global_scale : real;
-
+	
 	(* Object vars *)
 	obj_list : Array of Object_;
 	obj : Object_;
@@ -642,23 +634,23 @@ begin
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 	SDL_SetVideoMode(G_SCR_W, G_SCR_H, 24, SDL_OPENGL);
 	SDL_WM_SetCaption(TITLE, nil);
-
+    
     TTF_Init();
-
+	
 	(* Setup OpenGL *)
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity;
 	glOrtho(0, G_SCR_W, G_SCR_H, 0, 0, 1);
 	glMatrixMode(GL_MODELVIEW);
-
+	
 	gResetScissor;
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
+	
 	glEnable(GL_BLEND);
 	glDepthFunc(GL_LEQUAL);
 	glDepthRange(0, 65535);
 	glClearDepth(65535);
-
+	
 	init := true;
 end;
 
@@ -666,7 +658,7 @@ procedure _gStart;
 begin
 	If not(init) Then
 		_gInit;
-
+	
 	start := true;
 end;
 
@@ -678,23 +670,23 @@ begin
 	(* Texture *)
 	If (obj_tex <> nil) Then
 		glTexCoord2d(crop_vx, crop_vy);
-
+	
 	(* Color *)
 	glColor4d(	obj_list[i].color.r / 255,
 				obj_list[i].color.g / 255,
 				obj_list[i].color.b / 255,
 				obj_list[i].color.a / 255);
-
+	
 	(* Coord *)
 	x := obj_list[i].x;
 	y := obj_list[i].y;
-
+	
 	If (obj_type = RECTS) Then
 	begin
 		x += vx * obj_list[i].scale_w;
 		y += vy * obj_list[i].scale_h;
 	end;
-
+	
 	(* Rotation *)
 	If (obj_use_rot and (obj_type = RECTS)) Then
 	begin
@@ -703,7 +695,7 @@ begin
 		x := obj_list[i].rot_x - obj_list[i].rot_sin * ty + obj_list[i].rot_cos * tx;
 		y := obj_list[i].rot_y + obj_list[i].rot_cos * ty + obj_list[i].rot_sin * tx;
 	end;
-
+	
 	glVertex2d(x, y);
 end;
 
@@ -712,7 +704,7 @@ procedure gClear(color : gColor);
 begin
 	If not(start) Then
 		_gStart;
-
+		
 	glClearColor(color.r, color.g, color.b, color.a);
 	glClear(GL_COLOR_BUFFER_BIT);
 end;
@@ -721,13 +713,13 @@ procedure _gBeginCommon;
 begin
 	If not(start) Then
 		_gStart;
-
+	
 	obj_list_size := 0;
 	SetLength(obj_list, 256);
-
+	
 	obj_use_blend := false;
 	obj_use_rot := false;
-
+	
 	gReset;
 	obj_begin := true;
 end;
@@ -736,7 +728,7 @@ procedure gBeginRects(tex : gImage);
 begin
 	If (obj_begin) Then
 		exit;
-
+	
 	obj_type := RECTS;
 	obj_tex := tex;
 	_gBeginCommon;
@@ -746,15 +738,15 @@ procedure gBeginLines(line_mode : gEnum);
 begin
 	If (obj_begin) Then
 		exit;
-
+	
 	obj_type := LINES;
 	obj_tex := nil;
-
+	
 	If (line_mode = G_STRIP) Then
 		obj_line_strip := true
 	Else
 		obj_line_strip := false;
-
+	
 	_gBeginCommon;
 end;
 
@@ -762,7 +754,7 @@ procedure gBeginQuads(tex : gImage);
 begin
 	If (obj_begin) Then
 		exit;
-
+	
 	obj_type := QUADS;
 	obj_tex := tex;
 	_gBeginCommon;
@@ -772,7 +764,7 @@ procedure gBeginPoints;
 begin
 	If (obj_begin) Then
 		exit;
-
+	
 	obj_type := POINTS;
 	obj_tex := nil;
 	_gBeginCommon;
@@ -784,22 +776,22 @@ var
 	sx, sy, max_x, max_y : real;
 begin
 	glBegin(GL_TRIANGLES);
-
+    
 	For i := 0 to obj_list_size - 1 Do
 	begin
 		if ((obj_tex <> nil) and (obj_use_crop)) then
 		begin
             sx := obj_list[i].crop_x / obj_tex^.w;
             sy := obj_list[i].crop_y / obj_tex^.h;
-
+              
             max_x := (obj_list[i].crop_x + obj_list[i].crop_w) / obj_tex^.w;
             max_y := (obj_list[i].crop_y + obj_list[i].crop_h) / obj_tex^.h;
-
+			
 			(*_gSetVertex(i, sx, max_y, 0, 1);
 			_gSetVertex(i, sx, sy, 0, 0);
 			_gSetVertex(i, max_x, sy, 1, 0);
 			_gSetVertex(i, max_x, max_y, 1, 1);*)
-
+            
             _gSetVertex(i, sx, sy, 0, 0);
             _gSetVertex(i, max_x, sx, 1, 0);
             _gSetVertex(i, sx, max_y, 0, 1);
@@ -817,7 +809,7 @@ begin
             _gSetVertex(i, 1, 1, 1, 1);
 		end;
 	end;
-
+	
 	glEnd;
 end;
 
@@ -829,10 +821,10 @@ begin
 		glBegin(GL_LINE_STRIP)
 	Else
 		glBegin(GL_LINES);
-
+	
 	For	i := 0 to obj_list_size - 1 Do
 		_gSetVertex(i, 0, 0, 0, 0);
-
+	
 	glEnd;
 end;
 
@@ -841,7 +833,7 @@ var
 	i : integer;
 begin
 	glBegin(GL_TRIANGLES);
-
+	
 	i := 0;
 	While (i + 3 < obj_list_size) do
 	begin
@@ -851,10 +843,10 @@ begin
 		_gSetVertex(i + 3, 0, 1, 0, 1);
 		_gSetVertex(i + 1, 1, 0, 1, 0);
 		_gSetVertex(i + 2, 1, 1, 1, 1);
-
+				
 		i += 4;
 	end;
-
+	
 	glEnd;
 end;
 
@@ -863,10 +855,10 @@ var
 	i : integer;
 begin
 	glBegin(GL_POINTS);
-
+	
 	For i := 0 to obj_list_size - 1 Do
 		_gSetVertex(i, 0, 0, 0, 0);
-
+	
 	glEnd;
 end;
 
@@ -877,20 +869,20 @@ begin
 		obj_begin := false;
 		exit;
 	end;
-
-	(* Manage extensions *)
+	
+	(* Manage extensions *)	
 	If (obj_use_blend) Then
 		glEnable(GL_BLEND)
 	Else
 		glDisable(GL_BLEND);
-
+	
 	If (obj_tex = nil) Then
 		glDisable(GL_TEXTURE_2D)
 	Else
 	begin
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D, obj_tex^.id);
-
+		
 		If (obj_use_tex_linear) Then
 		begin
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -906,17 +898,17 @@ begin
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
 		end;
 	end;
-
+	
 	Case obj_type Of
 		RECTS:  _gEndRects;
 		LINES:  _gEndLines;
 		QUADS:  _gEndQuads;
 		POINTS: _gEndPoints;
 	end;
-
+	
 	glColor3f(1.0, 1.0, 1.0);
 	glEnable(GL_BLEND);
-
+	
 	obj_begin := false;
 end;
 
@@ -928,7 +920,7 @@ begin
 	gResetAlpha;
 	gResetRotation;
 	gResetCrop;
-
+	
     if (obj_tex <> NIL) then
     begin
         obj_use_tex_linear := true;
@@ -941,10 +933,10 @@ procedure gFlip;
 begin
 	If (scissor) Then
 		gResetScissor;
-
+	
 	glFinish;
 	SDL_GL_SwapBuffers;
-
+	
 	start := false;
 end;
 
@@ -952,36 +944,36 @@ procedure gAdd;
 begin
 	If (not(obj_begin) or (obj.scale_w = 0) or  (obj.scale_h = 0)) Then
 		exit;
-
+	
 	inc(obj_list_size);
 	obj.rot_x := obj.x;
 	obj.rot_y := obj.y;
-
+	
 	obj_list[obj_list_size - 1] := obj;
-
+	
     With obj_list[obj_list_size-1] Do
     begin
         (* Coord Mode Stuff *)
         Case obj_coord_mode Of
             G_UP_RIGHT:
                 x -= scale_w;
-
+            
             G_DOWN_LEFT:
                 y -= scale_h;
-
+            
             G_DOWN_RIGHT:
                 begin
                     x -= scale_w;
                     y -= scale_h;
                 end;
-
+            
             G_CENTER:
                 begin
                     x -= scale_w / 2;
                     y -= scale_h / 2;
                 end;
         end;
-
+        
         (* Alpha Stuff *)
         color.a := alpha;
     end;
@@ -991,9 +983,9 @@ procedure gPush;
 begin
 	If (transform_stack_size >= TRANSFORM_STACK_MAX) Then
 		exit;
-
+	
 	inc(transform_stack_size);
-
+    
     With transform_stack[transform_stack_size-1] Do
     begin
         x := obj.x;
@@ -1010,7 +1002,7 @@ procedure gPop;
 begin
 	If (transform_stack_size <= 0) Then
 		exit;
-
+	
     With transform_stack[transform_stack_size-1] Do
     begin
         obj.x := x;
@@ -1021,7 +1013,7 @@ begin
         obj.scale_w := scale_w;
         obj.scale_h := scale_h;
 	end;
-
+    
 	dec(transform_stack_size);
 end;
 
@@ -1031,7 +1023,7 @@ procedure gTexFree(tex : gImage);
 begin
 	If (tex = nil) Then
 		exit;
-
+	
 	glDeleteTextures(1, @tex^.id);
 end;
 
@@ -1039,7 +1031,7 @@ procedure _gSurfToTex(var tex : gImage; var picture_surface : PSDL_Surface);
 var
     gl_surface : PSDL_Surface;
 	format : TSDL_PixelFormat;
-begin
+begin	
 	format := (picture_surface^.format)^;
 	format.BitsPerPixel := 32;
 	format.BytesPerPixel := 4;
@@ -1047,18 +1039,18 @@ begin
 	format.Gmask := $0000FF00;
 	format.Bmask := $00FF0000;
 	format.Amask := $FF000000;
-
+	
 	gl_surface := SDL_ConvertSurface(picture_surface, @format, SDL_SWSURFACE);
-
+	
 	tex^.w := gl_surface^.w;
 	tex^.h := gl_surface^.h;
-
+	
 	glGenTextures(1, @tex^.id);
 	glBindTexture(GL_TEXTURE_2D, tex^.id);
 	glTexImage2D(GL_TEXTURE_2D, 0, 4, gl_surface^.w,
 				 gl_surface^.h, 0, GL_RGBA, GL_UNSIGNED_BYTE,
 				 gl_surface^.pixels);
-
+	
 	SDL_FreeSurface(gl_surface);
 end;
 
@@ -1069,52 +1061,46 @@ var
 begin
 	If (path = '') Then
 		exit(nil);
-
+	
 	If not(start) Then
 		_gStart;
-
+	
 	new(tex);
-
+	
 	picture_surface := IMG_Load(PChar(path));
-
+    
 	If (picture_surface = nil) Then
     begin
         writeln('Cannot load ', path);
 		exit(nil);
     end;
-
+	
     _gSurfToTex(tex, picture_surface);
 	SDL_FreeSurface(picture_surface);
-
+	
 	exit(tex);
 end;
 
-function gTextLoad(text : AnsiString; var font : PTTF_Font;code : integer) : gImage;
+function gTextLoad(text : AnsiString; var font : PTTF_Font) : gImage;
 var
-    white_sdl,black_sdl : TSDL_Color; (* Basically, Text is white *)
+    white_sdl : TSDL_Color; (* Basically, Text is white *)
     text_surf : PSDL_Surface;
     tex : gImage;
 begin
     If not(start) Then
 		_gStart;
-
+    
     white_sdl.r := 255;
     white_sdl.g := 255;
     white_sdl.b := 255;
-
-		black_sdl.r := 0;
-		black_sdl.g := 0;
-		black_sdl.b := 0;
-
+    
     new(tex);
-
-		if code = 0 then text_surf := TTF_RenderText_Blended(font, PChar(text), white_sdl)
-		else text_surf := TTF_RenderText_Blended(font, PChar(text), black_sdl);
-
-
+    
+    text_surf := TTF_RenderText_Blended(font, PChar(text), white_sdl);
+    
     _gSurfToTex(tex, text_surf);
     SDL_FreeSurface(text_surf);
-
+    
     exit(tex);
 end;
 
@@ -1158,7 +1144,7 @@ begin
         inc_y :=  obj.rot_cos * y + obj.rot_sin * x;
     end;
     obj.x += inc_x * global_scale;
-    obj.y += inc_y * global_scale;
+    obj.y += inc_y * global_scale; 
 end;
 
 
@@ -1181,7 +1167,7 @@ begin
         obj.scale_w := obj_tex^.w;
         obj.scale_h := obj_tex^.h;
     end;
-
+  
     obj.scale_w *= global_scale;
     obj.scale_h *= global_scale;
 end;
@@ -1212,7 +1198,7 @@ procedure gSetScaleWH(w, h : real);
 begin
     obj.scale_w := w * global_scale;
     obj.scale_h := h * global_scale;
-
+    
     // A trick to prevent an unexpected behavior when mirroring.
     if (obj.scale_w < 0) or (obj.scale_h < 0) then
         obj_use_rot := true;
@@ -1371,7 +1357,7 @@ end;
 
 procedure gSetCropXYRelative(x, y : integer);
 begin
-    if (obj_tex <> NIL) then
+    if (obj_tex <> NIL) then 
         gSetCropXY(obj.crop_x + x, obj.crop_y + y);
 end;
 
@@ -1410,19 +1396,19 @@ procedure gDrawRect(x, y, w, h : real; color : gColor);
 begin
     gBeginLines(G_STRIP);
         gSetColor(color);
-
+        
         gSetCoord(x, y);
         gAdd();
-
+        
         gSetCoord(x + w, y);
         gAdd();
-
+        
         gSetCoord(x + w, y + h);
         gAdd();
-
+        
         gSetCoord(x, y + h);
         gAdd();
-
+        
         gSetCoord(x, y);
         gAdd();
     gEnd();
@@ -1443,15 +1429,15 @@ var
     i : real;
 begin
     i := 0;
-
+    
     gBeginLines(G_STRIP);
     gSetColor(color);
-
+    
     while (i <= 2*PI + 0.1) do
     begin
         gSetCoord(cx + radius * cos(i), cy + radius * sin(i));
         gAdd();
-
+        
         i += 0.1;
     end;
     gEnd();
@@ -1496,25 +1482,25 @@ end;
 
 function sdl_mouse_left_up : boolean;
 begin
-    exit((_event.type_ = SDL_MOUSEBUTTONUP)
+    exit((_event.type_ = SDL_MOUSEBUTTONUP) 
     and  (_event.button.button = SDL_BUTTON_LEFT));
 end;
 
 function sdl_mouse_left_down : boolean;
 begin
-    exit((_event.type_ = SDL_MOUSEBUTTONDOWN)
+    exit((_event.type_ = SDL_MOUSEBUTTONDOWN) 
     and  (_event.button.button = SDL_BUTTON_LEFT));
 end;
 
 function sdl_mouse_right_up : boolean;
 begin
-    exit((_event.type_ = SDL_MOUSEBUTTONUP)
+    exit((_event.type_ = SDL_MOUSEBUTTONUP) 
     and  (_event.button.button = SDL_BUTTON_RIGHT));
 end;
 
 function sdl_mouse_right_down : boolean;
 begin
-    exit((_event.type_ = SDL_MOUSEBUTTONDOWN)
+    exit((_event.type_ = SDL_MOUSEBUTTONDOWN) 
     and  (_event.button.button = SDL_BUTTON_RIGHT));
 end;
 
@@ -1523,7 +1509,7 @@ function sdl_get_keypressed : integer;
 begin
     if (_event.type_ <> SDL_KEYDOWN) then
         exit(-1);
-
+    
     exit(_event.key.keysym.sym);
 end;
 
@@ -1538,3 +1524,4 @@ global_scale := 1.0;
 obj_begin := false;
 
 End.
+

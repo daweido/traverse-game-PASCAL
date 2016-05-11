@@ -29,32 +29,32 @@ Const
 	{$linklib libSDL_ttf-2.0.0.dylib}
 {$ENDIF}
     (* Screen constants *)
-    TITLE = 'Traverse';
-    G_SCR_W         = 1000;
-    G_SCR_H         = 750;
+    TITLE = 'Free Pascal - SDL Window';
+    G_SCR_W         = 800;
+    G_SCR_H         = 600;
     G_VOID          = 0;
 
     (* Colors *)
-    RED             : gColor = (r : 255; g : 0;   b : 0;   a : 255); //1
-    GREEN           : gColor = (r : 0;   g : 255; b : 0;   a : 255); //2
-    BLUE            : gColor = (r : 0;   g : 0;   b : 255; a : 255); //3
+    RED             : gColor = (r : 255; g : 0;   b : 0;   a : 255);
+    GREEN           : gColor = (r : 0;   g : 255; b : 0;   a : 255);
+    BLUE            : gColor = (r : 0;   g : 0;   b : 255; a : 255);
 
-    CYAN            : gColor = (r : 0;   g : 255; b : 255; a : 255);//4
-    MAGENTA         : gColor = (r : 255; g : 0;   b : 255; a : 255);//5
-    YELLOW          : gColor = (r : 255; g : 255; b : 0;   a : 255);//6
+    CYAN            : gColor = (r : 0;   g : 255; b : 255; a : 255);
+    MAGENTA         : gColor = (r : 255; g : 0;   b : 255; a : 255);
+    YELLOW          : gColor = (r : 255; g : 255; b : 0;   a : 255);
 
-    AZURE           : gColor = (r : 0;   g : 128; b : 255; a : 255);//7
-    VIOLET          : gColor = (r : 128; g : 0;   b : 255; a : 255);//8
-    PINK            : gColor = (r : 255; g : 128; b : 128; a : 255);//9
-    ORANGE          : gColor = (r : 255; g : 128; b : 0;   a : 255);//10
-    CHARTREUSE      : gColor = (r : 127; g : 255; b : 0;   a : 255);//11
-    SPRING_GREEN    : gColor = (r : 0;   g : 255; b : 128; a : 255);//12
+    AZURE           : gColor = (r : 0;   g : 128; b : 255; a : 255);
+    VIOLET          : gColor = (r : 128; g : 0;   b : 255; a : 255);
+    PINK            : gColor = (r : 255; g : 128; b : 128; a : 255);
+    ORANGE          : gColor = (r : 255; g : 128; b : 0;   a : 255);
+    CHARTREUSE      : gColor = (r : 127; g : 255; b : 0;   a : 255);
+    SPRING_GREEN    : gColor = (r : 0;   g : 255; b : 128; a : 255);
 
-    WHITE           : gColor = (r : 255; g : 255; b : 255; a : 255);//13
-    LITEGRAY        : gColor = (r : 159; g : 159; b : 159; a : 255);//14
-    GRAY            : gColor = (r : 128; g : 128; b : 128; a : 255);//15
-    DARKGRAY        : gColor = (r : 63;  g : 63;  b : 63;  a : 255);//16
-    BLACK           : gColor = (r : 0;   g : 0;   b : 0;   a : 255);//17
+    WHITE           : gColor = (r : 255; g : 255; b : 255; a : 255);
+    LITEGRAY        : gColor = (r : 159; g : 159; b : 159; a : 255);
+    GRAY            : gColor = (r : 128; g : 128; b : 128; a : 255);
+    DARKGRAY        : gColor = (r : 63;  g : 63;  b : 63;  a : 255);
+    BLACK           : gColor = (r : 0;   g : 0;   b : 0;   a : 255);
 
     (* Coordinates modes *)
     G_UP_LEFT       = 0;
@@ -68,7 +68,8 @@ Const
 
     PI              = 3.141592653589;
 
-
+	noir = 'noir';
+	blanc = 'blanc';
 (* Functions prototypes *)
 
 (*
@@ -183,7 +184,7 @@ function  gTexLoad(path : AnsiString) : gImage;
     * Print a text in an image, to be able to blit it after
 *)
 
-function  gTextLoad(text : AnsiString; var font : PTTF_Font;code : integer) : gImage;
+function gTextLoad(text : AnsiString; var font : PTTF_Font;couleur : string) : gImage;
 
 
 (*
@@ -1089,27 +1090,25 @@ begin
 	exit(tex);
 end;
 
-function gTextLoad(text : AnsiString; var font : PTTF_Font;code : integer) : gImage;
+function gTextLoad(text : AnsiString; var font : PTTF_Font;couleur : string) : gImage;
 var
-    white_sdl,black_sdl : TSDL_Color; (* Basically, Text is white *)
+    white_sdl, black_sdl : TSDL_Color; (* Basically, Text is white *)
     text_surf : PSDL_Surface;
     tex : gImage;
 begin
     If not(start) Then
 		_gStart;
-
     white_sdl.r := 255;
     white_sdl.g := 255;
     white_sdl.b := 255;
 
 		black_sdl.r := 0;
-		black_sdl.g := 0;
-		black_sdl.b := 0;
+    black_sdl.g := 0;
+    black_sdl.b := 0;
 
     new(tex);
-
-		if code = 0 then text_surf := TTF_RenderText_Blended(font, PChar(text), white_sdl)
-		else text_surf := TTF_RenderText_Blended(font, PChar(text), black_sdl);
+		if couleur = 'noir' then text_surf := TTF_RenderText_Blended(font, PChar(text), black_sdl)
+		else text_surf := TTF_RenderText_Blended(font, PChar(text), white_sdl);
 
 
     _gSurfToTex(tex, text_surf);
