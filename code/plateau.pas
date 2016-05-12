@@ -3,8 +3,14 @@ unit plateau;
 interface
 uses gLib2D,SDL_TTF,sysutils,pions;
 
+type pion = record
+		identif : integer;
+		clr : gColor;
+	end;
+
 TYPE plat = record
-		x,y,pion : integer;
+		x,y: integer;
+		p : pion;
 		couleur : gColor;
 	end;
 
@@ -14,7 +20,8 @@ type
 
 function creaPlateau():plateauDyn;
 procedure affiPlateau(plato : plateauDyn);
-procedure affiPions(plato : plateauDyn);
+procedure verif_cases(var plato : plateauDyn);
+
 
 Implementation
 
@@ -43,10 +50,14 @@ begin
 		x := 200;
 		y += 60;
 	end;
-	plato[98].pion := 1;
-	plato[91].pion := 1;
-	plato[94].pion := 4;
-	plato[95].pion := 4;
+	plato[98].p.identif := 1;
+	plato[91].p.identif := 1;
+	plato[94].p.identif := 4;
+	plato[95].p.identif := 4;
+	plato[98].p.clr := blue;
+	plato[91].p.clr := blue;
+	plato[94].p.clr := blue;
+	plato[95].p.clr := blue;
 	creaPlateau := plato;
 end;
 
@@ -55,9 +66,8 @@ var
 	i : integer;
 begin
 	for i := 0 to 99 do begin
-		if plato[i].pion = 1 then carres(plato[i].x,plato[i].y,blue);
-		if plato[i].pion = 4 then cercles(plato[i].x,plato[i].y,blue);
-
+		if plato[i].p.identif = 1 then carres(plato[i].x,plato[i].y,plato[i].p.clr);
+		if plato[i].p.identif = 4 then cercles(plato[i].x,plato[i].y,plato[i].p.clr);
 	end;
 end;
 
@@ -69,6 +79,17 @@ begin
 	for i := 0 to 99 do gFillRect(plato[i].x,plato[i].y,60,60,plato[i].couleur);
 	gDrawRect(200,75,600,600,BLACK);
 	affiPions(plato);
+	verif_cases(plato);
 end;
 
+procedure verif_cases(var plato : plateauDyn);
+var
+	i,xm,ym : integer;
+begin
+	for i := 0 to 99 do begin
+		xm := sdl_get_mouse_x;
+		ym := sdl_get_mouse_y;
+		if ((xm > plato[i].x) and (xm < plato[i].x + 60)) and ((ym > plato[i].y) and (ym < plato[i].y + 60)) then gFillRect(plato[i].x,plato[i].y,60,60,red);
+	end;
+end;
 end.

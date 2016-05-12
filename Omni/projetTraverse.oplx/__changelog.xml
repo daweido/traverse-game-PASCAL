@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<changelog xmlns="http://www.omnigroup.com/namespace/OmniPlan/v2">
+  <version>2.1</version>
+  <task-change-set user="David Rigaux" date="2016-05-12T13:37:34.028Z" timestamp="2016-05-12T13:37:34.028Z">
+    <change idref="t1" attribute="effort" type="real" from="28800" to="326700" resolved="yes"/>
+  </task-change-set>
+  <task-change-set user="David Rigaux" date="2016-05-12T14:06:10.020Z" timestamp="2016-05-12T14:06:10.020Z">
+    <change idref="t38" to="t-1" to-position="1" resolved="yes">
+      <change idref="t38" attribute="internalPrerequisitesString" type="string" to="1FS"/>
+      <change idref="t38" attribute="isGroup" type="real" from="0" to="1"/>
+      <change idref="t38" attribute="taskType" type="real" from="0" to="2"/>
+      <change idref="t38" attribute="title" type="string" to="Créer les règles"/>
+    </change>
+    <change idref="t35" to="t-1" to-position="2" resolved="yes">
+      <change idref="t35" attribute="internalPrerequisitesString" type="string" to="1FS"/>
+      <change idref="t35" attribute="isGroup" type="real" from="0" to="1"/>
+      <change idref="t35" attribute="taskType" type="real" from="0" to="2"/>
+      <change idref="t35" attribute="title" type="string" to="Les pions"/>
+    </change>
+    <change idref="t2" to="t-1" to-position="3" resolved="yes">
+      <change idref="t2" attribute="effort" type="real" from="28800" to="1209600"/>
+      <change idref="t2" attribute="internalPrerequisitesString" type="string" to="1FS"/>
+      <change idref="t2" attribute="noEarlierThanConstraintDate" type="date" to="2016-05-22T22:00:00.000Z"/>
+      <change idref="t2" attribute="title" type="string" to="Implémentation IA, version humain – ordinateur"/>
+    </change>
+    <change idref="t34" to="t-1" to-position="4" resolved="yes">
+      <change idref="t34" attribute="internalPrerequisitesString" type="string" to="2FS"/>
+      <change idref="t34" attribute="notesAllowingNil" type="textdata" to="e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcY29jb2FydGYxNDA0XGNvY29hc3VicnRmNDYwCntcZm9udHRibFxmMFxmbmlsXGZjaGFyc2V0MCBIZWx2ZXRpY2FOZXVlO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7XHJlZDg1XGdyZWVuODVcYmx1ZTg1O1xyZWQ2MFxncmVlbjI0OFxibHVlMjMzO30KXHBhcmRcdHg1NjBcdHgxMTIwXHR4MTY4MFx0eDIyNDBcdHgyODAwXHR4MzM2MFx0eDM5MjBcdHg0NDgwXHR4NTA0MFx0eDU2MDBcdHg2MTYwXHR4NjcyMFxwYXJkaXJuYXR1cmFsXHBhcnRpZ2h0ZW5mYWN0b3IwCgpcZjBcZnMyNCBcY2YyIFxjYjMgQ29tcHJlbmRyZSBsXCc5MmFsZ29yaXRobWUgTWluTWF4fQ=="/>
+      <change idref="t34" attribute="title" type="string" to="IA"/>
+    </change>
+    <change idref="t3" to="t-1" to-position="5" resolved="yes">
+      <change idref="t3" attribute="effort" type="real" from="28800" to="601200"/>
+      <change idref="t3" attribute="internalPrerequisitesString" type="string" to="2FS"/>
+      <change idref="t3" attribute="noEarlierThanConstraintDate" type="date" to="2016-06-05T22:00:00.000Z"/>
+      <change idref="t3" attribute="title" type="string" to="Dernières modifications, version finale, rapport"/>
+    </change>
+    <change idref="t28" to="t-1" to-position="6" resolved="yes">
+      <change idref="t28" attribute="internalPrerequisitesString" type="string" to="5FS"/>
+      <change idref="t28" attribute="title" type="string" to="Ajouter noms de joueurs"/>
+    </change>
+    <change idref="t5" to="t-1" to-position="7" resolved="yes">
+      <change idref="t5" attribute="effort" type="real" from="28800" to="2734200"/>
+      <change idref="t5" attribute="title" type="string" to="Widgets"/>
+    </change>
+    <change idref="t50" to="t-1" to-position="8" resolved="yes">
+      <change idref="t50" attribute="internalPrerequisitesString" type="string" to="5FS"/>
+      <change idref="t50" attribute="isGroup" type="real" from="0" to="1"/>
+      <change idref="t50" attribute="taskType" type="real" from="0" to="2"/>
+      <change idref="t50" attribute="title" type="string" to="Ajout de pause pendant le jeu"/>
+    </change>
+    <change idref="t20" to="t-1" to-position="9" resolved="yes">
+      <change idref="t20" attribute="internalPrerequisitesString" type="string" to="5FS"/>
+      <change idref="t20" attribute="isGroup" type="real" from="0" to="1"/>
+      <change idref="t20" attribute="taskType" type="real" from="0" to="2"/>
+      <change idref="t20" attribute="title" type="string" to="Menu"/>
+    </change>
+    <change idref="t1" attribute="title" type="string" from="Task 1" to="Implémentation des règles, version humain – humain" resolved="yes"/>
+    <change idref="t1" attribute="effort" type="real" from="326700" to="918000" resolved="yes"/>
+    <change idref="t22" to="t20" to-position="0" resolved="yes">
+      <change idref="t22" attribute="isGroup" type="real" from="0" to="1"/>
+      <change idref="t22" attribute="taskType" type="real" from="0" to="2"/>
+      <change idref="t22" attribute="title" type="string" to="Faire Images des menus"/>
+    </change>
+    <change idref="t27" to="t20" to-position="1" resolved="yes">
+      <change idref="t27" attribute="internalPrerequisitesString" type="string" to="22FS"/>
+      <change idref="t27" attribute="title" type="string" to="Calculer les coordonnées de chaque boutons"/>
+    </change>
+    <change idref="t32" to="t20" to-position="2" resolved="yes">
+      <change idref="t32" attribute="internalPrerequisitesString" type="string" to="20FS"/>
+      <change idref="t32" attribute="title" type="string" to="Coder les différents menus"/>
+    </change>
+    <change idref="t24" to="t22" to-position="0" resolved="yes">
+      <change idref="t24" attribute="title" type="string" to="Comment Jouer"/>
+    </change>
+    <change idref="t25" to="t22" to-position="1" resolved="yes">
+      <change idref="t25" attribute="title" type="string" to="Fin de partie"/>
+    </change>
+    <change idref="t31" to="t22" to-position="2" resolved="yes">
+      <change idref="t31" attribute="title" type="string" to="Boutons quand on Hover par dessus"/>
+    </change>
+    <change idref="t36" to="t35" to-position="0" resolved="yes">
+      <change idref="t36" attribute="isGroup" type="real" from="0" to="1"/>
+      <change idref="t36" attribute="taskType" type="real" from="0" to="2"/>
+      <change idref="t36" attribute="title" type="string" to="Créer les pions manquants"/>
+    </change>
+    <change idref="t37" to="t35" to-position="1" resolved="yes">
+      <change idref="t37" attribute="title" type="string" to="Les initialiser à leur bon endroit"/>
+    </change>
+    <change idref="t45" to="t36" to-position="0" resolved="yes">
+      <change idref="t45" attribute="title" type="string" to="Triangle"/>
+    </change>
+    <change idref="t44" to="t36" to-position="1" resolved="yes">
+      <change idref="t44" attribute="title" type="string" to="Losange"/>
+    </change>
+    <change idref="t47" to="t38" to-position="0" resolved="yes">
+      <change idref="t47" attribute="title" type="string" to="Coder les sauts de pions"/>
+    </change>
+    <change idref="t46" to="t38" to-position="1" resolved="yes">
+      <change idref="t46" attribute="isGroup" type="real" from="0" to="1"/>
+      <change idref="t46" attribute="taskType" type="real" from="0" to="2"/>
+      <change idref="t46" attribute="title" type="string" to="Coder les limites des mouvements"/>
+    </change>
+    <change idref="t39" to="t38" to-position="2" resolved="yes">
+      <change idref="t39" attribute="isGroup" type="real" from="0" to="1"/>
+      <change idref="t39" attribute="taskType" type="real" from="0" to="2"/>
+      <change idref="t39" attribute="title" type="string" to="Créer les règles pour chaque pions"/>
+    </change>
+    <change idref="t43" to="t39" to-position="0" resolved="yes">
+      <change idref="t43" attribute="title" type="string" to="Triangle"/>
+    </change>
+    <change idref="t42" to="t39" to-position="1" resolved="yes">
+      <change idref="t42" attribute="title" type="string" to="Cercle"/>
+    </change>
+    <change idref="t41" to="t39" to-position="2" resolved="yes">
+      <change idref="t41" attribute="title" type="string" to="Losange"/>
+    </change>
+    <change idref="t40" to="t39" to-position="3" resolved="yes">
+      <change idref="t40" attribute="title" type="string" to="Carré"/>
+    </change>
+    <change idref="t48" to="t46" to-position="0" resolved="yes">
+      <change idref="t48" attribute="title" type="string" to="Les carreaux sur les côtés"/>
+    </change>
+    <change idref="t49" to="t46" to-position="1" resolved="yes">
+      <change idref="t49" attribute="notesAllowingNil" type="textdata" to="e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcY29jb2FydGYxNDA0XGNvY29hc3VicnRmNDYwCntcZm9udHRibFxmMFxmbmlsXGZjaGFyc2V0MCBIZWx2ZXRpY2FOZXVlO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7XHJlZDg1XGdyZWVuODVcYmx1ZTg1O1xyZWQ2MFxncmVlbjI0OFxibHVlMjMzO30KXHBhcmRcdHg1NjBcdHgxMTIwXHR4MTY4MFx0eDIyNDBcdHgyODAwXHR4MzM2MFx0eDM5MjBcdHg0NDgwXHR4NTA0MFx0eDU2MDBcdHg2MTYwXHR4NjcyMFxwYXJkaXJuYXR1cmFsXHBhcnRpZ2h0ZW5mYWN0b3IwCgpcZjBcZnMyNCBcY2YyIFxjYjMgaWYgcGkucGlvbnMgPD4gMH0="/>
+      <change idref="t49" attribute="title" type="string" to="Quand un pion nous bloque"/>
+    </change>
+    <change idref="t52" to="t50" to-position="0" resolved="yes">
+      <change idref="t52" attribute="isGroup" type="real" from="0" to="1"/>
+      <change idref="t52" attribute="taskType" type="real" from="0" to="2"/>
+      <change idref="t52" attribute="title" type="string" to="Tout moment du jeu"/>
+    </change>
+    <change idref="t53" to="t52" to-position="0" resolved="yes">
+      <change idref="t53" attribute="title" type="string" to="Touche “ESC” pause le jeu"/>
+    </change>
+    <change idref="t54" to="t52" to-position="1" resolved="yes">
+      <change idref="t54" attribute="title" type="string" to="Possibilité de continuer"/>
+    </change>
+    <change idref="t55" to="t52" to-position="2" resolved="yes">
+      <change idref="t55" attribute="title" type="string" to="Quitter Partie"/>
+    </change>
+    <change idref="t56" to="t52" to-position="3" resolved="yes">
+      <change idref="t56" attribute="title" type="string" to="Quitter Jeu"/>
+    </change>
+  </task-change-set>
+  <task-change-set user="David Rigaux" date="2016-05-12T14:09:41.878Z" timestamp="2016-05-12T14:09:41.878Z">
+    <change idref="t34" attribute="notesAllowingNil" type="textdata" from="e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcY29jb2FydGYxNDA0XGNvY29hc3VicnRmNDYwCntcZm9udHRibFxmMFxmbmlsXGZjaGFyc2V0MCBIZWx2ZXRpY2FOZXVlO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7XHJlZDg1XGdyZWVuODVcYmx1ZTg1O1xyZWQ2MFxncmVlbjI0OFxibHVlMjMzO30KXHBhcmRcdHg1NjBcdHgxMTIwXHR4MTY4MFx0eDIyNDBcdHgyODAwXHR4MzM2MFx0eDM5MjBcdHg0NDgwXHR4NTA0MFx0eDU2MDBcdHg2MTYwXHR4NjcyMFxwYXJkaXJuYXR1cmFsXHBhcnRpZ2h0ZW5mYWN0b3IwCgpcZjBcZnMyNCBcY2YyIFxjYjMgXHVwMCBcbm9zdXBlcnN1YiBcdWxub25lIFxvYmxpcXVlbmVzczAgXGV4cGFuc2lvbjAgQ29tcHJlbmRyZSBsXCc5MmFsZ29yaXRobWUgTWluTWF4fQ==" to="e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcY29jb2FydGYxNDA0XGNvY29hc3VicnRmNDYwCntcZm9udHRibFxmMFxmbmlsXGZjaGFyc2V0MCBIZWx2ZXRpY2FOZXVlO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7XHJlZDg1XGdyZWVuODVcYmx1ZTg1O30KXHBhcmRcdHg1NjBcdHgxMTIwXHR4MTY4MFx0eDIyNDBcdHgyODAwXHR4MzM2MFx0eDM5MjBcdHg0NDgwXHR4NTA0MFx0eDU2MDBcdHg2MTYwXHR4NjcyMFxwYXJkaXJuYXR1cmFsXHBhcnRpZ2h0ZW5mYWN0b3IwCgpcZjBcZnMyNCBcY2YyIFx1cDAgXG5vc3VwZXJzdWIgXHVsbm9uZSBcb2JsaXF1ZW5lc3MwIFxleHBhbnNpb24wIENvbXByZW5kcmUgbFwnOTJhbGdvcml0aG1lIE1pbk1heH0=" resolved="yes"/>
+    <change idref="t49" attribute="notesAllowingNil" type="textdata" from="e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcY29jb2FydGYxNDA0XGNvY29hc3VicnRmNDYwCntcZm9udHRibFxmMFxmbmlsXGZjaGFyc2V0MCBIZWx2ZXRpY2FOZXVlO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7XHJlZDg1XGdyZWVuODVcYmx1ZTg1O1xyZWQ2MFxncmVlbjI0OFxibHVlMjMzO30KXHBhcmRcdHg1NjBcdHgxMTIwXHR4MTY4MFx0eDIyNDBcdHgyODAwXHR4MzM2MFx0eDM5MjBcdHg0NDgwXHR4NTA0MFx0eDU2MDBcdHg2MTYwXHR4NjcyMFxwYXJkaXJuYXR1cmFsXHBhcnRpZ2h0ZW5mYWN0b3IwCgpcZjBcZnMyNCBcY2YyIFxjYjMgXHVwMCBcbm9zdXBlcnN1YiBcdWxub25lIFxvYmxpcXVlbmVzczAgXGV4cGFuc2lvbjAgaWYgcGkucGlvbnMgPD4gMH0=" to="e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcY29jb2FydGYxNDA0XGNvY29hc3VicnRmNDYwCntcZm9udHRibFxmMFxmbmlsXGZjaGFyc2V0MCBIZWx2ZXRpY2FOZXVlO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7XHJlZDg1XGdyZWVuODVcYmx1ZTg1O30KXHBhcmRcdHg1NjBcdHgxMTIwXHR4MTY4MFx0eDIyNDBcdHgyODAwXHR4MzM2MFx0eDM5MjBcdHg0NDgwXHR4NTA0MFx0eDU2MDBcdHg2MTYwXHR4NjcyMFxwYXJkaXJuYXR1cmFsXHBhcnRpZ2h0ZW5mYWN0b3IwCgpcZjBcZnMyNCBcY2YyIFx1cDAgXG5vc3VwZXJzdWIgXHVsbm9uZSBcb2JsaXF1ZW5lc3MwIFxleHBhbnNpb24wIGlmIHBpLnBpb25zIDw+IDB9" resolved="yes"/>
+  </task-change-set>
+  <task-change-set user="David Rigaux" date="2016-05-12T14:11:41.903Z" timestamp="2016-05-12T14:11:41.903Z">
+    <change idref="t67" to="t-1" to-position="8" resolved="yes">
+      <change idref="t67" attribute="internalPrerequisitesString" type="string" to="5FS"/>
+      <change idref="t67" attribute="isGroup" type="real" from="0" to="1"/>
+      <change idref="t67" attribute="taskType" type="real" from="0" to="2"/>
+      <change idref="t67" attribute="title" type="string" to="Plateau"/>
+    </change>
+    <change idref="t70" to="t67" to-position="0" resolved="yes">
+      <change idref="t70" attribute="title" type="string" to="Hover sur les pions"/>
+    </change>
+    <change idref="t69" to="t67" to-position="1" resolved="yes">
+      <change idref="t69" attribute="notesAllowingNil" type="textdata" to="e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcY29jb2FydGYxNDA0XGNvY29hc3VicnRmNDYwCntcZm9udHRibFxmMFxmbmlsXGZjaGFyc2V0MCBIZWx2ZXRpY2FOZXVlO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7XHJlZDg1XGdyZWVuODVcYmx1ZTg1O30KXHBhcmRcdHg1NjBcdHgxMTIwXHR4MTY4MFx0eDIyNDBcdHgyODAwXHR4MzM2MFx0eDM5MjBcdHg0NDgwXHR4NTA0MFx0eDU2MDBcdHg2MTYwXHR4NjcyMFxwYXJkaXJuYXR1cmFsXHBhcnRpZ2h0ZW5mYWN0b3IwCgpcZjBcZnMyNCBcY2YyIFx1cDAgXG5vc3VwZXJzdWIgXHVsbm9uZSBcb2JsaXF1ZW5lc3MwIFxleHBhbnNpb24wIEFqb3V0ZXIgdW4gY29udG91ciBibGFuY30="/>
+      <change idref="t69" attribute="title" type="string" to="Hover sur chaque case"/>
+    </change>
+  </task-change-set>
+  <resource-change-set user="David Rigaux" date="2016-05-12T14:06:10.019Z" timestamp="2016-05-12T14:06:10.019Z">
+    <change idref="r-1" attribute="standardHoursString" type="string" from="-;-;-;-;-;-;-" to="0,86400;0,86400;0,86400;0,86400;0,86400;0,86400;0,86400" resolved="yes"/>
+    <change idref="r2" to="r-1" to-position="1" resolved="yes">
+      <change idref="r2" attribute="name" type="string" to="Mehdi"/>
+    </change>
+    <change idref="r3" to="r-1" to-position="2" resolved="yes">
+      <change idref="r3" attribute="name" type="string" to="Maxime"/>
+    </change>
+    <change idref="r4" to="r-1" to-position="3" resolved="yes">
+      <change idref="r4" attribute="name" type="string" to="Mandry"/>
+    </change>
+    <change idref="r1" attribute="name" type="string" from="Resource 1" to="David" resolved="yes"/>
+  </resource-change-set>
+  <metadata-change-set user="David Rigaux" date="2016-05-12T13:33:10.554Z" timestamp="2016-05-12T13:33:10.554Z">
+    <change idref="m1" attribute="fixedDate" type="date" from="2007-01-01T20:00:00.000Z" to="2016-05-12T06:00:00.000Z" resolved="yes"/>
+  </metadata-change-set>
+  <metadata-change-set user="David Rigaux" date="2016-05-12T14:06:10.019Z" timestamp="2016-05-12T14:06:10.019Z">
+    <change idref="m1" attribute="namedStyleProps" type="dict" to="{
+    &quot;_order&quot; =     (
+        oEkw9FVyccF
+    );
+    oEkw9FVyccF = &quot;New Style&quot;;
+}" resolved="yes"/>
+    <change idref="m1" attribute="namedStyle_oEkw9FVyccF" type="dict" to="{
+}" resolved="yes"/>
+    <change idref="m1" attribute="baseStyle" type="dict" to="{
+    &quot;gantt-alternate-color&quot; =     {
+        a = &quot;0.4&quot;;
+        b = &quot;0.0952353&quot;;
+        g = &quot;0.457178&quot;;
+        r = &quot;0.864022&quot;;
+    };
+    &quot;gantt-separator-color&quot; =     {
+        space = gg22;
+        w = 0;
+    };
+    &quot;gantt-today-color&quot; =     {
+        a = &quot;0.4&quot;;
+        b = &quot;0.999&quot;;
+        g = &quot;0.684818&quot;;
+        r = &quot;0.495504&quot;;
+        space = srgb;
+    };
+    &quot;text-background-color&quot; =     {
+        a = &quot;0.0524435&quot;;
+        b = &quot;0.912729&quot;;
+        g = &quot;0.973733&quot;;
+        r = &quot;0.236944&quot;;
+    };
+}" resolved="yes"/>
+  </metadata-change-set>
+  <metadata-change-set user="David Rigaux" date="2016-05-12T14:09:41.877Z" timestamp="2016-05-12T14:09:41.877Z">
+    <change idref="m1" attribute="namedStyleProps" type="dict" from="{
+    &quot;_order&quot; =     (
+        oEkw9FVyccF
+    );
+    oEkw9FVyccF = &quot;New Style&quot;;
+}" resolved="yes"/>
+    <change idref="m1" attribute="namedStyle_oEkw9FVyccF" type="dict" from="{
+}" resolved="yes"/>
+    <change idref="m1" attribute="baseStyle" type="dict" from="{
+    &quot;gantt-alternate-color&quot; =     {
+        a = &quot;0.4&quot;;
+        b = &quot;0.0952353&quot;;
+        g = &quot;0.457178&quot;;
+        r = &quot;0.864022&quot;;
+    };
+    &quot;gantt-separator-color&quot; =     {
+        space = gg22;
+        w = 0;
+    };
+    &quot;gantt-today-color&quot; =     {
+        a = &quot;0.4&quot;;
+        b = &quot;0.999&quot;;
+        g = &quot;0.684819&quot;;
+        r = &quot;0.495504&quot;;
+        space = srgb;
+    };
+    &quot;text-background-color&quot; =     {
+        a = &quot;0.0524435&quot;;
+        b = &quot;0.912729&quot;;
+        g = &quot;0.973733&quot;;
+        r = &quot;0.236944&quot;;
+    };
+}" to="{
+    &quot;gantt-alternate-color&quot; =     {
+        a = &quot;0.151291&quot;;
+        b = &quot;0.0952353&quot;;
+        g = &quot;0.457178&quot;;
+        r = &quot;0.864022&quot;;
+    };
+    &quot;gantt-separator-color&quot; =     {
+        space = gg22;
+        w = 0;
+    };
+    &quot;gantt-today-color&quot; =     {
+        a = 0;
+        w = 0;
+    };
+}" resolved="yes"/>
+  </metadata-change-set>
+</changelog>

@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<scenario xmlns="http://www.omnigroup.com/namespace/OmniPlan/v2" xmlns:opns="http://www.omnigroup.com/namespace/OmniPlan/v2" id="l6Ys2ko8f7O">
+  <start-date>2016-05-12T06:00:00.000Z</start-date>
+  <prototype-task>
+    <task id="t-2">
+      <title>Task 1</title>
+      <effort>28800</effort>
+    </task>
+  </prototype-task>
+  <prototype-task>
+    <task id="t-3">
+      <title>Milestone 1</title>
+      <type>milestone</type>
+    </task>
+  </prototype-task>
+  <prototype-task>
+    <task id="t-4">
+      <title>Group 1</title>
+      <type>group</type>
+    </task>
+  </prototype-task>
+  <prototype-resource>
+    <resource id="r-2">
+      <name>Resource 1</name>
+      <type>Staff</type>
+    </resource>
+  </prototype-resource>
+  <prototype-resource>
+    <resource id="r-3">
+      <name>Equipment 1</name>
+      <type>Equipment</type>
+    </resource>
+  </prototype-resource>
+  <prototype-resource>
+    <resource id="r-4">
+      <name>Material 1</name>
+      <type>Material</type>
+      <units-available>0</units-available>
+      <efficiency>0</efficiency>
+    </resource>
+  </prototype-resource>
+  <prototype-resource>
+    <resource id="r-5">
+      <name>Group 1</name>
+      <type>Group</type>
+    </resource>
+  </prototype-resource>
+  <top-resource idref="r-1"/>
+  <resource id="r-1">
+    <type>Group</type>
+    <schedule>
+      <schedule-day day-of-week="sunday">
+        <time-span start-time="0" end-time="86400"/>
+      </schedule-day>
+      <schedule-day day-of-week="monday">
+        <time-span start-time="0" end-time="86400"/>
+      </schedule-day>
+      <schedule-day day-of-week="tuesday">
+        <time-span start-time="0" end-time="86400"/>
+      </schedule-day>
+      <schedule-day day-of-week="wednesday">
+        <time-span start-time="0" end-time="86400"/>
+      </schedule-day>
+      <schedule-day day-of-week="thursday">
+        <time-span start-time="0" end-time="86400"/>
+      </schedule-day>
+      <schedule-day day-of-week="friday">
+        <time-span start-time="0" end-time="86400"/>
+      </schedule-day>
+      <schedule-day day-of-week="saturday">
+        <time-span start-time="0" end-time="86400"/>
+      </schedule-day>
+      <calendar name="Time Off" editable="yes" overtime="no"/>
+      <calendar name="Overtime" editable="yes" overtime="yes"/>
+    </schedule>
+    <child-resource idref="r1"/>
+    <child-resource idref="r2"/>
+    <child-resource idref="r3"/>
+    <child-resource idref="r4"/>
+  </resource>
+  <resource id="r1">
+    <name>David</name>
+    <type>Staff</type>
+  </resource>
+  <resource id="r2">
+    <name>Mehdi</name>
+    <type>Staff</type>
+  </resource>
+  <resource id="r3">
+    <name>Maxime</name>
+    <type>Staff</type>
+  </resource>
+  <resource id="r4">
+    <name>Mandry</name>
+    <type>Staff</type>
+  </resource>
+  <top-task idref="t-1"/>
+  <task id="t-1">
+    <type>group</type>
+    <child-task idref="t1"/>
+    <child-task idref="t38"/>
+    <child-task idref="t35"/>
+    <child-task idref="t2"/>
+    <child-task idref="t34"/>
+    <child-task idref="t3"/>
+    <child-task idref="t28"/>
+    <child-task idref="t5"/>
+    <child-task idref="t67"/>
+    <child-task idref="t50"/>
+    <child-task idref="t20"/>
+  </task>
+  <task id="t1">
+    <title>Implémentation des règles, version humain – humain</title>
+    <effort>918000</effort>
+  </task>
+  <task id="t2">
+    <title>Implémentation IA, version humain – ordinateur</title>
+    <effort>1209600</effort>
+    <start-constraint-date>2016-05-22T22:00:00.000Z</start-constraint-date>
+    <prerequisite-task idref="t1"/>
+    <start-no-earlier-than>2016-05-22T22:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t3">
+    <title>Dernières modifications, version finale, rapport</title>
+    <effort>601200</effort>
+    <start-constraint-date>2016-06-05T22:00:00.000Z</start-constraint-date>
+    <prerequisite-task idref="t2"/>
+    <start-no-earlier-than>2016-06-05T22:00:00.000Z</start-no-earlier-than>
+  </task>
+  <task id="t5">
+    <title>Widgets</title>
+    <effort>2734200</effort>
+  </task>
+  <task id="t20">
+    <title>Menu</title>
+    <type>group</type>
+    <child-task idref="t22"/>
+    <child-task idref="t27"/>
+    <child-task idref="t32"/>
+    <prerequisite-task idref="t5"/>
+  </task>
+  <task id="t22">
+    <title>Faire Images des menus</title>
+    <type>group</type>
+    <child-task idref="t24"/>
+    <child-task idref="t25"/>
+    <child-task idref="t31"/>
+  </task>
+  <task id="t24">
+    <title>Comment Jouer</title>
+    <effort>28800</effort>
+  </task>
+  <task id="t25">
+    <title>Fin de partie</title>
+    <effort>28800</effort>
+  </task>
+  <task id="t27">
+    <title>Calculer les coordonnées de chaque boutons</title>
+    <effort>28800</effort>
+    <prerequisite-task idref="t22"/>
+  </task>
+  <task id="t28">
+    <title>Ajouter noms de joueurs</title>
+    <effort>28800</effort>
+    <prerequisite-task idref="t5"/>
+  </task>
+  <task id="t31">
+    <title>Boutons quand on Hover par dessus</title>
+    <effort>28800</effort>
+  </task>
+  <task id="t32">
+    <title>Coder les différents menus</title>
+    <effort>28800</effort>
+    <prerequisite-task idref="t20"/>
+  </task>
+  <task id="t34">
+    <title>IA</title>
+    <effort>28800</effort>
+    <note>
+      <text>
+        <p>
+          <run>
+            <lit>Comprendre l’algorithme MinMax</lit>
+          </run>
+        </p>
+      </text>
+    </note>
+    <prerequisite-task idref="t2"/>
+  </task>
+  <task id="t35">
+    <title>Les pions</title>
+    <type>group</type>
+    <child-task idref="t36"/>
+    <child-task idref="t37"/>
+    <prerequisite-task idref="t1"/>
+  </task>
+  <task id="t36">
+    <title>Créer les pions manquants</title>
+    <type>group</type>
+    <child-task idref="t45"/>
+    <child-task idref="t44"/>
+  </task>
+  <task id="t37">
+    <title>Les initialiser à leur bon endroit</title>
+    <effort>28800</effort>
+  </task>
+  <task id="t38">
+    <title>Créer les règles</title>
+    <type>group</type>
+    <child-task idref="t47"/>
+    <child-task idref="t46"/>
+    <child-task idref="t39"/>
+    <prerequisite-task idref="t1"/>
+  </task>
+  <task id="t39">
+    <title>Créer les règles pour chaque pions</title>
+    <type>group</type>
+    <child-task idref="t43"/>
+    <child-task idref="t42"/>
+    <child-task idref="t41"/>
+    <child-task idref="t40"/>
+  </task>
+  <task id="t40">
+    <title>Carré</title>
+    <effort>28800</effort>
+  </task>
+  <task id="t41">
+    <title>Losange</title>
+    <effort>28800</effort>
+  </task>
+  <task id="t42">
+    <title>Cercle</title>
+    <effort>28800</effort>
+  </task>
+  <task id="t43">
+    <title>Triangle</title>
+    <effort>28800</effort>
+  </task>
+  <task id="t44">
+    <title>Losange</title>
+    <effort>28800</effort>
+  </task>
+  <task id="t45">
+    <title>Triangle</title>
+    <effort>28800</effort>
+  </task>
+  <task id="t46">
+    <title>Coder les limites des mouvements</title>
+    <type>group</type>
+    <child-task idref="t48"/>
+    <child-task idref="t49"/>
+  </task>
+  <task id="t47">
+    <title>Coder les sauts de pions</title>
+    <effort>28800</effort>
+  </task>
+  <task id="t48">
+    <title>Les carreaux sur les côtés</title>
+    <effort>28800</effort>
+  </task>
+  <task id="t49">
+    <title>Quand un pion nous bloque</title>
+    <effort>28800</effort>
+    <note>
+      <text>
+        <p>
+          <run>
+            <lit>if pi.pions &lt;&gt; 0</lit>
+          </run>
+        </p>
+      </text>
+    </note>
+  </task>
+  <task id="t50">
+    <title>Ajout de pause pendant le jeu</title>
+    <type>group</type>
+    <child-task idref="t52"/>
+    <prerequisite-task idref="t5"/>
+  </task>
+  <task id="t52">
+    <title>Tout moment du jeu</title>
+    <type>group</type>
+    <child-task idref="t53"/>
+    <child-task idref="t54"/>
+    <child-task idref="t55"/>
+    <child-task idref="t56"/>
+  </task>
+  <task id="t53">
+    <title>Touche “ESC” pause le jeu</title>
+    <effort>28800</effort>
+  </task>
+  <task id="t54">
+    <title>Possibilité de continuer</title>
+    <effort>28800</effort>
+  </task>
+  <task id="t55">
+    <title>Quitter Partie</title>
+    <effort>28800</effort>
+  </task>
+  <task id="t56">
+    <title>Quitter Jeu</title>
+    <effort>28800</effort>
+  </task>
+  <task id="t67">
+    <title>Plateau</title>
+    <type>group</type>
+    <child-task idref="t70"/>
+    <child-task idref="t69"/>
+    <prerequisite-task idref="t5"/>
+  </task>
+  <task id="t69">
+    <title>Hover sur chaque case</title>
+    <effort>28800</effort>
+    <note>
+      <text>
+        <p>
+          <run>
+            <lit>Ajouter un contour blanc</lit>
+          </run>
+        </p>
+      </text>
+    </note>
+  </task>
+  <task id="t70">
+    <title>Hover sur les pions</title>
+    <effort>28800</effort>
+  </task>
+  <critical-path root="-1" enabled="false" resources="false">
+    <color r="1" g="0.5" b="0.5"/>
+  </critical-path>
+</scenario>
