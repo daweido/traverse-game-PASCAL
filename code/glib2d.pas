@@ -29,7 +29,7 @@ Const
 	{$linklib libSDL_ttf-2.0.0.dylib}
 {$ENDIF}
     (* Screen constants *)
-    TITLE = 'Traverse';
+    TITLE = 'Traverse - Le Jeu';
     G_SCR_W         = 1000;
     G_SCR_H         = 750;
     G_VOID          = 0;

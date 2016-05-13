@@ -2,21 +2,21 @@
 <omniplan xmlns="http://www.omnigroup.com/namespace/OmniPlan/v2" xmlns:opnx="http://www.omnigroup.com/namespace/OmniPlan/v2">
   <window x="4" y="0" w="1436" h="877">
     <editing-scenario>l6Ys2ko8f7O</editing-scenario>
-    <view>pert</view>
+    <view>task</view>
     <change-tracking/>
     <status-display>basic</status-display>
     <task-view>
       <split-view-divider-position>306</split-view-divider-position>
-      <outline x="0" y="0" w="306" h="760">
+      <outline x="0" y="86" w="306" h="760">
         <column name="Violations" width="20"/>
         <column name="Notes" width="20"/>
         <column name="Title" width="191"/>
         <column name="Effort" width="70"/>
-        <expanded-items idrefs="t36 t67 t22"/>
-        <expanded-item-notes idrefs="t34 t49 t69"/>
-        <selected-items-at-filter-time idrefs="t45 t32 t70 t27 t46 t52 t20 t28 t47 t34 t53 t40 t48 t67 t35 t54 t22 t41 t49 t68 t36 t55 t2 t42 t3 t37 t69 t56 t24 t43 t38 t5 t25 t44 t31 t39 t50"/>
+        <expanded-items idrefs="t36 t39 t46 t67 t22 t20"/>
+        <expanded-item-notes idrefs="t69 t49"/>
+        <selected-items-at-filter-time idrefs="t45 t32 t70 t27 t46 t52 t20 t71 t28 t47 t53 t40 t48 t67 t35 t54 t22 t73 t41 t49 t36 t55 t2 t74 t42 t69 t3 t37 t56 t24 t43 t5 t38 t25 t44 t31 t39 t50"/>
       </outline>
-      <gantt-view x="38583" y="0" w="1113" h="760">
+      <gantt-view x="378" y="86" w="1113" h="760">
         <view-mode>actual</view-mode>
         <dependency-lines/>
         <constraints/>
@@ -70,7 +70,7 @@
         <column name="#" width="75"/>
         <selected-items-at-filter-time idrefs="r4 r3 r2"/>
       </outline>
-      <timeline x="1260" y="0" w="1085" h="760">
+      <timeline x="-86" y="0" w="1085" h="760">
         <offtime-display>none</offtime-display>
         <show-project-end/>
         <task-bar-label task-type="group" position="left">
@@ -137,7 +137,7 @@ End:</group-table-style>
     </network-view>
   </window>
   <project>
-    <next-task-id>71</next-task-id>
+    <next-task-id>75</next-task-id>
     <next-resource-id>5</next-resource-id>
     <scenario id="l6Ys2ko8f7O" name="Actual" filename="Actual.xml"/>
     <date-display dates="true" times="true" seconds="false"/>

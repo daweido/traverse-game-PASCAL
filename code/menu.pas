@@ -26,21 +26,31 @@ const
 	y_min_Ex = 587.4;
 	y_max_Ex = 666.6;
 
+	y_min_C = 609;
+	y_max_C = 681;
+
+	x_max_C = 931;
+	x_min_C = 719;
 
 
-function iniMenus:gImage;
-function bouttons: men;
-procedure affiMenuA(image : gImage);
-procedure principalMenu(var tampo : boolean; var mens : men; plato : plateauDyn; menua : gImage);
+
+function iniMenus(i : integer):gImage;
+function bouttonsJ: men;
+procedure affiMenu(image : gImage);
+procedure principalMenu(var tampo : boolean; var mens : men; plato : plateauDyn; menuJ: gImage);
+procedure commentMenu(var tampo : boolean; var mens : men;menuJ,menuC : gImage); // Recopier la procedure d'en bas mais pour le menu comment Jouer
+
 Implementation
 
 // Si plusieurs image faire un tableau d'image
-function iniMenus:gImage;
+function iniMenus(i : integer):gImage;
 begin
-	iniMenus := gTexLoad('menu.png');
+	if i = 1 then iniMenus := gTexLoad('menu.png')
+	else if i = 2 then iniMenus := gTexLoad('commentJouer.png')
+	else iniMenus := gTexLoad('reglages.png')
 end;
 
-procedure affiMenuA(image : gImage);
+procedure affiMenu(image : gImage);
 var
 	x, y : integer;
 begin
@@ -50,13 +60,13 @@ begin
 
 	gBeginRects(image);
 		gSetCoordMode(G_CENTER);
-		gSetScaleWH(SCR_W,SCR_H);
+		gSetScaleWH(SCR_W,SCR_H+8);
 		gSetCoord(x,y);
 		gAdd();
 	gEnd();
 end;
 
-function bouttons: men;
+function bouttonsJ: men;
 var
 	tmp : men;
 begin
@@ -87,20 +97,48 @@ begin
 		end
 		else tmp.menus := true;
 	end;
-	bouttons := tmp;
+	bouttonsJ := tmp;
 end;
 
-procedure principalMenu(var tampo : boolean; var mens : men; plato : plateauDyn; menua : gImage);
+
+function bouttonC: men;
+var
+	tmp : men;
 begin
-	if tampo = true then mens := bouttons;
-	if mens.menus = true then begin
-		affiMenuA(menua);
+	if ((sdl_get_mouse_x < x_max_C) and (sdl_get_mouse_x > x_min_C) and (sdl_get_mouse_y < y_max_C) and (sdl_get_mouse_y > y_min_C)) then begin
+		if sdl_mouse_left_down then begin
+			tmp.menus := false;
+		end;
+	end
+	else tmp.menus := true;
+	bouttonC := tmp;
+end;
+
+procedure commentMenu(var tampo : boolean; var mens : men;menuJ,menuC : gImage); // Recopier la procedure d'en bas mais pour le menu comment Jouer
+begin
+	mens := bouttonC;
+	writeln('120');
+	if (mens.menus = true) then begin
+		writeln('121');
+		affiMenu(menuC);
 	end
 	else begin
-		if mens.id = 1 then affiPlateau(plato)
-		else if mens.id = 2 then gClear(WHITE)
-		else if mens.id = 3 then gClear(red)
-		else exit;
+		//affiMenu(menuJ);
+		writeln('123');
+		tampo := true;
+	end;
+end;
+
+
+
+
+procedure principalMenu(var tampo : boolean; var mens : men; plato : plateauDyn; menuJ: gImage);
+begin
+	mens := bouttonsJ;
+	if mens.menus = true then begin
+		affiMenu(menuJ);
+	end
+	else begin
 		tampo := false;
 	end;
 end;

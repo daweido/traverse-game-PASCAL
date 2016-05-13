@@ -5,7 +5,7 @@ uses gLib2D,SDL_TTF,sysutils,pions;
 
 type pion = record
 		identif : integer;
-		clr : gColor;
+		clr : integer;
 	end;
 
 TYPE plat = record
@@ -27,7 +27,7 @@ Implementation
 
 function creaPlateau():plateauDyn;
 var
-	i,j,x,y : integer;
+	i,j,l,x,y : integer;
 	plato : plateauDyn;
 begin
 	SetLength(plato,100);
@@ -44,30 +44,50 @@ begin
 			else
 				if (i mod 2 = 0) then plato[(i*10)+j].couleur := black
 				else plato[(i*10)+j].couleur := white;
-
 			x += 60;
 		end;
 		x := 200;
 		y += 60;
 	end;
+
 	plato[98].p.identif := 1;
 	plato[91].p.identif := 1;
+	plato[92].p.identif := 2;
+	plato[96].p.identif := 2;
+	plato[93].p.identif := 3;
+	plato[97].p.identif := 3;
 	plato[94].p.identif := 4;
 	plato[95].p.identif := 4;
-	plato[98].p.clr := blue;
-	plato[91].p.clr := blue;
-	plato[94].p.clr := blue;
-	plato[95].p.clr := blue;
+	plato[98].p.clr := 1;
+	plato[91].p.clr := 2;
+	plato[92].p.clr := 3;
+	plato[96].p.clr := 4;
+	plato[93].p.clr := 1;
+	plato[97].p.clr := 2;
+	plato[94].p.clr := 3;
+	plato[95].p.clr := 4;
 	creaPlateau := plato;
 end;
+
+{
+0 : empty
+1 : square
+2 : triangle
+3 : losange
+4 : circle
+}
 
 procedure affiPions(plato : plateauDyn);
 var
 	i : integer;
 begin
 	for i := 0 to 99 do begin
-		if plato[i].p.identif = 1 then carres(plato[i].x,plato[i].y,plato[i].p.clr);
-		if plato[i].p.identif = 4 then cercles(plato[i].x,plato[i].y,plato[i].p.clr);
+		case plato[i].p.identif of
+			1 : carres(plato[i].x,plato[i].y,plato[i].p.clr);
+			2 : triangles(plato[i].x,plato[i].y,plato[i].p.clr);
+			3 : losanges(plato[i].x,plato[i].y,plato[i].p.clr);
+			4 : cercles(plato[i].x,plato[i].y,plato[i].p.clr)
+		end;
 	end;
 end;
 
@@ -75,6 +95,7 @@ procedure affiPlateau(plato : plateauDyn);
 var
 	i : integer;
 begin
+
 	gclear(WHITE);
 	for i := 0 to 99 do gFillRect(plato[i].x,plato[i].y,60,60,plato[i].couleur);
 	gDrawRect(200,75,600,600,BLACK);

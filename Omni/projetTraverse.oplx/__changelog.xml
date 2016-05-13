@@ -143,8 +143,8 @@
     </change>
   </task-change-set>
   <task-change-set user="David Rigaux" date="2016-05-12T14:09:41.878Z" timestamp="2016-05-12T14:09:41.878Z">
-    <change idref="t34" attribute="notesAllowingNil" type="textdata" from="e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcY29jb2FydGYxNDA0XGNvY29hc3VicnRmNDYwCntcZm9udHRibFxmMFxmbmlsXGZjaGFyc2V0MCBIZWx2ZXRpY2FOZXVlO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7XHJlZDg1XGdyZWVuODVcYmx1ZTg1O1xyZWQ2MFxncmVlbjI0OFxibHVlMjMzO30KXHBhcmRcdHg1NjBcdHgxMTIwXHR4MTY4MFx0eDIyNDBcdHgyODAwXHR4MzM2MFx0eDM5MjBcdHg0NDgwXHR4NTA0MFx0eDU2MDBcdHg2MTYwXHR4NjcyMFxwYXJkaXJuYXR1cmFsXHBhcnRpZ2h0ZW5mYWN0b3IwCgpcZjBcZnMyNCBcY2YyIFxjYjMgXHVwMCBcbm9zdXBlcnN1YiBcdWxub25lIFxvYmxpcXVlbmVzczAgXGV4cGFuc2lvbjAgQ29tcHJlbmRyZSBsXCc5MmFsZ29yaXRobWUgTWluTWF4fQ==" to="e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcY29jb2FydGYxNDA0XGNvY29hc3VicnRmNDYwCntcZm9udHRibFxmMFxmbmlsXGZjaGFyc2V0MCBIZWx2ZXRpY2FOZXVlO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7XHJlZDg1XGdyZWVuODVcYmx1ZTg1O30KXHBhcmRcdHg1NjBcdHgxMTIwXHR4MTY4MFx0eDIyNDBcdHgyODAwXHR4MzM2MFx0eDM5MjBcdHg0NDgwXHR4NTA0MFx0eDU2MDBcdHg2MTYwXHR4NjcyMFxwYXJkaXJuYXR1cmFsXHBhcnRpZ2h0ZW5mYWN0b3IwCgpcZjBcZnMyNCBcY2YyIFx1cDAgXG5vc3VwZXJzdWIgXHVsbm9uZSBcb2JsaXF1ZW5lc3MwIFxleHBhbnNpb24wIENvbXByZW5kcmUgbFwnOTJhbGdvcml0aG1lIE1pbk1heH0=" resolved="yes"/>
-    <change idref="t49" attribute="notesAllowingNil" type="textdata" from="e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcY29jb2FydGYxNDA0XGNvY29hc3VicnRmNDYwCntcZm9udHRibFxmMFxmbmlsXGZjaGFyc2V0MCBIZWx2ZXRpY2FOZXVlO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7XHJlZDg1XGdyZWVuODVcYmx1ZTg1O1xyZWQ2MFxncmVlbjI0OFxibHVlMjMzO30KXHBhcmRcdHg1NjBcdHgxMTIwXHR4MTY4MFx0eDIyNDBcdHgyODAwXHR4MzM2MFx0eDM5MjBcdHg0NDgwXHR4NTA0MFx0eDU2MDBcdHg2MTYwXHR4NjcyMFxwYXJkaXJuYXR1cmFsXHBhcnRpZ2h0ZW5mYWN0b3IwCgpcZjBcZnMyNCBcY2YyIFxjYjMgXHVwMCBcbm9zdXBlcnN1YiBcdWxub25lIFxvYmxpcXVlbmVzczAgXGV4cGFuc2lvbjAgaWYgcGkucGlvbnMgPD4gMH0=" to="e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcY29jb2FydGYxNDA0XGNvY29hc3VicnRmNDYwCntcZm9udHRibFxmMFxmbmlsXGZjaGFyc2V0MCBIZWx2ZXRpY2FOZXVlO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7XHJlZDg1XGdyZWVuODVcYmx1ZTg1O30KXHBhcmRcdHg1NjBcdHgxMTIwXHR4MTY4MFx0eDIyNDBcdHgyODAwXHR4MzM2MFx0eDM5MjBcdHg0NDgwXHR4NTA0MFx0eDU2MDBcdHg2MTYwXHR4NjcyMFxwYXJkaXJuYXR1cmFsXHBhcnRpZ2h0ZW5mYWN0b3IwCgpcZjBcZnMyNCBcY2YyIFx1cDAgXG5vc3VwZXJzdWIgXHVsbm9uZSBcb2JsaXF1ZW5lc3MwIFxleHBhbnNpb24wIGlmIHBpLnBpb25zIDw+IDB9" resolved="yes"/>
+    <change idref="t34" attribute="notesAllowingNil" type="textdata" from="e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcY29jb2FydGYxNDA0XGNvY29hc3VicnRmNDYwCntcZm9udHRibFxmMFxmbmlsXGZjaGFyc2V0MCBIZWx2ZXRpY2FOZXVlO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7XHJlZDg1XGdyZWVuODVcYmx1ZTg1O1xyZWQ2MFxncmVlbjI0OFxibHVlMjMzO30KXHBhcmRcdHg1NjBcdHgxMTIwXHR4MTY4MFx0eDIyNDBcdHgyODAwXHR4MzM2MFx0eDM5MjBcdHg0NDgwXHR4NTA0MFx0eDU2MDBcdHg2MTYwXHR4NjcyMFxwYXJkaXJuYXR1cmFsXHBhcnRpZ2h0ZW5mYWN0b3IwCgpcZjBcZnMyNCBcY2YyIFxjYjMgQ29tcHJlbmRyZSBsXCc5MmFsZ29yaXRobWUgTWluTWF4fQ==" to="e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcY29jb2FydGYxNDA0XGNvY29hc3VicnRmNDYwCntcZm9udHRibFxmMFxmbmlsXGZjaGFyc2V0MCBIZWx2ZXRpY2FOZXVlO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7XHJlZDg1XGdyZWVuODVcYmx1ZTg1O30KXHBhcmRcdHg1NjBcdHgxMTIwXHR4MTY4MFx0eDIyNDBcdHgyODAwXHR4MzM2MFx0eDM5MjBcdHg0NDgwXHR4NTA0MFx0eDU2MDBcdHg2MTYwXHR4NjcyMFxwYXJkaXJuYXR1cmFsXHBhcnRpZ2h0ZW5mYWN0b3IwCgpcZjBcZnMyNCBcY2YyIENvbXByZW5kcmUgbFwnOTJhbGdvcml0aG1lIE1pbk1heH0=" resolved="yes"/>
+    <change idref="t49" attribute="notesAllowingNil" type="textdata" from="e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcY29jb2FydGYxNDA0XGNvY29hc3VicnRmNDYwCntcZm9udHRibFxmMFxmbmlsXGZjaGFyc2V0MCBIZWx2ZXRpY2FOZXVlO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7XHJlZDg1XGdyZWVuODVcYmx1ZTg1O1xyZWQ2MFxncmVlbjI0OFxibHVlMjMzO30KXHBhcmRcdHg1NjBcdHgxMTIwXHR4MTY4MFx0eDIyNDBcdHgyODAwXHR4MzM2MFx0eDM5MjBcdHg0NDgwXHR4NTA0MFx0eDU2MDBcdHg2MTYwXHR4NjcyMFxwYXJkaXJuYXR1cmFsXHBhcnRpZ2h0ZW5mYWN0b3IwCgpcZjBcZnMyNCBcY2YyIFxjYjMgaWYgcGkucGlvbnMgPD4gMH0=" to="e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcY29jb2FydGYxNDA0XGNvY29hc3VicnRmNDYwCntcZm9udHRibFxmMFxmbmlsXGZjaGFyc2V0MCBIZWx2ZXRpY2FOZXVlO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7XHJlZDg1XGdyZWVuODVcYmx1ZTg1O30KXHBhcmRcdHg1NjBcdHgxMTIwXHR4MTY4MFx0eDIyNDBcdHgyODAwXHR4MzM2MFx0eDM5MjBcdHg0NDgwXHR4NTA0MFx0eDU2MDBcdHg2MTYwXHR4NjcyMFxwYXJkaXJuYXR1cmFsXHBhcnRpZ2h0ZW5mYWN0b3IwCgpcZjBcZnMyNCBcY2YyIGlmIHBpLnBpb25zIDw+IDB9" resolved="yes"/>
   </task-change-set>
   <task-change-set user="David Rigaux" date="2016-05-12T14:11:41.903Z" timestamp="2016-05-12T14:11:41.903Z">
     <change idref="t67" to="t-1" to-position="8" resolved="yes">
@@ -157,8 +157,394 @@
       <change idref="t70" attribute="title" type="string" to="Hover sur les pions"/>
     </change>
     <change idref="t69" to="t67" to-position="1" resolved="yes">
-      <change idref="t69" attribute="notesAllowingNil" type="textdata" to="e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcY29jb2FydGYxNDA0XGNvY29hc3VicnRmNDYwCntcZm9udHRibFxmMFxmbmlsXGZjaGFyc2V0MCBIZWx2ZXRpY2FOZXVlO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7XHJlZDg1XGdyZWVuODVcYmx1ZTg1O30KXHBhcmRcdHg1NjBcdHgxMTIwXHR4MTY4MFx0eDIyNDBcdHgyODAwXHR4MzM2MFx0eDM5MjBcdHg0NDgwXHR4NTA0MFx0eDU2MDBcdHg2MTYwXHR4NjcyMFxwYXJkaXJuYXR1cmFsXHBhcnRpZ2h0ZW5mYWN0b3IwCgpcZjBcZnMyNCBcY2YyIFx1cDAgXG5vc3VwZXJzdWIgXHVsbm9uZSBcb2JsaXF1ZW5lc3MwIFxleHBhbnNpb24wIEFqb3V0ZXIgdW4gY29udG91ciBibGFuY30="/>
+      <change idref="t69" attribute="notesAllowingNil" type="textdata" to="e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcY29jb2FydGYxNDA0XGNvY29hc3VicnRmNDYwCntcZm9udHRibFxmMFxmbmlsXGZjaGFyc2V0MCBIZWx2ZXRpY2FOZXVlO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7XHJlZDg1XGdyZWVuODVcYmx1ZTg1O30KXHBhcmRcdHg1NjBcdHgxMTIwXHR4MTY4MFx0eDIyNDBcdHgyODAwXHR4MzM2MFx0eDM5MjBcdHg0NDgwXHR4NTA0MFx0eDU2MDBcdHg2MTYwXHR4NjcyMFxwYXJkaXJuYXR1cmFsXHBhcnRpZ2h0ZW5mYWN0b3IwCgpcZjBcZnMyNCBcY2YyIEFqb3V0ZXIgdW4gY29udG91ciBibGFuY30="/>
       <change idref="t69" attribute="title" type="string" to="Hover sur chaque case"/>
+    </change>
+  </task-change-set>
+  <task-change-set user="David Rigaux" date="2016-05-12T16:21:56.162Z" timestamp="2016-05-12T16:21:56.162Z">
+    <change idref="t34" from="t-1" from-position="4" resolved="yes">
+      <change idref="t34" attribute="notesAllowingNil" type="textdata" to="e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcY29jb2FydGYxNDA0XGNvY29hc3VicnRmNDYwCntcZm9udHRibFxmMFxmbmlsXGZjaGFyc2V0MCBIZWx2ZXRpY2FOZXVlO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7XHJlZDg1XGdyZWVuODVcYmx1ZTg1O30KXHBhcmRcdHg1NjBcdHgxMTIwXHR4MTY4MFx0eDIyNDBcdHgyODAwXHR4MzM2MFx0eDM5MjBcdHg0NDgwXHR4NTA0MFx0eDU2MDBcdHg2MTYwXHR4NjcyMFxwYXJkaXJuYXR1cmFsXHBhcnRpZ2h0ZW5mYWN0b3IwCgpcZjBcZnMyNCBcY2YyIENvbXByZW5kcmUgbFwnOTJhbGdvcml0aG1lIE1pbk1heH0="/>
+      <change idref="t34" attribute="title" type="string" to="IA"/>
+    </change>
+    <change idref="t1" attribute="effort" type="real" from="918000" to="1836000" resolved="yes"/>
+    <change idref="t1" attribute="internalAssignments" type="string" from="" to="3; 1" resolved="yes"/>
+    <change idref="t1" attribute="styleDict" type="dict" to="{
+    &quot;gantt-completion-color&quot; =     {
+        b = &quot;0.247923&quot;;
+        g = &quot;0.541077&quot;;
+        r = &quot;0.128466&quot;;
+    };
+    &quot;gantt-fill-color&quot; =     {
+        b = &quot;0.891&quot;;
+        g = &quot;0.385803&quot;;
+        r = &quot;0.883927&quot;;
+        space = srgb;
+    };
+}" resolved="yes"/>
+    <change idref="t1" attribute="noEarlierThanConstraintDate" type="date" to="2016-05-12T06:00:00.000Z" resolved="yes"/>
+    <change idref="t2" attribute="effort" type="real" from="1209600" to="2419200" resolved="yes"/>
+    <change idref="t2" attribute="noEarlierThanConstraintDate" type="date" from="2016-05-22T22:00:00.000Z" to="2016-05-22T21:30:00.000Z" resolved="yes"/>
+    <change idref="t2" attribute="internalAssignments" type="string" from="" to="4; 2" resolved="yes"/>
+    <change idref="t2" attribute="styleDict" type="dict" to="{
+    &quot;gantt-completion-color&quot; =     {
+        b = &quot;0.247923&quot;;
+        g = &quot;0.541077&quot;;
+        r = &quot;0.128466&quot;;
+    };
+    &quot;gantt-fill-color&quot; =     {
+        b = &quot;0.896&quot;;
+        g = &quot;0.831875&quot;;
+        r = &quot;0.450688&quot;;
+        space = srgb;
+    };
+}" resolved="yes"/>
+    <change idref="t3" attribute="effort" type="real" from="601200" to="2404800" resolved="yes"/>
+    <change idref="t3" attribute="internalAssignments" type="string" from="" to="1; 2; 3; 4" resolved="yes"/>
+    <change idref="t3" attribute="styleDict" type="dict" to="{
+    &quot;gantt-completion-color&quot; =     {
+        b = &quot;0.247923&quot;;
+        g = &quot;0.541077&quot;;
+        r = &quot;0.128466&quot;;
+    };
+    &quot;gantt-fill-color&quot; =     {
+        b = &quot;0.301&quot;;
+        g = &quot;0.728788&quot;;
+        r = 1;
+        space = srgb;
+    };
+}" resolved="yes"/>
+    <change idref="t5" attribute="internalAssignments" type="string" from="" to="1" resolved="yes"/>
+    <change idref="t5" attribute="styleDict" type="dict" to="{
+    &quot;gantt-completion-color&quot; =     {
+        b = &quot;0.247923&quot;;
+        g = &quot;0.541077&quot;;
+        r = &quot;0.128466&quot;;
+    };
+    &quot;gantt-fill-color&quot; =     {
+        b = &quot;0.211432&quot;;
+        g = &quot;0.458381&quot;;
+        r = &quot;0.988&quot;;
+        space = srgb;
+    };
+}" resolved="yes"/>
+    <change idref="t5" attribute="noEarlierThanConstraintDate" type="date" to="2016-05-12T07:30:00.000Z" resolved="yes"/>
+    <change idref="t20" attribute="styleDict" type="dict" to="{
+    &quot;gantt-completion-color&quot; =     {
+        b = &quot;0.247923&quot;;
+        g = &quot;0.541077&quot;;
+        r = &quot;0.128466&quot;;
+    };
+    &quot;gantt-fill-color&quot; =     {
+        b = &quot;0.211432&quot;;
+        g = &quot;0.458381&quot;;
+        r = &quot;0.988&quot;;
+        space = srgb;
+    };
+}" resolved="yes"/>
+    <change idref="t22" attribute="styleDict" type="dict" to="{
+    &quot;gantt-fill-color&quot; =     {
+        b = &quot;0.211432&quot;;
+        g = &quot;0.458381&quot;;
+        r = &quot;0.988&quot;;
+        space = srgb;
+    };
+}" resolved="yes"/>
+    <change idref="t71" to="t22" to-position="0" resolved="yes">
+      <change idref="t71" attribute="styleDict" type="dict" to="{
+    &quot;gantt-fill-color&quot; =     {
+        b = &quot;0.211432&quot;;
+        g = &quot;0.458381&quot;;
+        r = &quot;0.988&quot;;
+        space = srgb;
+    };
+}"/>
+      <change idref="t71" attribute="title" type="string" to="Vérifier dimensions d’une image sur l’écran sans cassure sur l’image "/>
+    </change>
+    <change idref="t24" attribute="styleDict" type="dict" to="{
+    &quot;gantt-fill-color&quot; =     {
+        b = &quot;0.211432&quot;;
+        g = &quot;0.458381&quot;;
+        r = &quot;0.988&quot;;
+        space = srgb;
+    };
+}" resolved="yes"/>
+    <change idref="t25" attribute="styleDict" type="dict" to="{
+    &quot;gantt-fill-color&quot; =     {
+        b = &quot;0.211432&quot;;
+        g = &quot;0.458381&quot;;
+        r = &quot;0.988&quot;;
+        space = srgb;
+    };
+}" resolved="yes"/>
+    <change idref="t27" attribute="styleDict" type="dict" to="{
+    &quot;gantt-fill-color&quot; =     {
+        b = &quot;0.211432&quot;;
+        g = &quot;0.458381&quot;;
+        r = &quot;0.988&quot;;
+        space = srgb;
+    };
+}" resolved="yes"/>
+    <change idref="t28" attribute="styleDict" type="dict" to="{
+    &quot;gantt-completion-color&quot; =     {
+        b = &quot;0.247923&quot;;
+        g = &quot;0.541077&quot;;
+        r = &quot;0.128466&quot;;
+    };
+    &quot;gantt-fill-color&quot; =     {
+        b = &quot;0.211432&quot;;
+        g = &quot;0.458381&quot;;
+        r = &quot;0.988&quot;;
+        space = srgb;
+    };
+}" resolved="yes"/>
+    <change idref="t31" attribute="styleDict" type="dict" to="{
+    &quot;gantt-fill-color&quot; =     {
+        b = &quot;0.211432&quot;;
+        g = &quot;0.458381&quot;;
+        r = &quot;0.988&quot;;
+        space = srgb;
+    };
+}" resolved="yes"/>
+    <change idref="t32" attribute="styleDict" type="dict" to="{
+    &quot;gantt-fill-color&quot; =     {
+        b = &quot;0.211432&quot;;
+        g = &quot;0.458381&quot;;
+        r = &quot;0.988&quot;;
+        space = srgb;
+    };
+}" resolved="yes"/>
+    <change idref="t35" attribute="styleDict" type="dict" to="{
+    &quot;gantt-completion-color&quot; =     {
+        b = &quot;0.247923&quot;;
+        g = &quot;0.541077&quot;;
+        r = &quot;0.128466&quot;;
+    };
+    &quot;gantt-fill-color&quot; =     {
+        b = &quot;0.891&quot;;
+        g = &quot;0.385803&quot;;
+        r = &quot;0.883927&quot;;
+        space = srgb;
+    };
+}" resolved="yes"/>
+    <change idref="t36" attribute="styleDict" type="dict" to="{
+    &quot;gantt-fill-color&quot; =     {
+        b = &quot;0.891&quot;;
+        g = &quot;0.385803&quot;;
+        r = &quot;0.883927&quot;;
+        space = srgb;
+    };
+}" resolved="yes"/>
+    <change idref="t37" attribute="styleDict" type="dict" to="{
+    &quot;gantt-fill-color&quot; =     {
+        b = &quot;0.891&quot;;
+        g = &quot;0.385803&quot;;
+        r = &quot;0.883927&quot;;
+        space = srgb;
+    };
+}" resolved="yes"/>
+    <change idref="t38" attribute="styleDict" type="dict" to="{
+    &quot;gantt-completion-color&quot; =     {
+        b = &quot;0.247923&quot;;
+        g = &quot;0.541077&quot;;
+        r = &quot;0.128466&quot;;
+    };
+    &quot;gantt-fill-color&quot; =     {
+        b = &quot;0.891&quot;;
+        g = &quot;0.385803&quot;;
+        r = &quot;0.883927&quot;;
+        space = srgb;
+    };
+}" resolved="yes"/>
+    <change idref="t39" attribute="styleDict" type="dict" to="{
+    &quot;gantt-completion-color&quot; =     {
+        b = &quot;0.247923&quot;;
+        g = &quot;0.541077&quot;;
+        r = &quot;0.128466&quot;;
+    };
+    &quot;gantt-fill-color&quot; =     {
+        b = &quot;0.891&quot;;
+        g = &quot;0.385803&quot;;
+        r = &quot;0.883927&quot;;
+        space = srgb;
+    };
+}" resolved="yes"/>
+    <change idref="t40" attribute="styleDict" type="dict" to="{
+    &quot;gantt-fill-color&quot; =     {
+        b = &quot;0.891&quot;;
+        g = &quot;0.385803&quot;;
+        r = &quot;0.883927&quot;;
+        space = srgb;
+    };
+}" resolved="yes"/>
+    <change idref="t41" attribute="styleDict" type="dict" to="{
+    &quot;gantt-fill-color&quot; =     {
+        b = &quot;0.891&quot;;
+        g = &quot;0.385803&quot;;
+        r = &quot;0.883927&quot;;
+        space = srgb;
+    };
+}" resolved="yes"/>
+    <change idref="t42" attribute="styleDict" type="dict" to="{
+    &quot;gantt-fill-color&quot; =     {
+        b = &quot;0.891&quot;;
+        g = &quot;0.385803&quot;;
+        r = &quot;0.883927&quot;;
+        space = srgb;
+    };
+}" resolved="yes"/>
+    <change idref="t43" attribute="styleDict" type="dict" to="{
+    &quot;gantt-fill-color&quot; =     {
+        b = &quot;0.891&quot;;
+        g = &quot;0.385803&quot;;
+        r = &quot;0.883927&quot;;
+        space = srgb;
+    };
+}" resolved="yes"/>
+    <change idref="t44" attribute="styleDict" type="dict" to="{
+    &quot;gantt-fill-color&quot; =     {
+        b = &quot;0.891&quot;;
+        g = &quot;0.385803&quot;;
+        r = &quot;0.883927&quot;;
+        space = srgb;
+    };
+}" resolved="yes"/>
+    <change idref="t45" attribute="styleDict" type="dict" to="{
+    &quot;gantt-fill-color&quot; =     {
+        b = &quot;0.891&quot;;
+        g = &quot;0.385803&quot;;
+        r = &quot;0.883927&quot;;
+        space = srgb;
+    };
+}" resolved="yes"/>
+    <change idref="t46" attribute="styleDict" type="dict" to="{
+    &quot;gantt-completion-color&quot; =     {
+        b = &quot;0.247923&quot;;
+        g = &quot;0.541077&quot;;
+        r = &quot;0.128466&quot;;
+    };
+    &quot;gantt-fill-color&quot; =     {
+        b = &quot;0.891&quot;;
+        g = &quot;0.385803&quot;;
+        r = &quot;0.883927&quot;;
+        space = srgb;
+    };
+}" resolved="yes"/>
+    <change idref="t47" attribute="styleDict" type="dict" to="{
+    &quot;gantt-completion-color&quot; =     {
+        b = &quot;0.247923&quot;;
+        g = &quot;0.541077&quot;;
+        r = &quot;0.128466&quot;;
+    };
+    &quot;gantt-fill-color&quot; =     {
+        b = &quot;0.891&quot;;
+        g = &quot;0.385803&quot;;
+        r = &quot;0.883927&quot;;
+        space = srgb;
+    };
+}" resolved="yes"/>
+    <change idref="t48" attribute="styleDict" type="dict" to="{
+    &quot;gantt-fill-color&quot; =     {
+        b = &quot;0.891&quot;;
+        g = &quot;0.385803&quot;;
+        r = &quot;0.883927&quot;;
+        space = srgb;
+    };
+}" resolved="yes"/>
+    <change idref="t49" attribute="styleDict" type="dict" to="{
+    &quot;gantt-fill-color&quot; =     {
+        b = &quot;0.891&quot;;
+        g = &quot;0.385803&quot;;
+        r = &quot;0.883927&quot;;
+        space = srgb;
+    };
+}" resolved="yes"/>
+    <change idref="t50" attribute="styleDict" type="dict" to="{
+    &quot;gantt-completion-color&quot; =     {
+        b = &quot;0.247923&quot;;
+        g = &quot;0.541077&quot;;
+        r = &quot;0.128466&quot;;
+    };
+    &quot;gantt-fill-color&quot; =     {
+        b = &quot;0.211432&quot;;
+        g = &quot;0.458381&quot;;
+        r = &quot;0.988&quot;;
+        space = srgb;
+    };
+}" resolved="yes"/>
+    <change idref="t52" attribute="styleDict" type="dict" to="{
+    &quot;gantt-fill-color&quot; =     {
+        b = &quot;0.211432&quot;;
+        g = &quot;0.458381&quot;;
+        r = &quot;0.988&quot;;
+        space = srgb;
+    };
+}" resolved="yes"/>
+    <change idref="t53" attribute="styleDict" type="dict" to="{
+    &quot;gantt-fill-color&quot; =     {
+        b = &quot;0.211432&quot;;
+        g = &quot;0.458381&quot;;
+        r = &quot;0.988&quot;;
+        space = srgb;
+    };
+}" resolved="yes"/>
+    <change idref="t54" attribute="styleDict" type="dict" to="{
+    &quot;gantt-fill-color&quot; =     {
+        b = &quot;0.211432&quot;;
+        g = &quot;0.458381&quot;;
+        r = &quot;0.988&quot;;
+        space = srgb;
+    };
+}" resolved="yes"/>
+    <change idref="t55" attribute="styleDict" type="dict" to="{
+    &quot;gantt-fill-color&quot; =     {
+        b = &quot;0.211432&quot;;
+        g = &quot;0.458381&quot;;
+        r = &quot;0.988&quot;;
+        space = srgb;
+    };
+}" resolved="yes"/>
+    <change idref="t56" attribute="styleDict" type="dict" to="{
+    &quot;gantt-fill-color&quot; =     {
+        b = &quot;0.211432&quot;;
+        g = &quot;0.458381&quot;;
+        r = &quot;0.988&quot;;
+        space = srgb;
+    };
+}" resolved="yes"/>
+    <change idref="t67" attribute="styleDict" type="dict" to="{
+    &quot;gantt-completion-color&quot; =     {
+        b = &quot;0.247923&quot;;
+        g = &quot;0.541077&quot;;
+        r = &quot;0.128466&quot;;
+    };
+    &quot;gantt-fill-color&quot; =     {
+        b = &quot;0.211432&quot;;
+        g = &quot;0.458381&quot;;
+        r = &quot;0.988&quot;;
+        space = srgb;
+    };
+}" resolved="yes"/>
+    <change idref="t69" attribute="styleDict" type="dict" to="{
+    &quot;gantt-fill-color&quot; =     {
+        b = &quot;0.211432&quot;;
+        g = &quot;0.458381&quot;;
+        r = &quot;0.988&quot;;
+        space = srgb;
+    };
+}" resolved="yes"/>
+    <change idref="t70" attribute="styleDict" type="dict" to="{
+    &quot;gantt-fill-color&quot; =     {
+        b = &quot;0.211432&quot;;
+        g = &quot;0.458381&quot;;
+        r = &quot;0.988&quot;;
+        space = srgb;
+    };
+}" resolved="yes"/>
+  </task-change-set>
+  <task-change-set user="David Rigaux" date="2016-05-12T23:18:47.337Z" timestamp="2016-05-12T23:18:47.337Z">
+    <change idref="t73" to="t22" to-position="0">
+      <change idref="t73" attribute="noEarlierThanConstraintDate" type="date" to="2016-05-12T22:00:00.000Z"/>
+      <change idref="t73" attribute="title" type="string" to="Faire images sur Sketch"/>
     </change>
   </task-change-set>
   <resource-change-set user="David Rigaux" date="2016-05-12T14:06:10.019Z" timestamp="2016-05-12T14:06:10.019Z">
@@ -173,6 +559,9 @@
       <change idref="r4" attribute="name" type="string" to="Mandry"/>
     </change>
     <change idref="r1" attribute="name" type="string" from="Resource 1" to="David" resolved="yes"/>
+  </resource-change-set>
+  <resource-change-set user="David Rigaux" date="2016-05-12T16:21:56.160Z" timestamp="2016-05-12T16:21:56.160Z">
+    <change idref="r1" attribute="unitsAvailable" type="real" from="1" to="0" resolved="yes"/>
   </resource-change-set>
   <metadata-change-set user="David Rigaux" date="2016-05-12T13:33:10.554Z" timestamp="2016-05-12T13:33:10.554Z">
     <change idref="m1" attribute="fixedDate" type="date" from="2007-01-01T20:00:00.000Z" to="2016-05-12T06:00:00.000Z" resolved="yes"/>

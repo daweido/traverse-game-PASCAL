@@ -81,6 +81,7 @@
   <resource id="r1">
     <name>David</name>
     <type>Staff</type>
+    <units-available>0</units-available>
   </resource>
   <resource id="r2">
     <name>Mehdi</name>
@@ -101,7 +102,6 @@
     <child-task idref="t38"/>
     <child-task idref="t35"/>
     <child-task idref="t2"/>
-    <child-task idref="t34"/>
     <child-task idref="t3"/>
     <child-task idref="t28"/>
     <child-task idref="t5"/>
@@ -111,25 +111,70 @@
   </task>
   <task id="t1">
     <title>Implémentation des règles, version humain – humain</title>
-    <effort>918000</effort>
+    <effort>1836000</effort>
+    <start-constraint-date>2016-05-12T06:00:00.000Z</start-constraint-date>
+    <style>
+      <value key="gantt-completion-color">
+        <color r="0.128466" g="0.541077" b="0.247923"/>
+      </value>
+      <value key="gantt-fill-color">
+        <color space="srgb" r="0.883927" g="0.385803" b="0.891"/>
+      </value>
+    </style>
+    <assignment idref="r3"/>
+    <assignment idref="r1"/>
+    <start-no-earlier-than>2016-05-12T06:00:00.000Z</start-no-earlier-than>
   </task>
   <task id="t2">
     <title>Implémentation IA, version humain – ordinateur</title>
-    <effort>1209600</effort>
-    <start-constraint-date>2016-05-22T22:00:00.000Z</start-constraint-date>
+    <effort>2419200</effort>
+    <start-constraint-date>2016-05-22T21:30:00.000Z</start-constraint-date>
+    <style>
+      <value key="gantt-completion-color">
+        <color r="0.128466" g="0.541077" b="0.247923"/>
+      </value>
+      <value key="gantt-fill-color">
+        <color space="srgb" r="0.450688" g="0.831875" b="0.896"/>
+      </value>
+    </style>
     <prerequisite-task idref="t1"/>
-    <start-no-earlier-than>2016-05-22T22:00:00.000Z</start-no-earlier-than>
+    <assignment idref="r4"/>
+    <assignment idref="r2"/>
+    <start-no-earlier-than>2016-05-22T21:30:00.000Z</start-no-earlier-than>
   </task>
   <task id="t3">
     <title>Dernières modifications, version finale, rapport</title>
-    <effort>601200</effort>
+    <effort>2404800</effort>
     <start-constraint-date>2016-06-05T22:00:00.000Z</start-constraint-date>
+    <style>
+      <value key="gantt-completion-color">
+        <color r="0.128466" g="0.541077" b="0.247923"/>
+      </value>
+      <value key="gantt-fill-color">
+        <color space="srgb" r="1" g="0.728788" b="0.301"/>
+      </value>
+    </style>
     <prerequisite-task idref="t2"/>
+    <assignment idref="r1"/>
+    <assignment idref="r2"/>
+    <assignment idref="r3"/>
+    <assignment idref="r4"/>
     <start-no-earlier-than>2016-06-05T22:00:00.000Z</start-no-earlier-than>
   </task>
   <task id="t5">
     <title>Widgets</title>
     <effort>2734200</effort>
+    <start-constraint-date>2016-05-12T07:30:00.000Z</start-constraint-date>
+    <style>
+      <value key="gantt-completion-color">
+        <color r="0.128466" g="0.541077" b="0.247923"/>
+      </value>
+      <value key="gantt-fill-color">
+        <color space="srgb" r="0.988" g="0.458381" b="0.211432"/>
+      </value>
+    </style>
+    <assignment idref="r1"/>
+    <start-no-earlier-than>2016-05-12T07:30:00.000Z</start-no-earlier-than>
   </task>
   <task id="t20">
     <title>Menu</title>
@@ -137,61 +182,103 @@
     <child-task idref="t22"/>
     <child-task idref="t27"/>
     <child-task idref="t32"/>
+    <style>
+      <value key="gantt-completion-color">
+        <color r="0.128466" g="0.541077" b="0.247923"/>
+      </value>
+      <value key="gantt-fill-color">
+        <color space="srgb" r="0.988" g="0.458381" b="0.211432"/>
+      </value>
+    </style>
     <prerequisite-task idref="t5"/>
   </task>
   <task id="t22">
     <title>Faire Images des menus</title>
     <type>group</type>
+    <child-task idref="t73"/>
+    <child-task idref="t71"/>
     <child-task idref="t24"/>
     <child-task idref="t25"/>
     <child-task idref="t31"/>
+    <style>
+      <value key="gantt-fill-color">
+        <color space="srgb" r="0.988" g="0.458381" b="0.211432"/>
+      </value>
+    </style>
   </task>
   <task id="t24">
     <title>Comment Jouer</title>
     <effort>28800</effort>
+    <style>
+      <value key="gantt-fill-color">
+        <color space="srgb" r="0.988" g="0.458381" b="0.211432"/>
+      </value>
+    </style>
   </task>
   <task id="t25">
     <title>Fin de partie</title>
     <effort>28800</effort>
+    <style>
+      <value key="gantt-fill-color">
+        <color space="srgb" r="0.988" g="0.458381" b="0.211432"/>
+      </value>
+    </style>
   </task>
   <task id="t27">
     <title>Calculer les coordonnées de chaque boutons</title>
     <effort>28800</effort>
+    <style>
+      <value key="gantt-fill-color">
+        <color space="srgb" r="0.988" g="0.458381" b="0.211432"/>
+      </value>
+    </style>
     <prerequisite-task idref="t22"/>
   </task>
   <task id="t28">
     <title>Ajouter noms de joueurs</title>
     <effort>28800</effort>
+    <style>
+      <value key="gantt-completion-color">
+        <color r="0.128466" g="0.541077" b="0.247923"/>
+      </value>
+      <value key="gantt-fill-color">
+        <color space="srgb" r="0.988" g="0.458381" b="0.211432"/>
+      </value>
+    </style>
     <prerequisite-task idref="t5"/>
   </task>
   <task id="t31">
     <title>Boutons quand on Hover par dessus</title>
     <effort>28800</effort>
+    <style>
+      <value key="gantt-fill-color">
+        <color space="srgb" r="0.988" g="0.458381" b="0.211432"/>
+      </value>
+    </style>
   </task>
   <task id="t32">
     <title>Coder les différents menus</title>
     <effort>28800</effort>
+    <style>
+      <value key="gantt-fill-color">
+        <color space="srgb" r="0.988" g="0.458381" b="0.211432"/>
+      </value>
+    </style>
     <prerequisite-task idref="t20"/>
-  </task>
-  <task id="t34">
-    <title>IA</title>
-    <effort>28800</effort>
-    <note>
-      <text>
-        <p>
-          <run>
-            <lit>Comprendre l’algorithme MinMax</lit>
-          </run>
-        </p>
-      </text>
-    </note>
-    <prerequisite-task idref="t2"/>
   </task>
   <task id="t35">
     <title>Les pions</title>
     <type>group</type>
     <child-task idref="t36"/>
     <child-task idref="t37"/>
+    <style>
+      <value key="gantt-completion-color">
+        <color r="0.128466" g="0.541077" b="0.247923"/>
+      </value>
+      <value key="gantt-fill-color">
+        <color space="srgb" r="0.883927" g="0.385803" b="0.891"/>
+      </value>
+    </style>
     <prerequisite-task idref="t1"/>
   </task>
   <task id="t36">
@@ -199,10 +286,20 @@
     <type>group</type>
     <child-task idref="t45"/>
     <child-task idref="t44"/>
+    <style>
+      <value key="gantt-fill-color">
+        <color space="srgb" r="0.883927" g="0.385803" b="0.891"/>
+      </value>
+    </style>
   </task>
   <task id="t37">
     <title>Les initialiser à leur bon endroit</title>
     <effort>28800</effort>
+    <style>
+      <value key="gantt-fill-color">
+        <color space="srgb" r="0.883927" g="0.385803" b="0.891"/>
+      </value>
+    </style>
   </task>
   <task id="t38">
     <title>Créer les règles</title>
@@ -210,6 +307,14 @@
     <child-task idref="t47"/>
     <child-task idref="t46"/>
     <child-task idref="t39"/>
+    <style>
+      <value key="gantt-completion-color">
+        <color r="0.128466" g="0.541077" b="0.247923"/>
+      </value>
+      <value key="gantt-fill-color">
+        <color space="srgb" r="0.883927" g="0.385803" b="0.891"/>
+      </value>
+    </style>
     <prerequisite-task idref="t1"/>
   </task>
   <task id="t39">
@@ -219,44 +324,103 @@
     <child-task idref="t42"/>
     <child-task idref="t41"/>
     <child-task idref="t40"/>
+    <style>
+      <value key="gantt-completion-color">
+        <color r="0.128466" g="0.541077" b="0.247923"/>
+      </value>
+      <value key="gantt-fill-color">
+        <color space="srgb" r="0.883927" g="0.385803" b="0.891"/>
+      </value>
+    </style>
   </task>
   <task id="t40">
     <title>Carré</title>
     <effort>28800</effort>
+    <style>
+      <value key="gantt-fill-color">
+        <color space="srgb" r="0.883927" g="0.385803" b="0.891"/>
+      </value>
+    </style>
   </task>
   <task id="t41">
     <title>Losange</title>
     <effort>28800</effort>
+    <style>
+      <value key="gantt-fill-color">
+        <color space="srgb" r="0.883927" g="0.385803" b="0.891"/>
+      </value>
+    </style>
   </task>
   <task id="t42">
     <title>Cercle</title>
     <effort>28800</effort>
+    <style>
+      <value key="gantt-fill-color">
+        <color space="srgb" r="0.883927" g="0.385803" b="0.891"/>
+      </value>
+    </style>
   </task>
   <task id="t43">
     <title>Triangle</title>
     <effort>28800</effort>
+    <style>
+      <value key="gantt-fill-color">
+        <color space="srgb" r="0.883927" g="0.385803" b="0.891"/>
+      </value>
+    </style>
   </task>
   <task id="t44">
     <title>Losange</title>
     <effort>28800</effort>
+    <style>
+      <value key="gantt-fill-color">
+        <color space="srgb" r="0.883927" g="0.385803" b="0.891"/>
+      </value>
+    </style>
   </task>
   <task id="t45">
     <title>Triangle</title>
     <effort>28800</effort>
+    <style>
+      <value key="gantt-fill-color">
+        <color space="srgb" r="0.883927" g="0.385803" b="0.891"/>
+      </value>
+    </style>
   </task>
   <task id="t46">
     <title>Coder les limites des mouvements</title>
     <type>group</type>
     <child-task idref="t48"/>
     <child-task idref="t49"/>
+    <style>
+      <value key="gantt-completion-color">
+        <color r="0.128466" g="0.541077" b="0.247923"/>
+      </value>
+      <value key="gantt-fill-color">
+        <color space="srgb" r="0.883927" g="0.385803" b="0.891"/>
+      </value>
+    </style>
   </task>
   <task id="t47">
     <title>Coder les sauts de pions</title>
     <effort>28800</effort>
+    <style>
+      <value key="gantt-completion-color">
+        <color r="0.128466" g="0.541077" b="0.247923"/>
+      </value>
+      <value key="gantt-fill-color">
+        <color space="srgb" r="0.883927" g="0.385803" b="0.891"/>
+      </value>
+    </style>
   </task>
   <task id="t48">
     <title>Les carreaux sur les côtés</title>
     <effort>28800</effort>
+    <style>
+      <value key="gantt-fill-color">
+        <color space="srgb" r="0.883927" g="0.385803" b="0.891"/>
+      </value>
+    </style>
   </task>
   <task id="t49">
     <title>Quand un pion nous bloque</title>
@@ -270,11 +434,24 @@
         </p>
       </text>
     </note>
+    <style>
+      <value key="gantt-fill-color">
+        <color space="srgb" r="0.883927" g="0.385803" b="0.891"/>
+      </value>
+    </style>
   </task>
   <task id="t50">
     <title>Ajout de pause pendant le jeu</title>
     <type>group</type>
     <child-task idref="t52"/>
+    <style>
+      <value key="gantt-completion-color">
+        <color r="0.128466" g="0.541077" b="0.247923"/>
+      </value>
+      <value key="gantt-fill-color">
+        <color space="srgb" r="0.988" g="0.458381" b="0.211432"/>
+      </value>
+    </style>
     <prerequisite-task idref="t5"/>
   </task>
   <task id="t52">
@@ -284,28 +461,61 @@
     <child-task idref="t54"/>
     <child-task idref="t55"/>
     <child-task idref="t56"/>
+    <style>
+      <value key="gantt-fill-color">
+        <color space="srgb" r="0.988" g="0.458381" b="0.211432"/>
+      </value>
+    </style>
   </task>
   <task id="t53">
     <title>Touche “ESC” pause le jeu</title>
     <effort>28800</effort>
+    <style>
+      <value key="gantt-fill-color">
+        <color space="srgb" r="0.988" g="0.458381" b="0.211432"/>
+      </value>
+    </style>
   </task>
   <task id="t54">
     <title>Possibilité de continuer</title>
     <effort>28800</effort>
+    <style>
+      <value key="gantt-fill-color">
+        <color space="srgb" r="0.988" g="0.458381" b="0.211432"/>
+      </value>
+    </style>
   </task>
   <task id="t55">
     <title>Quitter Partie</title>
     <effort>28800</effort>
+    <style>
+      <value key="gantt-fill-color">
+        <color space="srgb" r="0.988" g="0.458381" b="0.211432"/>
+      </value>
+    </style>
   </task>
   <task id="t56">
     <title>Quitter Jeu</title>
     <effort>28800</effort>
+    <style>
+      <value key="gantt-fill-color">
+        <color space="srgb" r="0.988" g="0.458381" b="0.211432"/>
+      </value>
+    </style>
   </task>
   <task id="t67">
     <title>Plateau</title>
     <type>group</type>
     <child-task idref="t70"/>
     <child-task idref="t69"/>
+    <style>
+      <value key="gantt-completion-color">
+        <color r="0.128466" g="0.541077" b="0.247923"/>
+      </value>
+      <value key="gantt-fill-color">
+        <color space="srgb" r="0.988" g="0.458381" b="0.211432"/>
+      </value>
+    </style>
     <prerequisite-task idref="t5"/>
   </task>
   <task id="t69">
@@ -320,10 +530,35 @@
         </p>
       </text>
     </note>
+    <style>
+      <value key="gantt-fill-color">
+        <color space="srgb" r="0.988" g="0.458381" b="0.211432"/>
+      </value>
+    </style>
   </task>
   <task id="t70">
     <title>Hover sur les pions</title>
     <effort>28800</effort>
+    <style>
+      <value key="gantt-fill-color">
+        <color space="srgb" r="0.988" g="0.458381" b="0.211432"/>
+      </value>
+    </style>
+  </task>
+  <task id="t71">
+    <title>Vérifier dimensions d’une image sur l’écran sans cassure sur l’image </title>
+    <effort>28800</effort>
+    <style>
+      <value key="gantt-fill-color">
+        <color space="srgb" r="0.988" g="0.458381" b="0.211432"/>
+      </value>
+    </style>
+  </task>
+  <task id="t73">
+    <title>Faire images sur Sketch</title>
+    <effort>28800</effort>
+    <start-constraint-date>2016-05-12T22:00:00.000Z</start-constraint-date>
+    <start-no-earlier-than>2016-05-12T22:00:00.000Z</start-no-earlier-than>
   </task>
   <critical-path root="-1" enabled="false" resources="false">
     <color r="1" g="0.5" b="0.5"/>
