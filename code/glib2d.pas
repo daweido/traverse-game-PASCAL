@@ -48,13 +48,14 @@ Const
     PINK            : gColor = (r : 255; g : 128; b : 128; a : 255);//9
     ORANGE          : gColor = (r : 255; g : 128; b : 0;   a : 255);//10
     CHARTREUSE      : gColor = (r : 127; g : 255; b : 0;   a : 255);//11
-    SPRING_GREEN    : gColor = (r : 0;   g : 255; b : 128; a : 255);//12
+    SPRING_GREEN    : gColor = (r : 0;   g : 255; b : 127; a : 255);//12
 
     WHITE           : gColor = (r : 255; g : 255; b : 255; a : 255);//13
     LITEGRAY        : gColor = (r : 159; g : 159; b : 159; a : 255);//14
     GRAY            : gColor = (r : 128; g : 128; b : 128; a : 255);//15
     DARKGRAY        : gColor = (r : 63;  g : 63;  b : 63;  a : 255);//16
     BLACK           : gColor = (r : 0;   g : 0;   b : 0;   a : 255);//17
+
 
     (* Coordinates modes *)
     G_UP_LEFT       = 0;

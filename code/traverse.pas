@@ -5,7 +5,7 @@ uses gLib2D,SDL_TTF,sysutils,plateau,widget,menu;
 var
 	plato : plateauDyn;
 	mens : men;
-	tampo : boolean;
+	tampo,selectione : boolean;
 	menuJ,menuC,menuR : gImage;
 begin
 	plato := creaPlateau();
@@ -13,6 +13,7 @@ begin
 	menuC := iniMenus(2);
 	menuR := iniMenus(3);
 	tampo := true;
+	selectione := false;
 	//joueur12;
 	while true do begin
 		if tampo = true then writeln('TRUE')
@@ -23,7 +24,7 @@ begin
 			writeln('21');
 			if mens.id = 1 then begin
 				writeln('22');
-				affiPlateau(plato);
+				affiPlateau(plato,selectione);
 			end;
 
 			if mens.id = 2 then begin
