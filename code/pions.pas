@@ -125,6 +125,7 @@ begin
 			gSetCoordMode(G_CENTER);
 			gSetScaleWH(width,height);
 			gSetCoord(xc+30,yc+30);
+			gSetRotation(180);
 			gAdd();
 		gEnd();
 	end
@@ -134,6 +135,7 @@ begin
 			gSetCoordMode(G_CENTER);
 			gSetScaleWH(width,height);
 			gSetCoord(xc+30,yc+30);
+			gSetRotation(270);
 			gAdd();
 		gEnd();
 	end
@@ -143,6 +145,7 @@ begin
 			gSetCoordMode(G_CENTER);
 			gSetScaleWH(width,height);
 			gSetCoord(xc+30,yc+30);
+			gSetRotation(90);
 			gAdd();
 		gEnd();
 	end;

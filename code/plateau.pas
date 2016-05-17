@@ -19,7 +19,8 @@ type
 
 
 function creaPlateau():plateauDyn;
-procedure affiPlateau(VAR plato : plateauDyn;VAR selectione : boolean;VAR i_d, i_a : integer);
+procedure affiPlateau(VAR plato : plateauDyn;VAR selectione,j1,j2,j3,j4 : boolean;VAR i_d, i_a : integer;nb_joueurs : integer);
+procedure def_nb_joueurs(VAR plato : plateauDyn; VAR nb_joueurs : integer);
 
 
 Implementation
@@ -48,29 +49,12 @@ begin
 		x := 200;
 		y += 60;
 	end;
-
 //////Partie Inaccessible/////
 	plato[0].p.identif := 5;
 	plato[9].p.identif := 5;
 	plato[90].p.identif := 5;
 	plato[99].p.identif := 5;
-///////////////////////////////
-	plato[98].p.identif := 1;
-	plato[91].p.identif := 1;
-	plato[92].p.identif := 2;
-	plato[96].p.identif := 2;
-	plato[93].p.identif := 3;
-	plato[97].p.identif := 3;
-	plato[94].p.identif := 4;
-	plato[95].p.identif := 4;
-	plato[98].p.clr := 1;
-	plato[91].p.clr := 2;
-	plato[92].p.clr := 3;
-	plato[96].p.clr := 4;
-	plato[93].p.clr := 1;
-	plato[97].p.clr := 2;
-	plato[94].p.clr := 3;
-	plato[95].p.clr := 4;
+//////
 	creaPlateau := plato;
 end;
 
@@ -81,6 +65,85 @@ end;
 3 : losange
 4 : circle
 }
+
+procedure ini_1j(VAR plato : plateauDyn);
+var
+	i : integer;
+begin
+	for i := 91 to 98 do begin
+		plato[i].p.clr := 1;
+		if ((i = 91) or (i=98)) then plato[i].p.identif := 1
+		else if ((i = 92) or (i=97)) then plato[i].p.identif := 2
+		else if	((i = 93) or (i=96)) then plato[i].p.identif := 3
+		else plato[i].p.identif := 4;
+	end;
+end;
+
+procedure ini_2j(VAR plato : plateauDyn);
+var
+	i : integer;
+begin
+	ini_1j(plato);
+	for i := 1 to 8 do begin
+		plato[i].p.clr := 2;
+		if ((i = 1) or (i=8)) then plato[i].p.identif := 1
+		else if ((i = 2) or (i=7)) then plato[i].p.identif := 2
+		else if	((i = 3) or (i=6)) then plato[i].p.identif := 3
+		else plato[i].p.identif := 4;
+	end;
+end;
+
+procedure ini_3j(VAR plato : plateauDyn);
+begin
+	ini_2j(plato);
+	plato[19].p.clr := 3;
+	plato[19].p.identif := 1;
+	plato[29].p.clr := 3;
+	plato[29].p.identif := 2;
+	plato[39].p.clr := 3;
+	plato[39].p.identif := 3;
+	plato[49].p.clr := 3;
+	plato[49].p.identif := 4;
+	plato[59].p.clr := 3;
+	plato[59].p.identif := 4;
+	plato[69].p.clr := 3;
+	plato[69].p.identif := 3;
+	plato[79].p.clr := 3;
+	plato[79].p.identif := 2;
+	plato[89].p.clr := 3;
+	plato[89].p.identif := 1;
+end;
+
+procedure ini_4j(VAR plato : plateauDyn);
+begin
+	ini_3j(plato);
+	plato[10].p.clr := 4;
+	plato[10].p.identif := 1;
+	plato[20].p.clr := 4;
+	plato[20].p.identif := 2;
+	plato[30].p.clr := 4;
+	plato[30].p.identif := 3;
+	plato[40].p.clr := 4;
+	plato[40].p.identif := 4;
+	plato[50].p.clr := 4;
+	plato[50].p.identif := 4;
+	plato[60].p.clr := 4;
+	plato[60].p.identif := 3;
+	plato[70].p.clr := 4;
+	plato[70].p.identif := 2;
+	plato[80].p.clr := 4;
+	plato[80].p.identif := 1;
+end;
+
+procedure def_nb_joueurs(VAR plato : plateauDyn; VAR nb_joueurs : integer);
+begin
+	write('Nombre de joueurs : ');
+	readln(nb_joueurs);
+	if nb_joueurs = 1 then ini_1j(plato)
+	else if nb_joueurs = 2 then ini_2j(plato)
+	else if nb_joueurs = 3 then ini_3j(plato)
+	else ini_4j(plato);
+end;
 
 procedure affiPions(plato : plateauDyn);
 var
@@ -101,9 +164,66 @@ begin
 	if plato[i].p.identif <> 0 then caseVide := false;
 end;
 
+procedure j_2(VAR j1,j2 : boolean);
+begin
+	if j1 = true then begin
+		j1 := false;
+		j2 := true;
+	end
+	else begin
+		j1 := true;
+		j2 := false;
+	end;
+end;
+
+procedure j_3(VAR j1,j2,j3 : boolean);
+begin
+	if j1 = true then begin
+		j1 := false;
+		j2 := true;
+	end
+	else if j2 = true then begin
+		j3 := true;
+		j2 := false;
+	end
+	else begin
+		j3 := false;
+		j1 := true;
+	end;
+end;
+
+procedure j_4(VAR j1,j2,j3,j4 : boolean);
+begin
+	if j1 = true then begin
+		j1 := false;
+		j2 := true;
+	end
+	else if j2 = true then begin
+		j3 := true;
+		j2 := false;
+	end
+	else if j3 = true then begin
+		j3 := false;
+		j4 := true;
+	end
+	else begin
+		j4 := false;
+		j1 := true;
+	end;
+end;
+
+
+procedure tours(VAR j1,j2,j3,j4 : boolean; nb_joueurs : integer);
+begin
+	IF nb_joueurs = 1 then j1 := j1
+	else if nb_joueurs = 2 then j_2(j1,j2)
+	else if nb_joueurs = 3 then j_3(j1,j2,j3)
+	else j_4(j1,j2,j3,j4);
+end;
+
 //Ajouter exception dans le déplacement en fonction de la couelur du pion (Premierement vérifié les cases des coins)
 // + faire les camps accessible seulement par les couleurs concernés
-procedure deplacement(var plato : plateauDyn;var selectione : boolean; VAR i_d, i_a : integer);
+procedure deplacement(var plato : plateauDyn;var selectione,j1,j2,j3,j4 : boolean; VAR i_d, i_a : integer; nb_joueurs : integer);
 begin
 ////Carré
 	if plato[i_d].p.identif = 1 then begin
@@ -113,6 +233,7 @@ begin
 				plato[i_a].p.clr := plato[i_d].p.clr;
 				plato[i_d].p.identif := 0;
 				plato[i_d].p.clr := 0;
+				tours(j1,j2,j3,j4,nb_joueurs);
 			end
 			else begin
 				i_d := 0;
@@ -123,11 +244,12 @@ begin
 ////Triangle
 	else if plato[i_d].p.identif = 2 then begin
 		if (plato[i_d].p.clr = 1) then begin
-			if ((i_a = i_d+10) or (i_a = i_d-9) or (i_a = i_d+11)) then begin
+			if ((i_a = i_d+10) or (i_a = i_d-9) or (i_a = i_d-11)) then begin
 				plato[i_a].p.identif := 2;
 				plato[i_a].p.clr := 1;
 				plato[i_d].p.identif := 0;
 				plato[i_d].p.clr := 0;
+				tours(j1,j2,j3,j4,nb_joueurs);
 			end
 			else begin
 				i_d := 0;
@@ -140,6 +262,7 @@ begin
 				plato[i_a].p.clr := 2;
 				plato[i_d].p.identif := 0;
 				plato[i_d].p.clr := 0;
+				tours(j1,j2,j3,j4,nb_joueurs);
 			end
 			else begin
 				i_d := 0;
@@ -152,6 +275,7 @@ begin
 				plato[i_a].p.clr := 3;
 				plato[i_d].p.identif := 0;
 				plato[i_d].p.clr := 0;
+				tours(j1,j2,j3,j4,nb_joueurs);
 			end
 			else begin
 				i_d := 0;
@@ -161,9 +285,10 @@ begin
 		else begin
 			if ((i_a = i_d-1) or (i_a = i_d-9) or (i_a = i_d+11)) then begin
 				plato[i_a].p.identif := 2;
-				plato[i_a].p.clr := 1;
+				plato[i_a].p.clr := 4;
 				plato[i_d].p.identif := 0;
 				plato[i_d].p.clr := 0;
+				tours(j1,j2,j3,j4,nb_joueurs);
 			end
 			else begin
 				i_d := 0;
@@ -179,6 +304,7 @@ begin
 				plato[i_a].p.clr := plato[i_d].p.clr;
 				plato[i_d].p.identif := 0;
 				plato[i_d].p.clr := 0;
+				tours(j1,j2,j3,j4,nb_joueurs);
 			end
 			else begin
 				i_d := 0;
@@ -187,13 +313,14 @@ begin
 		end;
 	end
 //////Cercle
-	else if plato[i_d].p.identif = 3 then begin
+	else if plato[i_d].p.identif = 4 then begin
 		if (plato[i_d].p.clr = 1) or (plato[i_d].p.clr = 2) or (plato[i_d].p.clr = 3) or (plato[i_d].p.clr = 4) then begin
 			if ((i_a = i_d+1) or (i_a = i_d-1) or (i_a = i_d+9) or (i_a = i_d-9) or (i_a = i_d+10) or (i_a = i_d-10) or (i_a = i_d+11) or (i_a = i_d-11)) then begin
 				plato[i_a].p.identif := 4;
 				plato[i_a].p.clr := plato[i_d].p.clr;
 				plato[i_d].p.identif := 0;
 				plato[i_d].p.clr := 0;
+				tours(j1,j2,j3,j4,nb_joueurs);
 			end
 			else begin
 				i_d := 0;
@@ -207,9 +334,18 @@ begin
 	end;
 	selectione := false;
 end;
-//Trouver un moyen de stocker i_d et i_a quelque part :
-// Peut être faire une variable global et la mettre en variable de sortie dès le début
-procedure selectionCase(VAR plato : plateauDyn;VAR selectione : boolean;VAR i_d, i_a : integer);
+
+
+function bon_pion(plato : plateauDyn;i :integer; j1,j2,j3,j4 : boolean): boolean;
+begin
+	if ((plato[i].p.clr = 1) and (j1 = false)) then bon_pion := false
+	else if ((plato[i].p.clr = 2) and (j2 = false)) then bon_pion := false
+	else if ((plato[i].p.clr = 3) and (j3 = false)) then bon_pion := false
+	else if ((plato[i].p.clr = 4) and (j4 = false)) then bon_pion := false
+	else bon_pion := true;
+end;
+
+procedure selectionCase(VAR plato : plateauDyn;VAR selectione,j1,j2,j3,j4 : boolean;VAR i_d, i_a : integer;nb_joueurs : integer);
 var
 	i,xm,ym : integer; // i départ ; i arrivé
 begin
@@ -218,7 +354,7 @@ begin
 		ym := sdl_get_mouse_y;
 		if ((xm > plato[i].x) and (xm < plato[i].x +60)) and ((ym > plato[i].y) and (ym < plato[i].y +60)) then begin
 			if sdl_mouse_left_down then begin
-				if ((not caseVide(plato,i)) and (selectione = false)) then begin
+				if ((not caseVide(plato,i)) and (selectione = false) and bon_pion(plato,i,j1,j2,j3,j4)) then begin
 					selectione := true;
 					gDrawRect(plato[i].x+2, plato[i].y+2,57,57,SPRING_GREEN);
 					gDrawRect(plato[i].x+3, plato[i].y+3,55,55,SPRING_GREEN);
@@ -231,7 +367,7 @@ begin
 					i_a := i;
 					writeln(i_a);
 					writeln(i_d);
-					deplacement(plato,selectione,i_d,i_a);
+					deplacement(plato,selectione,j1,j2,j3,j4,i_d,i_a,nb_joueurs);
 				end
 				else begin
 					gDrawRect(plato[i].x+2,plato[i].y+2,57,57,BLUE);
@@ -242,7 +378,7 @@ begin
 	end;
 end;
 
-procedure affiPlateau(VAR plato : plateauDyn;VAR selectione : boolean;VAR i_d, i_a : integer);
+procedure affiPlateau(VAR plato : plateauDyn;VAR selectione,j1,j2,j3,j4 : boolean;VAR i_d, i_a : integer;nb_joueurs : integer);
 var
 	i : integer;
 begin
@@ -251,20 +387,7 @@ begin
 	for i := 0 to 99 do gFillRect(plato[i].x,plato[i].y,60,60,plato[i].couleur);
 	gDrawRect(200,75,600,600,BLACK);
 	affiPions(plato);
-	//verif_cases(plato);
-	selectionCase(plato,selectione,i_d,i_a);
-
-end;
-
-procedure verif_cases(var plato : plateauDyn);
-var
-	i,xm,ym : integer;
-begin
-	for i := 0 to 99 do begin
-		xm := sdl_get_mouse_x;
-		ym := sdl_get_mouse_y;
-		if ((xm > plato[i].x) and (xm < plato[i].x + 60)) and ((ym > plato[i].y) and (ym < plato[i].y + 60)) then gFillRect(plato[i].x,plato[i].y,60,60,red);
-	end;
+	selectionCase(plato,selectione,j1,j2,j3,j4,i_d,i_a,nb_joueurs);
 end;
 
 end.
