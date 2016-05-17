@@ -5,9 +5,12 @@ uses gLib2D,SDL_TTF,sysutils,plateau,widget,menu;
 var
 	plato : plateauDyn;
 	mens : men;
+	i_d, i_a : integer;
 	tampo,selectione : boolean;
 	menuJ,menuC,menuR : gImage;
 begin
+	i_d:= 0;
+	i_a := 0;
 	plato := creaPlateau();
 	menuJ := iniMenus(1);
 	menuC := iniMenus(2);
@@ -24,7 +27,7 @@ begin
 			writeln('21');
 			if mens.id = 1 then begin
 				writeln('22');
-				affiPlateau(plato,selectione);
+				affiPlateau(plato,selectione,i_d,i_a);
 			end;
 
 			if mens.id = 2 then begin

@@ -19,7 +19,7 @@ type
 
 
 function creaPlateau():plateauDyn;
-procedure affiPlateau(VAR plato : plateauDyn;VAR selectione : boolean);
+procedure affiPlateau(VAR plato : plateauDyn;VAR selectione : boolean;VAR i_d, i_a : integer);
 
 
 Implementation
@@ -209,12 +209,10 @@ begin
 end;
 //Trouver un moyen de stocker i_d et i_a quelque part :
 // Peut être faire une variable global et la mettre en variable de sortie dès le début
-procedure selectionCase(VAR plato : plateauDyn;VAR selectione : boolean);
+procedure selectionCase(VAR plato : plateauDyn;VAR selectione : boolean;VAR i_d, i_a : integer);
 var
-	i,xm,ym, i_d, i_a : integer; // i départ ; i arrivé
+	i,xm,ym : integer; // i départ ; i arrivé
 begin
-	i_d := 0;
-	i_a := 0;
 	for i := 0 to 99 do begin
 		xm := sdl_get_mouse_x;
 		ym := sdl_get_mouse_y;
@@ -244,7 +242,7 @@ begin
 	end;
 end;
 
-procedure affiPlateau(VAR plato : plateauDyn;VAR selectione : boolean);
+procedure affiPlateau(VAR plato : plateauDyn;VAR selectione : boolean;VAR i_d, i_a : integer);
 var
 	i : integer;
 begin
@@ -254,7 +252,7 @@ begin
 	gDrawRect(200,75,600,600,BLACK);
 	affiPions(plato);
 	//verif_cases(plato);
-	selectionCase(plato,selectione);
+	selectionCase(plato,selectione,i_d,i_a);
 
 end;
 
