@@ -221,71 +221,71 @@ begin
 	else j_4(j1,j2,j3,j4);
 end;
 
-{function saut_pion(plato : plateauDyn; i_d,i_a : integer):boolean;
+function saut_pion(plato : plateauDyn; i_d,i_a : integer):boolean;
 begin
 ///Carré
 	if plato[i_d].p.identif = 1 then begin
 		if (plato[i_d].p.clr = 1) or (plato[i_d].p.clr = 2) or (plato[i_d].p.clr = 3) or (plato[i_d].p.clr = 4) then begin
-			if ((i_a = i_d+2) and (plato[i_d+1].p.indentif <> 0)) or
-			((i_a = i_d-2) and (plato[i_d-1].p.indentif <> 0)) or
-			((i_a = i_d+20) and (plato[i_d+10].p.indentif <> 0)) or
-			((i_a = i_d-20) and (plato[i_d-10].p.indentif <> 0)) then saut_pion := true
+			if ((i_a = i_d+2) and (plato[i_d+1].p.identif <> 0)) or
+			((i_a = i_d-2) and (plato[i_d-1].p.identif <> 0)) or
+			((i_a = i_d+20) and (plato[i_d+10].p.identif <> 0)) or
+			((i_a = i_d-20) and (plato[i_d-10].p.identif <> 0)) then saut_pion := true
 			else saut_pion := false;
 		end;
 	end
 ////Triangle
 	else if plato[i_d].p.identif = 2 then begin
 		if (plato[i_d].p.clr = 1) then begin
-			if ((i_a = i_d+20) and (plato[i_d+10].p.indentif <> 0)) or
-			((i_a = i_d-18) and (plato[i_d-9].p.indentif <> 0)) or
-			((i_a = i_d-22) and (plato[i_d-11].p.indentif <> 0)) then saut_pion := true
+			if ((i_a = i_d+20) and (plato[i_d+10].p.identif <> 0)) or
+			((i_a = i_d-18) and (plato[i_d-9].p.identif <> 0)) or
+			((i_a = i_d-22) and (plato[i_d-11].p.identif <> 0)) then saut_pion := true
 			else saut_pion := false;
 		end
 		else if (plato[i_d].p.clr = 2) then begin
-			if ((i_a = i_d-20) and (plato[i_d-10].p.indentif <> 0)) or
-			((i_a = i_d+18) and (plato[i_d+9].p.indentif <> 0)) or
-			((i_a = i_d+22) and (plato[i_d+11].p.indentif <> 0)) then saut_pion := true
+			if ((i_a = i_d-20) and (plato[i_d-10].p.identif <> 0)) or
+			((i_a = i_d+18) and (plato[i_d+9].p.identif <> 0)) or
+			((i_a = i_d+22) and (plato[i_d+11].p.identif <> 0)) then saut_pion := true
 			else saut_pion := false;
 		end
 		else if (plato[i_d].p.clr = 3) then begin
-			if ((i_a = i_d+2) and (plato[i_d+1].p.indentif <> 0)) or
-			((i_a = i_d+18) and (plato[i_d+9].p.indentif <> 0)) or
-			((i_a = i_d-22) and (plato[i_d-11].p.indentif <> 0)) then saut_pion := true
+			if ((i_a = i_d+2) and (plato[i_d+1].p.identif <> 0)) or
+			((i_a = i_d+18) and (plato[i_d+9].p.identif <> 0)) or
+			((i_a = i_d-22) and (plato[i_d-11].p.identif <> 0)) then saut_pion := true
 			else saut_pion := false;
 		end
 		else begin
-			if ((i_a = i_d-2) and (plato[i_d-1].p.indentif <> 0)) or
-			((i_a = i_d-18) and (plato[i_d-9].p.indentif <> 0)) or
-			((i_a = i_d+22) and (plato[i_d+11].p.indentif <> 0)) then saut_pion := true
+			if ((i_a = i_d-2) and (plato[i_d-1].p.identif <> 0)) or
+			((i_a = i_d-18) and (plato[i_d-9].p.identif <> 0)) or
+			((i_a = i_d+22) and (plato[i_d+11].p.identif <> 0)) then saut_pion := true
 			else saut_pion := false;
 		end;
 	end
 /////Losange
 	else if plato[i_d].p.identif = 3 then begin
 		if (plato[i_d].p.clr = 1) or (plato[i_d].p.clr = 2) or (plato[i_d].p.clr = 3) or (plato[i_d].p.clr = 4) then begin
-			if ((i_a = i_d+22) and (plato[i_d+11].p.indentif <> 0)) or
-			((i_a = i_d-22) and (plato[i_d-11].p.indentif <> 0)) or
-			((i_a = i_d+18) and (plato[i_d+9].p.indentif <> 0)) or
-			((i_a = i_d-18) and (plato[i_d-9].p.indentif <> 0)) then saut_pion := true
+			if ((i_a = i_d+22) and (plato[i_d+11].p.identif <> 0)) or
+			((i_a = i_d-22) and (plato[i_d-11].p.identif <> 0)) or
+			((i_a = i_d+18) and (plato[i_d+9].p.identif <> 0)) or
+			((i_a = i_d-18) and (plato[i_d-9].p.identif <> 0)) then saut_pion := true
 			else saut_pion := false;
 		end;
 	end
 //////Cercle
 	else if plato[i_d].p.identif = 4 then begin
 		if (plato[i_d].p.clr = 1) or (plato[i_d].p.clr = 2) or (plato[i_d].p.clr = 3) or (plato[i_d].p.clr = 4) then begin
-			if ((i_a = i_d+2) and (plato[i_d+1].p.indentif <> 0))  or
-			((i_a = i_d-2) and (plato[i_d-1].p.indentif <> 0)) or
-			((i_a = i_d+18) and (plato[i_d+9].p.indentif <> 0)) or
-			((i_a = i_d-18) and (plato[i_d-9].p.indentif <> 0)) or
-			((i_a = i_d+20) and (plato[i_d+10].p.indentif <> 0)) or
-			((i_a = i_d-20) and (plato[i_d-10].p.indentif <> 0)) or
-			((i_a = i_d+22) and (plato[i_d+11].p.indentif <> 0)) or
-			((i_a = i_d-22) and (plato[i_d-11].p.indentif <> 0)) then saut_pion := true
+			if ((i_a = i_d+2) and (plato[i_d+1].p.identif <> 0))  or
+			((i_a = i_d-2) and (plato[i_d-1].p.identif <> 0)) or
+			((i_a = i_d+18) and (plato[i_d+9].p.identif <> 0)) or
+			((i_a = i_d-18) and (plato[i_d-9].p.identif <> 0)) or
+			((i_a = i_d+20) and (plato[i_d+10].p.identif <> 0)) or
+			((i_a = i_d-20) and (plato[i_d-10].p.identif <> 0)) or
+			((i_a = i_d+22) and (plato[i_d+11].p.identif <> 0)) or
+			((i_a = i_d-22) and (plato[i_d-11].p.identif <> 0)) then saut_pion := true
 			else saut_pion := false;
 		end;
 	end
 	else saut_pion := false;
-end;}
+end;
 //Ajouter exception dans le déplacement en fonction de la couelur du pion (Premierement vérifié les cases des coins)
 // + faire les camps accessible seulement par les couleurs concernés
 procedure deplacement(var plato : plateauDyn;var selectione,j1,j2,j3,j4 : boolean; VAR i_d, i_a : integer; nb_joueurs : integer);
@@ -293,7 +293,7 @@ begin
 ////Carré
 	if plato[i_d].p.identif = 1 then begin
 		if (plato[i_d].p.clr = 1) or (plato[i_d].p.clr = 2) or (plato[i_d].p.clr = 3) or (plato[i_d].p.clr = 4) then begin
-			if ((i_a = i_d+1) or (i_a = i_d-1) or (i_a = i_d+10) or (i_a = i_d-10)) {or saut_pion(plato,i_d,i_a) }then begin
+			if ((i_a = i_d+1) or (i_a = i_d-1) or (i_a = i_d+10) or (i_a = i_d-10)) or saut_pion(plato,i_d,i_a) then begin
 				plato[i_a].p.identif := 1;
 				plato[i_a].p.clr := plato[i_d].p.clr;
 				plato[i_d].p.identif := 0;
@@ -309,7 +309,7 @@ begin
 ////Triangle
 	else if plato[i_d].p.identif = 2 then begin
 		if (plato[i_d].p.clr = 1) then begin
-			if ((i_a = i_d+10) or (i_a = i_d-9) or (i_a = i_d-11)) {or saut_pion(plato,i_d,i_a) }then begin
+			if ((i_a = i_d+10) or (i_a = i_d-9) or (i_a = i_d-11)) or saut_pion(plato,i_d,i_a)then begin
 				plato[i_a].p.identif := 2;
 				plato[i_a].p.clr := 1;
 				plato[i_d].p.identif := 0;
@@ -322,7 +322,7 @@ begin
 			end;
 		end
 		else if (plato[i_d].p.clr = 2) then begin
-			if ((i_a = i_d-10) or (i_a = i_d+9) or (i_a = i_d+11)){ or saut_pion(plato,i_d,i_a)} then begin
+			if ((i_a = i_d-10) or (i_a = i_d+9) or (i_a = i_d+11)) or saut_pion(plato,i_d,i_a) then begin
 				plato[i_a].p.identif := 2;
 				plato[i_a].p.clr := 2;
 				plato[i_d].p.identif := 0;
@@ -335,7 +335,7 @@ begin
 			end;
 		end
 		else if (plato[i_d].p.clr = 3) then begin
-			if ((i_a = i_d+1) or (i_a = i_d+9) or (i_a = i_d-11)) {or saut_pion(plato,i_d,i_a)} then begin
+			if ((i_a = i_d+1) or (i_a = i_d+9) or (i_a = i_d-11)) or saut_pion(plato,i_d,i_a) then begin
 				plato[i_a].p.identif := 2;
 				plato[i_a].p.clr := 3;
 				plato[i_d].p.identif := 0;
@@ -348,7 +348,7 @@ begin
 			end;
 		end
 		else begin
-			if ((i_a = i_d-1) or (i_a = i_d-9) or (i_a = i_d+11)) {or saut_pion(plato,i_d,i_a)} then begin
+			if ((i_a = i_d-1) or (i_a = i_d-9) or (i_a = i_d+11)) or saut_pion(plato,i_d,i_a) then begin
 				plato[i_a].p.identif := 2;
 				plato[i_a].p.clr := 4;
 				plato[i_d].p.identif := 0;
@@ -364,7 +364,7 @@ begin
 /////Losange
 	else if plato[i_d].p.identif = 3 then begin
 		if (plato[i_d].p.clr = 1) or (plato[i_d].p.clr = 2) or (plato[i_d].p.clr = 3) or (plato[i_d].p.clr = 4) then begin
-			if ((i_a = i_d+11) or (i_a = i_d-11) or (i_a = i_d+9) or (i_a = i_d-9)) {or saut_pion(plato,i_d,i_a)} then begin
+			if ((i_a = i_d+11) or (i_a = i_d-11) or (i_a = i_d+9) or (i_a = i_d-9)) or saut_pion(plato,i_d,i_a) then begin
 				plato[i_a].p.identif := 3;
 				plato[i_a].p.clr := plato[i_d].p.clr;
 				plato[i_d].p.identif := 0;
@@ -380,7 +380,7 @@ begin
 //////Cercle
 	else if plato[i_d].p.identif = 4 then begin
 		if (plato[i_d].p.clr = 1) or (plato[i_d].p.clr = 2) or (plato[i_d].p.clr = 3) or (plato[i_d].p.clr = 4) then begin
-			if ((i_a = i_d+1) or (i_a = i_d-1) or (i_a = i_d+9) or (i_a = i_d-9) or (i_a = i_d+10) or (i_a = i_d-10) or (i_a = i_d+11) or (i_a = i_d-11)) {or saut_pion(plato,i_d,i_a)} then begin
+			if ((i_a = i_d+1) or (i_a = i_d-1) or (i_a = i_d+9) or (i_a = i_d-9) or (i_a = i_d+10) or (i_a = i_d-10) or (i_a = i_d+11) or (i_a = i_d-11)) or saut_pion(plato,i_d,i_a) then begin
 				plato[i_a].p.identif := 4;
 				plato[i_a].p.clr := plato[i_d].p.clr;
 				plato[i_d].p.identif := 0;
