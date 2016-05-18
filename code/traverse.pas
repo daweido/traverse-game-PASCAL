@@ -6,7 +6,7 @@ var
 	plato : plateauDyn;
 	mens : men;
 	i_d, i_a,nb_joueurs : integer;
-	tampo,selectione,j1,j2,j3,j4 : boolean;
+	tampo,selectione,j1,j2,j3,j4,saut : boolean;
 	menuJ,menuC,menuR : gImage;
 begin
 	j1 := true;
@@ -22,6 +22,7 @@ begin
 	menuR := iniMenus(3);
 	tampo := true;
 	selectione := false;
+	saut := false;
 	while true do begin
 		//if tampo = true then writeln('TRUE')
 		//else writeln('FALSE');
@@ -31,7 +32,7 @@ begin
 			if mens.id = 1 then begin
 				//writeln('22');
 				if nb_joueurs = 0 then def_nb_joueurs(plato,nb_joueurs);
-				affiPlateau(plato,selectione,j1,j2,j3,j4,i_d,i_a,nb_joueurs);
+				affiPlateau(plato,selectione,j1,j2,j3,j4,saut,i_d,i_a,nb_joueurs);
 			end;
 
 			if mens.id = 2 then begin
@@ -41,8 +42,9 @@ begin
 
 			if mens.id = 3 then begin
 				//writeln('23');
-				affiMenu(menuR);
+				reglagesMenu(tampo,mens,menuJ,menuR);
 			end;
+			
 			if mens.id = 4 then exit;
 				//if tampo = true then writeln('TRUE')
 				//else writeln('FALSE');

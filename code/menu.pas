@@ -26,11 +26,12 @@ const
 	y_min_Ex = 587.4;
 	y_max_Ex = 666.6;
 
-	y_min_C = 609;
-	y_max_C = 681;
+	x_max_retourCR = 967;
+	x_min_retourCR = 685;
 
-	x_max_C = 931;
-	x_min_C = 719;
+	y_max_retourCR = 686;
+	y_min_retourCR = 606;
+
 
 
 
@@ -39,6 +40,8 @@ function bouttonsJ: men;
 procedure affiMenu(image : gImage);
 procedure principalMenu(var tampo : boolean; var mens : men; plato : plateauDyn; menuJ: gImage);
 procedure commentMenu(var tampo : boolean; var mens : men;menuJ,menuC : gImage); // Recopier la procedure d'en bas mais pour le menu comment Jouer
+procedure reglagesMenu(var tampo : boolean; var mens : men; menuJ,menuR :gImage);
+
 
 Implementation
 
@@ -101,35 +104,47 @@ begin
 end;
 
 
-function bouttonC: men;
+function bouttonCR: men;
 var
 	tmp : men;
 begin
-	if ((sdl_get_mouse_x < x_max_C) and (sdl_get_mouse_x > x_min_C) and (sdl_get_mouse_y < y_max_C) and (sdl_get_mouse_y > y_min_C)) then begin
+	if ((sdl_get_mouse_x < x_max_retourCR) and (sdl_get_mouse_x > x_min_retourCR) and (sdl_get_mouse_y < y_max_retourCR) and (sdl_get_mouse_y > y_min_retourCR)) then begin
 		if sdl_mouse_left_down then begin
 			tmp.menus := false;
 		end;
 	end
 	else tmp.menus := true;
-	bouttonC := tmp;
+	bouttonCR := tmp;
 end;
 
 procedure commentMenu(var tampo : boolean; var mens : men;menuJ,menuC : gImage); // Recopier la procedure d'en bas mais pour le menu comment Jouer
 begin
-	mens := bouttonC;
+	mens := bouttonCR;
 	writeln('120');
 	if (mens.menus = true) then begin
 		writeln('121');
 		affiMenu(menuC);
 	end
 	else begin
-		//affiMenu(menuJ);
+		affiMenu(menuJ);
 		writeln('123');
 		tampo := true;
 	end;
 end;
 
-
+procedure reglagesMenu(var tampo : boolean; var mens : men; menuJ,menuR :gImage);
+begin
+	mens := bouttonCR;
+	if (mens.menus = true) then begin
+		writeln('121');
+		affiMenu(menuR);
+	end
+	else begin
+		affiMenu(menuJ);
+		writeln('123');
+		tampo := true;
+	end;
+end;
 
 
 procedure principalMenu(var tampo : boolean; var mens : men; plato : plateauDyn; menuJ: gImage);
@@ -142,5 +157,4 @@ begin
 		tampo := false;
 	end;
 end;
-
 end.

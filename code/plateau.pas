@@ -19,7 +19,7 @@ type
 
 
 function creaPlateau():plateauDyn;
-procedure affiPlateau(VAR plato : plateauDyn;VAR selectione,j1,j2,j3,j4 : boolean;VAR i_d, i_a : integer;nb_joueurs : integer);
+procedure affiPlateau(VAR plato : plateauDyn;VAR selectione,j1,j2,j3,j4,saut : boolean;VAR i_d, i_a : integer;nb_joueurs : integer);
 procedure def_nb_joueurs(VAR plato : plateauDyn; VAR nb_joueurs : integer);
 
 
@@ -221,183 +221,386 @@ begin
 	else j_4(j1,j2,j3,j4);
 end;
 
+function saut_pion_Carre(plato : plateauDyn; i_d,i_a : integer):boolean;
+begin
+	if (plato[i_d].p.clr = 1) or (plato[i_d].p.clr = 2) or (plato[i_d].p.clr = 3) or (plato[i_d].p.clr = 4) then begin
+		if ((i_a = i_d+2) and (plato[i_d+1].p.identif <> 0)) or ((i_a = i_d-2) and (plato[i_d-1].p.identif <> 0)) or ((i_a = i_d+20) and (plato[i_d+10].p.identif <> 0)) or ((i_a = i_d-20) and (plato[i_d-10].p.identif <> 0)) then saut_pion_Carre := true
+		else saut_pion_Carre := false;
+	end;
+end;
+
+
+function saut_pion_Triangle(plato : plateauDyn; i_d,i_a : integer):boolean;
+begin
+	if (plato[i_d].p.clr = 1) then begin
+		if ((i_a = i_d+20) and (plato[i_d+10].p.identif <> 0)) or
+		((i_a = i_d-18) and (plato[i_d-9].p.identif <> 0)) or
+		((i_a = i_d-22) and (plato[i_d-11].p.identif <> 0)) then saut_pion_Triangle := true
+		else saut_pion_Triangle := false;
+	end
+	else if (plato[i_d].p.clr = 2) then begin
+		if ((i_a = i_d-20) and (plato[i_d-10].p.identif <> 0)) or
+		((i_a = i_d+18) and (plato[i_d+9].p.identif <> 0)) or
+		((i_a = i_d+22) and (plato[i_d+11].p.identif <> 0)) then saut_pion_Triangle := true
+		else saut_pion_Triangle := false;
+	end
+	else if (plato[i_d].p.clr = 3) then begin
+		if ((i_a = i_d+2) and (plato[i_d+1].p.identif <> 0)) or
+		((i_a = i_d+18) and (plato[i_d+9].p.identif <> 0)) or
+		((i_a = i_d-22) and (plato[i_d-11].p.identif <> 0)) then saut_pion_Triangle := true
+		else saut_pion_Triangle := false;
+	end
+	else begin
+		if ((i_a = i_d-2) and (plato[i_d-1].p.identif <> 0)) or
+		((i_a = i_d-18) and (plato[i_d-9].p.identif <> 0)) or
+		((i_a = i_d+22) and (plato[i_d+11].p.identif <> 0)) then saut_pion_Triangle := true
+		else saut_pion_Triangle := false;
+	end;
+end;
+
+function saut_pion_Losange(plato : plateauDyn; i_d,i_a : integer):boolean;
+begin
+	if (plato[i_d].p.clr = 1) or (plato[i_d].p.clr = 2) or (plato[i_d].p.clr = 3) or (plato[i_d].p.clr = 4) then begin
+		if ((i_a = i_d+22) and (plato[i_d+11].p.identif <> 0)) or
+		((i_a = i_d-22) and (plato[i_d-11].p.identif <> 0)) or
+		((i_a = i_d+18) and (plato[i_d+9].p.identif <> 0)) or
+		((i_a = i_d-18) and (plato[i_d-9].p.identif <> 0)) then saut_pion_Losange := true
+		else saut_pion_Losange := false;
+	end;
+end;
+
+function saut_pion_Cercle(plato : plateauDyn; i_d,i_a : integer):boolean;
+begin
+	if (plato[i_d].p.clr = 1) or (plato[i_d].p.clr = 2) or (plato[i_d].p.clr = 3) or (plato[i_d].p.clr = 4) then begin
+		if ((i_a = i_d+2) and (plato[i_d+1].p.identif <> 0))  or
+		((i_a = i_d-2) and (plato[i_d-1].p.identif <> 0)) or
+		((i_a = i_d+18) and (plato[i_d+9].p.identif <> 0)) or
+		((i_a = i_d-18) and (plato[i_d-9].p.identif <> 0)) or
+		((i_a = i_d+20) and (plato[i_d+10].p.identif <> 0)) or
+		((i_a = i_d-20) and (plato[i_d-10].p.identif <> 0)) or
+		((i_a = i_d+22) and (plato[i_d+11].p.identif <> 0)) or
+		((i_a = i_d-22) and (plato[i_d-11].p.identif <> 0)) then saut_pion_Cercle := true
+		else saut_pion_Cercle := false;
+	end;
+end;
+
 function saut_pion(plato : plateauDyn; i_d,i_a : integer):boolean;
 begin
 ///Carré
-	if plato[i_d].p.identif = 1 then begin
-		if (plato[i_d].p.clr = 1) or (plato[i_d].p.clr = 2) or (plato[i_d].p.clr = 3) or (plato[i_d].p.clr = 4) then begin
-			if ((i_a = i_d+2) and (plato[i_d+1].p.identif <> 0)) or
-			((i_a = i_d-2) and (plato[i_d-1].p.identif <> 0)) or
-			((i_a = i_d+20) and (plato[i_d+10].p.identif <> 0)) or
-			((i_a = i_d-20) and (plato[i_d-10].p.identif <> 0)) then saut_pion := true
-			else saut_pion := false;
-		end;
-	end
+	if plato[i_d].p.identif = 1 then saut_pion := saut_pion_Carre(plato,i_d,i_a)
 ////Triangle
-	else if plato[i_d].p.identif = 2 then begin
-		if (plato[i_d].p.clr = 1) then begin
-			if ((i_a = i_d+20) and (plato[i_d+10].p.identif <> 0)) or
-			((i_a = i_d-18) and (plato[i_d-9].p.identif <> 0)) or
-			((i_a = i_d-22) and (plato[i_d-11].p.identif <> 0)) then saut_pion := true
-			else saut_pion := false;
-		end
-		else if (plato[i_d].p.clr = 2) then begin
-			if ((i_a = i_d-20) and (plato[i_d-10].p.identif <> 0)) or
-			((i_a = i_d+18) and (plato[i_d+9].p.identif <> 0)) or
-			((i_a = i_d+22) and (plato[i_d+11].p.identif <> 0)) then saut_pion := true
-			else saut_pion := false;
-		end
-		else if (plato[i_d].p.clr = 3) then begin
-			if ((i_a = i_d+2) and (plato[i_d+1].p.identif <> 0)) or
-			((i_a = i_d+18) and (plato[i_d+9].p.identif <> 0)) or
-			((i_a = i_d-22) and (plato[i_d-11].p.identif <> 0)) then saut_pion := true
-			else saut_pion := false;
-		end
-		else begin
-			if ((i_a = i_d-2) and (plato[i_d-1].p.identif <> 0)) or
-			((i_a = i_d-18) and (plato[i_d-9].p.identif <> 0)) or
-			((i_a = i_d+22) and (plato[i_d+11].p.identif <> 0)) then saut_pion := true
-			else saut_pion := false;
-		end;
-	end
+	else if plato[i_d].p.identif = 2 then saut_pion := saut_pion_Triangle(plato,i_d,i_a)
 /////Losange
-	else if plato[i_d].p.identif = 3 then begin
-		if (plato[i_d].p.clr = 1) or (plato[i_d].p.clr = 2) or (plato[i_d].p.clr = 3) or (plato[i_d].p.clr = 4) then begin
-			if ((i_a = i_d+22) and (plato[i_d+11].p.identif <> 0)) or
-			((i_a = i_d-22) and (plato[i_d-11].p.identif <> 0)) or
-			((i_a = i_d+18) and (plato[i_d+9].p.identif <> 0)) or
-			((i_a = i_d-18) and (plato[i_d-9].p.identif <> 0)) then saut_pion := true
-			else saut_pion := false;
-		end;
-	end
+	else if plato[i_d].p.identif = 3 then saut_pion := saut_pion_Losange(plato,i_d,i_a)
 //////Cercle
-	else if plato[i_d].p.identif = 4 then begin
-		if (plato[i_d].p.clr = 1) or (plato[i_d].p.clr = 2) or (plato[i_d].p.clr = 3) or (plato[i_d].p.clr = 4) then begin
-			if ((i_a = i_d+2) and (plato[i_d+1].p.identif <> 0))  or
-			((i_a = i_d-2) and (plato[i_d-1].p.identif <> 0)) or
-			((i_a = i_d+18) and (plato[i_d+9].p.identif <> 0)) or
-			((i_a = i_d-18) and (plato[i_d-9].p.identif <> 0)) or
-			((i_a = i_d+20) and (plato[i_d+10].p.identif <> 0)) or
-			((i_a = i_d-20) and (plato[i_d-10].p.identif <> 0)) or
-			((i_a = i_d+22) and (plato[i_d+11].p.identif <> 0)) or
-			((i_a = i_d-22) and (plato[i_d-11].p.identif <> 0)) then saut_pion := true
-			else saut_pion := false;
-		end;
-	end
+	else if plato[i_d].p.identif = 4 then saut_pion := saut_pion_Cercle(plato,i_d,i_a)
 	else saut_pion := false;
 end;
-//Ajouter exception dans le déplacement en fonction de la couelur du pion (Premierement vérifié les cases des coins)
-// + faire les camps accessible seulement par les couleurs concernés
-procedure deplacement(var plato : plateauDyn;var selectione,j1,j2,j3,j4 : boolean; VAR i_d, i_a : integer; nb_joueurs : integer);
+
+//Faire fonction qui vérifie si un saut de pion est possible et afficher les cases en verte léger les mouvements possibles
+function saut_possible_Carre(i_d : integer;plato : plateauDyn):boolean;
+begin
+	if (plato[i_d].p.clr = 1) or (plato[i_d].p.clr = 2) or (plato[i_d].p.clr = 3) or (plato[i_d].p.clr = 4) then begin
+		if ((plato[i_d+2].p.identif = 0) and (plato[i_d+1].p.identif <> 0)) or ((plato[i_d-2].p.identif = 0) and (plato[i_d-1].p.identif <> 0)) or ((plato[i_d+20].p.identif = 0) and (plato[i_d+10].p.identif <> 0)) or ((plato[i_d-20].p.identif = 0) and (plato[i_d-10].p.identif <> 0)) then saut_possible_Carre := true
+		else saut_possible_Carre := false;
+	end;
+end;
+
+function saut_possible_Triangle(i_d : integer;plato : plateauDyn):boolean;
+begin
+	if (plato[i_d].p.clr = 1) then begin
+		if ((plato[i_d+20].p.identif = 0) and (plato[i_d+10].p.identif <> 0)) or
+		((plato[i_d-18].p.identif = 0) and (plato[i_d-9].p.identif <> 0)) or
+		((plato[i_d-22].p.identif = 0) and (plato[i_d-11].p.identif <> 0)) then saut_possible_Triangle := true
+		else saut_possible_Triangle := false;
+	end
+	else if (plato[i_d].p.clr = 2) then begin
+		if ((plato[i_d-20].p.identif = 0) and (plato[i_d-10].p.identif <> 0)) or
+		((plato[i_d+18].p.identif = 0) and (plato[i_d+9].p.identif <> 0)) or
+		((plato[i_d+22].p.identif = 0) and (plato[i_d+11].p.identif <> 0)) then saut_possible_Triangle := true
+		else saut_possible_Triangle := false;
+	end
+	else if (plato[i_d].p.clr = 3) then begin
+		if ((plato[i_d+2].p.identif = 0) and (plato[i_d+1].p.identif <> 0)) or
+		((plato[i_d+18].p.identif = 0) and (plato[i_d+9].p.identif <> 0)) or
+		((plato[i_d-22].p.identif = 0) and (plato[i_d-11].p.identif <> 0)) then saut_possible_Triangle := true
+		else saut_possible_Triangle := false;
+	end
+	else begin
+		if ((plato[i_d-2].p.identif = 0) and (plato[i_d-1].p.identif <> 0)) or
+		((plato[i_d-18].p.identif = 0) and (plato[i_d-9].p.identif <> 0)) or
+		((plato[i_d+22].p.identif = 0) and (plato[i_d+11].p.identif <> 0)) then saut_possible_Triangle := true
+		else saut_possible_Triangle := false;
+	end;
+end;
+
+function saut_possible_Losange(i_d : integer;plato : plateauDyn):boolean;
+begin
+	if (plato[i_d].p.clr = 1) or (plato[i_d].p.clr = 2) or (plato[i_d].p.clr = 3) or (plato[i_d].p.clr = 4) then begin
+		if ((plato[i_d+22].p.identif = 0) and (plato[i_d+11].p.identif <> 0)) or
+		((plato[i_d-22].p.identif = 0) and (plato[i_d-11].p.identif <> 0)) or
+		((plato[i_d+18].p.identif = 0) and (plato[i_d+9].p.identif <> 0)) or
+		((plato[i_d-18].p.identif = 0) and (plato[i_d-9].p.identif <> 0)) then saut_possible_Losange := true
+		else saut_possible_Losange := false
+	end;
+end;
+
+function saut_possible_Cercle(i_d : integer;plato : plateauDyn):boolean;
+begin
+	if (plato[i_d].p.clr = 1) or (plato[i_d].p.clr = 2) or (plato[i_d].p.clr = 3) or (plato[i_d].p.clr = 4) then begin
+		if ((plato[i_d+2].p.identif = 0) and (plato[i_d+1].p.identif <> 0))  or
+		((plato[i_d-2].p.identif = 0) and (plato[i_d-1].p.identif <> 0)) or
+		((plato[i_d+18].p.identif = 0) and (plato[i_d+9].p.identif <> 0)) or
+		((plato[i_d-18].p.identif = 0) and (plato[i_d-9].p.identif <> 0)) or
+		((plato[i_d+20].p.identif = 0) and (plato[i_d+10].p.identif <> 0)) or
+		((plato[i_d-20].p.identif = 0) and (plato[i_d-10].p.identif <> 0)) or
+		((plato[i_d+22].p.identif = 0) and (plato[i_d+11].p.identif <> 0)) or
+		((plato[i_d-22].p.identif = 0) and (plato[i_d-11].p.identif <> 0)) then saut_possible_Cercle := true
+		else saut_possible_Cercle := false
+	end;
+end;
+
+function saut_possible(i_d : integer;plato : plateauDyn):boolean;
 begin
 ////Carré
-	if plato[i_d].p.identif = 1 then begin
-		if (plato[i_d].p.clr = 1) or (plato[i_d].p.clr = 2) or (plato[i_d].p.clr = 3) or (plato[i_d].p.clr = 4) then begin
-			if ((i_a = i_d+1) or (i_a = i_d-1) or (i_a = i_d+10) or (i_a = i_d-10)) or saut_pion(plato,i_d,i_a) then begin
-				plato[i_a].p.identif := 1;
-				plato[i_a].p.clr := plato[i_d].p.clr;
-				plato[i_d].p.identif := 0;
-				plato[i_d].p.clr := 0;
-				tours(j1,j2,j3,j4,nb_joueurs);
-			end
-			else begin
-				i_d := 0;
-				i_a := 0;
-			end;
-		end;
-	end
+	if plato[i_d].p.identif = 1 then  saut_possible := saut_possible_Carre(i_d,plato)
 ////Triangle
-	else if plato[i_d].p.identif = 2 then begin
-		if (plato[i_d].p.clr = 1) then begin
-			if ((i_a = i_d+10) or (i_a = i_d-9) or (i_a = i_d-11)) or saut_pion(plato,i_d,i_a)then begin
-				plato[i_a].p.identif := 2;
-				plato[i_a].p.clr := 1;
-				plato[i_d].p.identif := 0;
-				plato[i_d].p.clr := 0;
-				tours(j1,j2,j3,j4,nb_joueurs);
-			end
+	else if plato[i_d].p.identif = 2 then saut_possible := saut_possible_Triangle(i_d,plato)
+////Losange
+	else if plato[i_d].p.identif = 3 then saut_possible := saut_possible_Losange(i_d,plato)
+//////Cercle
+	else if plato[i_d].p.identif = 4 then saut_possible := saut_possible_Cercle(i_d,plato)
+/////Else
+	else saut_possible := false;
+end;
+
+procedure deplacementCarre(var plato : plateauDyn;var selectione,j1,j2,j3,j4,saut : boolean; VAR i_d, i_a : integer; nb_joueurs : integer);
+begin
+	if (plato[i_d].p.clr = 1) or (plato[i_d].p.clr = 2) or (plato[i_d].p.clr = 3) or (plato[i_d].p.clr = 4) then begin
+		if saut_pion(plato,i_d,i_a) then begin
+			plato[i_a].p.identif := 1;
+			plato[i_a].p.clr := plato[i_d].p.clr;
+			plato[i_d].p.identif := 0;
+			plato[i_d].p.clr := 0;
+			i_d := i_a;
+			if saut_possible(i_d,plato) then saut := true
 			else begin
-				i_d := 0;
-				i_a := 0;
+				saut := false;
+				tours(j1,j2,j3,j4,nb_joueurs);
+				selectione := false;
 			end;
 		end
-		else if (plato[i_d].p.clr = 2) then begin
-			if ((i_a = i_d-10) or (i_a = i_d+9) or (i_a = i_d+11)) or saut_pion(plato,i_d,i_a) then begin
-				plato[i_a].p.identif := 2;
-				plato[i_a].p.clr := 2;
-				plato[i_d].p.identif := 0;
-				plato[i_d].p.clr := 0;
-				tours(j1,j2,j3,j4,nb_joueurs);
-			end
-			else begin
-				i_d := 0;
-				i_a := 0;
-			end;
-		end
-		else if (plato[i_d].p.clr = 3) then begin
-			if ((i_a = i_d+1) or (i_a = i_d+9) or (i_a = i_d-11)) or saut_pion(plato,i_d,i_a) then begin
-				plato[i_a].p.identif := 2;
-				plato[i_a].p.clr := 3;
-				plato[i_d].p.identif := 0;
-				plato[i_d].p.clr := 0;
-				tours(j1,j2,j3,j4,nb_joueurs);
-			end
-			else begin
-				i_d := 0;
-				i_a := 0;
-			end;
+		else if (((i_a = i_d+1) or (i_a = i_d-1) or (i_a = i_d+10) or (i_a = i_d-10)) and (saut = false)) then begin
+			plato[i_a].p.identif := 1;
+			plato[i_a].p.clr := plato[i_d].p.clr;
+			plato[i_d].p.identif := 0;
+			plato[i_d].p.clr := 0;
+			tours(j1,j2,j3,j4,nb_joueurs);
+			selectione := false;
 		end
 		else begin
-			if ((i_a = i_d-1) or (i_a = i_d-9) or (i_a = i_d+11)) or saut_pion(plato,i_d,i_a) then begin
-				plato[i_a].p.identif := 2;
-				plato[i_a].p.clr := 4;
-				plato[i_d].p.identif := 0;
-				plato[i_d].p.clr := 0;
-				tours(j1,j2,j3,j4,nb_joueurs);
-			end
+			i_d := 0;
+			i_a := 0;
+			selectione := false;
+		end;
+	end;
+end;
+
+procedure deplacementTriangle(var plato : plateauDyn;var selectione,j1,j2,j3,j4,saut : boolean; VAR i_d, i_a : integer; nb_joueurs : integer);
+begin
+	if (plato[i_d].p.clr = 1) then begin
+		if saut_pion(plato,i_d,i_a) then begin
+			plato[i_a].p.identif := 2;
+			plato[i_a].p.clr := 1;
+			plato[i_d].p.identif := 0;
+			plato[i_d].p.clr := 0;
+			i_d := i_a;
+			if saut_possible(i_d,plato) then saut := true
 			else begin
-				i_d := 0;
-				i_a := 0;
+				saut := false;
+				tours(j1,j2,j3,j4,nb_joueurs);
+				selectione := false;
 			end;
+		end
+		else if (((i_a = i_d+10) or (i_a = i_d-9) or (i_a = i_d-11)) and (saut = false)) then begin
+			plato[i_a].p.identif := 2;
+			plato[i_a].p.clr := 1;
+			plato[i_d].p.identif := 0;
+			plato[i_d].p.clr := 0;
+			tours(j1,j2,j3,j4,nb_joueurs);
+			selectione := false;
+		end
+		else begin
+			i_d := 0;
+			i_a := 0;
+			selectione := false;
 		end;
 	end
-/////Losange
-	else if plato[i_d].p.identif = 3 then begin
-		if (plato[i_d].p.clr = 1) or (plato[i_d].p.clr = 2) or (plato[i_d].p.clr = 3) or (plato[i_d].p.clr = 4) then begin
-			if ((i_a = i_d+11) or (i_a = i_d-11) or (i_a = i_d+9) or (i_a = i_d-9)) or saut_pion(plato,i_d,i_a) then begin
-				plato[i_a].p.identif := 3;
-				plato[i_a].p.clr := plato[i_d].p.clr;
-				plato[i_d].p.identif := 0;
-				plato[i_d].p.clr := 0;
-				tours(j1,j2,j3,j4,nb_joueurs);
-			end
+	else if (plato[i_d].p.clr = 2) then begin
+		if saut_pion(plato,i_d,i_a) then begin
+			plato[i_a].p.identif := 2;
+			plato[i_a].p.clr := 2;
+			plato[i_d].p.identif := 0;
+			plato[i_d].p.clr := 0;
+			i_d := i_a;
+			if saut_possible(i_d,plato) then saut := true
 			else begin
-				i_d := 0;
-				i_a := 0;
+				saut := false;
+				tours(j1,j2,j3,j4,nb_joueurs);
+				selectione := false;
 			end;
+		end
+		else if (((i_a = i_d-10) or (i_a = i_d+9) or (i_a = i_d+11)) and (saut = false))then begin
+			plato[i_a].p.identif := 2;
+			plato[i_a].p.clr := 2;
+			plato[i_d].p.identif := 0;
+			plato[i_d].p.clr := 0;
+			tours(j1,j2,j3,j4,nb_joueurs);
+			selectione := false;
+		end
+		else begin
+			i_d := 0;
+			i_a := 0;
+			selectione := false;
 		end;
 	end
-//////Cercle
-	else if plato[i_d].p.identif = 4 then begin
-		if (plato[i_d].p.clr = 1) or (plato[i_d].p.clr = 2) or (plato[i_d].p.clr = 3) or (plato[i_d].p.clr = 4) then begin
-			if ((i_a = i_d+1) or (i_a = i_d-1) or (i_a = i_d+9) or (i_a = i_d-9) or (i_a = i_d+10) or (i_a = i_d-10) or (i_a = i_d+11) or (i_a = i_d-11)) or saut_pion(plato,i_d,i_a) then begin
-				plato[i_a].p.identif := 4;
-				plato[i_a].p.clr := plato[i_d].p.clr;
-				plato[i_d].p.identif := 0;
-				plato[i_d].p.clr := 0;
-				tours(j1,j2,j3,j4,nb_joueurs);
-			end
+	else if (plato[i_d].p.clr = 3) then begin
+		if saut_pion(plato,i_d,i_a) then begin
+			plato[i_a].p.identif := 2;
+			plato[i_a].p.clr := 3;
+			plato[i_d].p.identif := 0;
+			plato[i_d].p.clr := 0;
+			i_d := i_a;
+			if saut_possible(i_d,plato) then saut := true
 			else begin
-				i_d := 0;
-				i_a := 0;
+				saut := false;
+				tours(j1,j2,j3,j4,nb_joueurs);
+				selectione := false;
 			end;
+		end
+		else if (((i_a = i_d+1) or (i_a = i_d+9) or (i_a = i_d-11)) and (saut = false))  then begin
+			plato[i_a].p.identif := 2;
+			plato[i_a].p.clr := 3;
+			plato[i_d].p.identif := 0;
+			plato[i_d].p.clr := 0;
+			tours(j1,j2,j3,j4,nb_joueurs);
+			selectione := false;
+		end
+		else begin
+			i_d := 0;
+			i_a := 0;
+			selectione := false;
 		end;
 	end
 	else begin
+		if saut_pion(plato,i_d,i_a) then begin
+			plato[i_a].p.identif := 2;
+			plato[i_a].p.clr := 4;
+			plato[i_d].p.identif := 0;
+			plato[i_d].p.clr := 0;
+			i_d := i_a;
+			if saut_possible(i_d,plato) then saut := true
+			else begin
+				saut := false;
+				tours(j1,j2,j3,j4,nb_joueurs);
+				selectione := false;
+			end;
+		end
+		else if (((i_a = i_d-1) or (i_a = i_d-9) or (i_a = i_d+11)) and (saut = false)) then begin
+			plato[i_a].p.identif := 2;
+			plato[i_a].p.clr := 4;
+			plato[i_d].p.identif := 0;
+			plato[i_d].p.clr := 0;
+			tours(j1,j2,j3,j4,nb_joueurs);
+			selectione := false;
+		end
+		else begin
+			i_d := 0;
+			i_a := 0;
+			selectione := false;
+		end;
+	end;
+end;
+
+procedure deplacementLosange(var plato : plateauDyn;var selectione,j1,j2,j3,j4,saut : boolean; VAR i_d, i_a : integer; nb_joueurs : integer);
+begin
+	if (plato[i_d].p.clr = 1) or (plato[i_d].p.clr = 2) or (plato[i_d].p.clr = 3) or (plato[i_d].p.clr = 4) then begin
+		if saut_pion(plato,i_d,i_a) then begin
+			plato[i_a].p.identif := 3;
+			plato[i_a].p.clr := plato[i_d].p.clr;
+			plato[i_d].p.identif := 0;
+			plato[i_d].p.clr := 0;
+			i_d := i_a;
+			if saut_possible(i_d,plato) then saut := true
+			else begin
+				saut := false;
+				tours(j1,j2,j3,j4,nb_joueurs);
+				selectione := false;
+			end;
+		end
+		else if (((i_a = i_d+11) or (i_a = i_d-11) or (i_a = i_d+9) or (i_a = i_d-9)) and (saut = false)) then begin
+			plato[i_a].p.identif := 3;
+			plato[i_a].p.clr := plato[i_d].p.clr;
+			plato[i_d].p.identif := 0;
+			plato[i_d].p.clr := 0;
+			tours(j1,j2,j3,j4,nb_joueurs);
+			selectione := false;
+		end
+		else begin
+			i_d := 0;
+			i_a := 0;
+			selectione := false;
+		end;
+	end;
+end;
+
+procedure deplacementCercle(var plato : plateauDyn;var selectione,j1,j2,j3,j4,saut : boolean; VAR i_d, i_a : integer; nb_joueurs : integer);
+begin
+	if (plato[i_d].p.clr = 1) or (plato[i_d].p.clr = 2) or (plato[i_d].p.clr = 3) or (plato[i_d].p.clr = 4) then begin
+		if saut_pion(plato,i_d,i_a) then begin
+			plato[i_a].p.identif := 4;
+			plato[i_a].p.clr := plato[i_d].p.clr;
+			plato[i_d].p.identif := 0;
+			plato[i_d].p.clr := 0;
+			i_d := i_a;
+			if saut_possible(i_d,plato) then saut := true
+			else begin
+				saut := false;
+				tours(j1,j2,j3,j4,nb_joueurs);
+				selectione := false;
+			end;
+		end
+		else if (((i_a = i_d+1) or (i_a = i_d-1) or (i_a = i_d+9) or (i_a = i_d-9) or (i_a = i_d+10) or (i_a = i_d-10) or (i_a = i_d+11) or (i_a = i_d-11)) and (saut = false)) then begin
+			plato[i_a].p.identif := 4;
+			plato[i_a].p.clr := plato[i_d].p.clr;
+			plato[i_d].p.identif := 0;
+			plato[i_d].p.clr := 0;
+			tours(j1,j2,j3,j4,nb_joueurs);
+			selectione := false;
+		end
+		else begin
+			i_d := 0;
+			i_a := 0;
+			selectione := false;
+		end;
+	end;
+end;
+
+procedure deplacement(var plato : plateauDyn;var selectione,j1,j2,j3,j4,saut : boolean; VAR i_d, i_a : integer; nb_joueurs : integer);
+begin
+////Carré
+	if plato[i_d].p.identif = 1 then deplacementCarre(plato,selectione,j1,j2,j3,j4,saut,i_d, i_a,nb_joueurs)
+////Triangle
+	else if plato[i_d].p.identif = 2 then deplacementTriangle(plato,selectione,j1,j2,j3,j4,saut,i_d, i_a,nb_joueurs)
+/////Losange
+	else if plato[i_d].p.identif = 3 then deplacementLosange(plato,selectione,j1,j2,j3,j4,saut,i_d, i_a,nb_joueurs)
+//////Cercle
+	else if plato[i_d].p.identif = 4 then deplacementCercle(plato,selectione,j1,j2,j3,j4,saut,i_d, i_a,nb_joueurs)
+	else begin
 		i_d := 0;
 		i_a := 0;
+		selectione := false;
 	end;
-	selectione := false;
 end;
 
 
@@ -410,7 +613,23 @@ begin
 	else bon_pion := true;
 end;
 
-procedure selectionCase(VAR plato : plateauDyn;VAR selectione,j1,j2,j3,j4 : boolean;VAR i_d, i_a : integer;nb_joueurs : integer);
+procedure drawContour(couleur,i : integer;plato : plateauDyn); //1 : SPRING_GREEN, 2 : RED, 3 : BLUE
+begin
+	if couleur = 1 then begin
+		gDrawRect(plato[i].x+2, plato[i].y+2,57,57,SPRING_GREEN);
+		gDrawRect(plato[i].x+3, plato[i].y+3,55,55,SPRING_GREEN);
+	end
+	else if couleur = 2 then begin
+		gDrawRect(plato[i].x+2,plato[i].y+2,57,57,RED);
+		gDrawRect(plato[i].x+3,plato[i].y+3,55,55,RED);
+	end
+	else begin
+		gDrawRect(plato[i].x+2,plato[i].y+2,57,57,BLUE);
+		gDrawRect(plato[i].x+3,plato[i].y+3,55,55,BLUE);
+	end;
+end;
+
+procedure selectionCase(VAR plato : plateauDyn;VAR selectione,j1,j2,j3,j4,saut : boolean;VAR i_d, i_a : integer;nb_joueurs : integer);
 var
 	i,xm,ym : integer; // i départ ; i arrivé
 begin
@@ -419,31 +638,30 @@ begin
 		ym := sdl_get_mouse_y;
 		if ((xm > plato[i].x) and (xm < plato[i].x +60)) and ((ym > plato[i].y) and (ym < plato[i].y +60)) then begin
 			if sdl_mouse_left_down then begin
-				if ((not caseVide(plato,i)) and (selectione = false) and bon_pion(plato,i,j1,j2,j3,j4)) then begin
+				writeln('Down');
+				if (((not caseVide(plato,i)) and (selectione = false)) and (bon_pion(plato,i,j1,j2,j3,j4))) then begin
 					selectione := true;
-					gDrawRect(plato[i].x+2, plato[i].y+2,57,57,SPRING_GREEN);
-					gDrawRect(plato[i].x+3, plato[i].y+3,55,55,SPRING_GREEN);
+					drawContour(1,i,plato);
 					i_d := i;
 					writeln(i_d);
 				end
-				else if (caseVide(plato,i)) and (selectione = true) then begin
-					gDrawRect(plato[i].x+2,plato[i].y+2,57,57,RED);
-					gDrawRect(plato[i].x+3,plato[i].y+3,55,55,RED);
+				else if ((caseVide(plato,i)) and (selectione = true)) then begin
+					drawContour(2,i,plato);
 					i_a := i;
 					writeln(i_a);
 					writeln(i_d);
-					deplacement(plato,selectione,j1,j2,j3,j4,i_d,i_a,nb_joueurs);
+					deplacement(plato,selectione,j1,j2,j3,j4,saut,i_d,i_a,nb_joueurs);
 				end
 				else begin
-					gDrawRect(plato[i].x+2,plato[i].y+2,57,57,BLUE);
-					gDrawRect(plato[i].x+3,plato[i].y+3,55,55,BLUE);
+					drawContour(3,i,plato);
+					writeln('NON SELECTION : ',i);
 				end;
 			end;
 		end;
 	end;
 end;
 
-procedure affiPlateau(VAR plato : plateauDyn;VAR selectione,j1,j2,j3,j4 : boolean;VAR i_d, i_a : integer;nb_joueurs : integer);
+procedure affiPlateau(VAR plato : plateauDyn;VAR selectione,j1,j2,j3,j4,saut : boolean;VAR i_d, i_a : integer;nb_joueurs : integer);
 var
 	i : integer;
 begin
@@ -452,7 +670,7 @@ begin
 	for i := 0 to 99 do gFillRect(plato[i].x,plato[i].y,60,60,plato[i].couleur);
 	gDrawRect(200,75,600,600,BLACK);
 	affiPions(plato);
-	selectionCase(plato,selectione,j1,j2,j3,j4,i_d,i_a,nb_joueurs);
+	selectionCase(plato,selectione,j1,j2,j3,j4,saut,i_d,i_a,nb_joueurs);
 end;
 
 end.
