@@ -1,7 +1,7 @@
 unit menu;
 
 interface
-uses gLib2D,SDL,plateau;
+uses gLib2D,SDL,plateau,deplacements,highlights;
 
 type men = record
 		menus : boolean;

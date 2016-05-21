@@ -527,6 +527,7 @@ procedure gBlit(x, y : real; image : gImage; w, h : real);
 
 procedure gDrawRect(x, y, w, h : real; color : gColor);
 procedure gFillRect(x, y, w, h : real; color : gColor);
+procedure gFillRectAlpha(x, y, w, h : real; color : gColor;alpha : integer);
 
 procedure gDrawCircle(cx, cy, radius : real; color : gColor);
 procedure gFillCircle(cx, cy, radius : real; color : gColor);
@@ -1433,6 +1434,17 @@ procedure gFillRect(x, y, w, h : real; color : gColor);
 begin
     gBeginRects(nil);
         gSetColor(color);
+        gSetScaleWH(w, h);
+        gSetCoord(x, y);
+        gAdd();
+    gEnd();
+end;
+
+procedure gFillRectAlpha(x, y, w, h : real; color : gColor;alpha : integer);
+begin
+    gBeginRects(nil);
+        gSetColor(color);
+				gSetAlpha(alpha);
         gSetScaleWH(w, h);
         gSetCoord(x, y);
         gAdd();

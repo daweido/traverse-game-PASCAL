@@ -1,6 +1,6 @@
 program traverse;
 
-uses gLib2D,SDL_TTF,sysutils,plateau,widget,menu;
+uses gLib2D,SDL_TTF,sysutils,plateau,widget,menu,deplacements,highlights;
 
 var
 	plato : plateauDyn;
@@ -44,7 +44,7 @@ begin
 				//writeln('23');
 				reglagesMenu(tampo,mens,menuJ,menuR);
 			end;
-			
+
 			if mens.id = 4 then exit;
 				//if tampo = true then writeln('TRUE')
 				//else writeln('FALSE');
