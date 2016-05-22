@@ -1,0 +1,76 @@
+%pdflatex main.tex
+\documentclass[12pt]{article}
+\usepackage{natbib}
+\usepackage[francais]{babel}
+\usepackage{natbib}
+\usepackage{url}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{float}
+\graphicspath{{images/}}
+\usepackage{amsthm}
+\usepackage{parskip}
+\usepackage{fancyhdr}
+\usepackage{xfrac}
+\usepackage{esvect}
+\usepackage{vmargin}
+\usepackage{gensymb}
+\setmarginsrb{3 cm}{2.5 cm}{3 cm}{2.5 cm}{1 cm}{1.5 cm}{1 cm}{1.5 cm}
+
+\title{Projet Traverse}								% Title
+\author{Groupe 5}								% Author
+\date{\today}											% Date
+
+\makeatletter
+\let\thetitle\@title
+\let\theauthor\@author
+\let\thedate\@date
+\makeatother
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\theauthor}
+\lhead{\thetitle}
+\cfoot{\thepage}
+\newtheorem*{rappel}{Rappel}
+\newtheorem*{nota}{N.B}
+\newtheorem*{req}{Remarque}
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{titlepage}
+	\centering
+    \includegraphics[scale = 0.75 ]{logo1.png}\\[1.0 cm]	% University Logo
+    \textsc{\LARGE EISTI}\\[2.0 cm]			% University Name
+    \rule{\linewidth}{0.2 mm} \\[0.5 cm]
+    { \huge \bfseries \thetitle}\\
+    \rule{\linewidth}{0.2 mm} \\[1.5 cm]
+	\textsc{\Large Informatique - Algorithmique et programmation procédurale}\\[0.5 cm]	% Course Code
+	\textsc{\large Projet 2016}\\[0.5 cm]
+	\begin{minipage}{0.4\textwidth}
+	\centering
+		\begin{center} \large
+		Maxime LUNDQUIST \\
+		David RIGAUX \\
+			\end{center}
+			\end{minipage}~
+			\begin{minipage}{0.4\textwidth}
+	\end{minipage}\\[0.8 cm]
+	\textsc{\large CPI1 C2}\\[1cm]		% Course Name
+	{\large \thedate}\\[0.5 cm]
+	
+	\vfill
+	
+\end{titlepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\tableofcontents
+\addtocontents{toc}{~\hfill\textbf{Page}\par}
+\pagebreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

@@ -183,7 +183,6 @@ var
 	i,xm,ym : integer; // i départ ; i arrivé
 begin
 	for i := 0 to 99 do begin
-		if (selectione = true) then highlight(plato,i_d,selected_white,selected_dark,possible);
 		xm := sdl_get_mouse_x;
 		ym := sdl_get_mouse_y;
 		if ((xm > plato[i].x) and (xm < plato[i].x +60)) and ((ym > plato[i].y) and (ym < plato[i].y +60)) then begin
@@ -213,6 +212,7 @@ begin
 			end;
 		end;
 	end;
+	if (selectione = true) then highlight(plato,i_d);
 end;
 
 procedure affiPlateau(VAR plato : plateauDyn;VAR selectione,j1,j2,j3,j4,saut : boolean;VAR i_d, i_a : integer;nb_joueurs : integer);
