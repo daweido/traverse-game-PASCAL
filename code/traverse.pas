@@ -1,12 +1,12 @@
 program traverse;
 
-uses gLib2D,SDL_TTF,sysutils,plateau,widget,menu,deplacements,highlights;
+uses gLib2D,SDL_TTF,sysutils,plateau,widget,menu,deplacements,highlights,fin,gagne;
 
 var
 	plato : plateauDyn;
 	mens : men;
-	i_d, i_a,nb_joueurs : integer;
-	tampo,selectione,j1,j2,j3,j4,saut : boolean;
+	i_d, i_a,nb_joueurs,jGagnant : integer;
+	tampo,selectione,j1,j2,j3,j4,saut,victoire : boolean;
 	menuJ,menuC,menuR : gImage;
 begin
 	j1 := true;
@@ -16,18 +16,26 @@ begin
 	nb_joueurs := 0;
 	i_d:= 0;
 	i_a := 0;
+	jGagnant := 0;
 	plato := creaPlateau();
 	menuJ := iniMenus(1);
 	menuC := iniMenus(2);
 	menuR := iniMenus(3);
 	tampo := true;
+	victoire := false;
 	selectione := false;
 	saut := false;
 	while true do begin
+		//Pas oublié que si il fait rejoueur réinitialiser touts les paramètres ainsi que le plateau et les Booleans
 		//if tampo = true then writeln('TRUE')
 		//else writeln('FALSE');
-		if tampo = true then principalMenu(tampo,mens,plato,menuJ);
-		if tampo = false then begin
+		jGagnant := gagnant(victoire,plato);
+		if victoire = true then begin
+			writeln('VICTOIREEEEE');
+			menuFin(victoire,mens,tampo,nb_joueurs,jGagnant);
+		end
+		else if tampo = true then principalMenu(tampo,mens,plato,menuJ)
+		else begin
 			//writeln('21');
 			if mens.id = 1 then begin
 				//writeln('22');

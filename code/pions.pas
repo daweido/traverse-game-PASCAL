@@ -22,6 +22,7 @@ Implementation
 	3 : green
 	4 : purple}
 
+
 procedure carres(xc,yc : integer;color : integer);
 var
 	sqr_blue,sqr_red,sqr_green,sqr_purple : gImage;

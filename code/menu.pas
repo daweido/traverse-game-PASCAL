@@ -7,6 +7,7 @@ type men = record
 		menus : boolean;
 		id : integer;
 	end;
+
 const
 	SCR_W = 1000;
 	SCR_H = 750;

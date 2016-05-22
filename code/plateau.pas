@@ -199,7 +199,7 @@ begin
 					i_d := i;
 					writeln(i_d);
 				end
-				else if ((caseVide(plato,i)) and (selectione = true)) then begin
+				else if ((caseVide(plato,i)) and (selectione = true) and casesCote(plato,i,i_d)) then begin
 					i_a := i;
 					writeln(i_a);
 					writeln(i_d);
