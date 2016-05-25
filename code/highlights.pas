@@ -24,25 +24,25 @@ Implementation
 
 function casesj1(plato : plateauDyn;i_a,i_d : integer): boolean;
 begin
-	if ((plato[i_d].p.clr <> 1) and ((i_a = 91) or (i_a = 92) or (i_a = 93) or (i_a = 94) or (i_a = 95) or (i_a = 96) or (i_a = 97) or (i_a = 98))) then casesj1 := false
+	if (((plato[i_d].p.clr <> 1) or (plato[i_d].p.clr <> 2)) and ((i_a = 91) or (i_a = 92) or (i_a = 93) or (i_a = 94) or (i_a = 95) or (i_a = 96) or (i_a = 97) or (i_a = 98))) then casesj1 := false
 	else casesj1 := true;
 end;
 
 function casesj2(plato : plateauDyn;i_a,i_d : integer): boolean;
 begin
-	if ((plato[i_d].p.clr <> 2) and ((i_a = 1) or (i_a = 2) or (i_a = 3) or (i_a = 4) or (i_a = 5) or (i_a = 6) or (i_a = 7) or (i_a = 8))) then casesj2 := false
+	if (((plato[i_d].p.clr <> 2) or (plato[i_d].p.clr <> 1)) and ((i_a = 1) or (i_a = 2) or (i_a = 3) or (i_a = 4) or (i_a = 5) or (i_a = 6) or (i_a = 7) or (i_a = 8))) then casesj2 := false
 	else casesj2 := true;
 end;
 
 function casesj3(plato : plateauDyn;i_a,i_d : integer): boolean;
 begin
-	if ((plato[i_d].p.clr <> 3) and ((i_a = 19) or (i_a = 29) or (i_a = 39) or (i_a = 49) or (i_a = 59) or (i_a = 69) or (i_a = 79) or (i_a = 89))) then casesj3 := false
+	if (((plato[i_d].p.clr <> 3) or (plato[i_d].p.clr <> 4))  and ((i_a = 19) or (i_a = 29) or (i_a = 39) or (i_a = 49) or (i_a = 59) or (i_a = 69) or (i_a = 79) or (i_a = 89))) then casesj3 := false
 	else casesj3 := true;
 end;
 
 function casesj4(plato : plateauDyn;i_a,i_d : integer): boolean;
 begin
-	if ((plato[i_d].p.clr <> 4) and ((i_a = 10) or (i_a = 20) or (i_a = 30) or (i_a = 40) or (i_a = 50) or (i_a = 60) or (i_a = 70) or (i_a = 80))) then casesj4 := false
+	if (((plato[i_d].p.clr <> 4) or (plato[i_d].p.clr <> 3)) and ((i_a = 10) or (i_a = 20) or (i_a = 30) or (i_a = 40) or (i_a = 50) or (i_a = 60) or (i_a = 70) or (i_a = 80))) then casesj4 := false
 	else casesj4 := true;
 end;
 

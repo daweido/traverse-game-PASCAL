@@ -5,7 +5,7 @@ uses gLib2D,SDL_TTF,sysutils,plateau,widget,menu,deplacements,highlights,fin,gag
 var
 	plato : plateauDyn;
 	mens : men;
-	i_d, i_a,nb_joueurs,jGagnant : integer;
+	i_d, i_a,i_dAncien,nb_joueurs,jGagnant,cj1,cj2,cj3,cj4 : integer;
 	tampo,selectione,j1,j2,j3,j4,saut,victoire : boolean;
 	menuJ,menuC,menuR : gImage;
 begin
@@ -16,6 +16,7 @@ begin
 	nb_joueurs := 0;
 	i_d:= 0;
 	i_a := 0;
+	i_dAncien := 0;
 	jGagnant := 0;
 	plato := creaPlateau();
 	menuJ := iniMenus(1);
@@ -25,11 +26,15 @@ begin
 	victoire := false;
 	selectione := false;
 	saut := false;
+	cj1 := 0;
+	cj2 := 0;
+	cj3 := 0;
+	cj4 := 0;
 	while true do begin
 		//Pas oublié que si il fait rejoueur réinitialiser touts les paramètres ainsi que le plateau et les Booleans
 		//if tampo = true then writeln('TRUE')
 		//else writeln('FALSE');
-		jGagnant := gagnant(victoire,plato);
+		jGagnant := gagnant(victoire,plato,cj1,cj2,cj3,cj4);
 		if victoire = true then begin
 			writeln('VICTOIREEEEE');
 			menuFin(victoire,mens,tampo,nb_joueurs,jGagnant);
@@ -40,7 +45,7 @@ begin
 			if mens.id = 1 then begin
 				//writeln('22');
 				if nb_joueurs = 0 then def_nb_joueurs(plato,nb_joueurs);
-				affiPlateau(plato,selectione,j1,j2,j3,j4,saut,i_d,i_a,nb_joueurs);
+				affiPlateau(plato,selectione,j1,j2,j3,j4,saut,i_d,i_a,i_dAncien,cj1,cj2,cj3,cj4,nb_joueurs);
 			end;
 
 			if mens.id = 2 then begin
