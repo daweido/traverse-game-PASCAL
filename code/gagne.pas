@@ -3,9 +3,27 @@ unit gagne;
 Interface
 uses gLib2D,SDL_TTF,sysutils,pions,highlights;
 
-function gagnant(var victoire : boolean;plato : plateauDyn;cj1,cj2,cj3,cj4 : integer):integer;
+TYPE
+ptr_noeud = ^noeud;
+noeud = RECORD
+  valeur : INTEGER;
+  suivant : ptr_noeud;
+END;
+
+function gagnant(var victoire : boolean;plato : plateauDyn;cj : integer):integer;
+procedure effacePerdants(VAR plato : plateauDyn);
 
 Implementation
+
+FUNCTION creerNoeud (elt : INTEGER) : ptr_noeud;
+VAR
+  nv : ptr_noeud;
+BEGIN
+  new(nv);
+  nv^.valeur := elt;
+  nv^.suivant := Nil;
+  creerNoeud := nv;
+END;
 
 function joueur2Gagne(plato : plateauDyn):boolean;
 begin
@@ -31,32 +49,92 @@ begin
 	else joueur3Gagne := false;
 end;
 
-function pionRestant1(plato : plateauDyn;cj1 : integer):boolean;
+function pionRestant1(plato : plateauDyn):boolean;
 begin
-	if (cj1 >= 30) and ((plato[91].p.identif <> 0) or (plato[92].p.identif <> 0) or (plato[93].p.identif <> 0) or (plato[94].p.identif <> 0) or (plato[95].p.identif <> 0) or (plato[96].p.identif <> 0) or (plato[97].p.identif <> 0) or (plato[98].p.identif <> 0)) then pionRestant1 := true
+	if ((plato[91].p.identif <> 0) or (plato[92].p.identif <> 0) or (plato[93].p.identif <> 0) or (plato[94].p.identif <> 0) or (plato[95].p.identif <> 0) or (plato[96].p.identif <> 0) or (plato[97].p.identif <> 0) or (plato[98].p.identif <> 0)) then pionRestant1 := true
 	else pionRestant1 := false;
 end;
 
-function pionRestant2(plato : plateauDyn;cj2 : integer):boolean;
+function pionRestant2(plato : plateauDyn):boolean;
 begin
-	if (cj2 >= 30) and ((plato[1].p.identif <> 0) or (plato[2].p.identif <> 0) or (plato[3].p.identif <> 0) or (plato[4].p.identif <> 0) or (plato[5].p.identif <> 0) or (plato[6].p.identif <> 0) or (plato[7].p.identif <> 0) or (plato[8].p.identif <> 0)) then pionRestant2 := true
+	if ((plato[1].p.identif <> 0) or (plato[2].p.identif <> 0) or (plato[3].p.identif <> 0) or (plato[4].p.identif <> 0) or (plato[5].p.identif <> 0) or (plato[6].p.identif <> 0) or (plato[7].p.identif <> 0) or (plato[8].p.identif <> 0)) then pionRestant2 := true
 	else pionRestant2 := false;
 end;
 
-
-function pionRestant3(plato : plateauDyn;cj3 : integer):boolean;
+function pionRestant4(plato : plateauDyn):boolean;
 begin
-	if (cj3 >= 30) and ((plato[10].p.identif <> 0) or (plato[20].p.identif <> 0) or (plato[30].p.identif <> 0) or (plato[40].p.identif <> 0) or (plato[50].p.identif <> 0) or (plato[60].p.identif <> 0) or (plato[70].p.identif <> 0) or (plato[80].p.identif <> 0)) then pionRestant3 := true
-	else pionRestant3 := false;
-end;
-
-function pionRestant4(plato : plateauDyn;cj4 : integer):boolean;
-begin
-	if (cj4 >= 30) and ((plato[19].p.identif <> 0) or (plato[29].p.identif <> 0) or (plato[39].p.identif <> 0) or (plato[49].p.identif <> 0) or (plato[59].p.identif <> 0) or (plato[69].p.identif <> 0) or (plato[79].p.identif <> 0) or (plato[89].p.identif <> 0)) then pionRestant4 := true
+	if ((plato[10].p.identif <> 0) or (plato[20].p.identif <> 0) or (plato[30].p.identif <> 0) or (plato[40].p.identif <> 0) or (plato[50].p.identif <> 0) or (plato[60].p.identif <> 0) or (plato[70].p.identif <> 0) or (plato[80].p.identif <> 0)) then pionRestant4 := true
 	else pionRestant4 := false;
 end;
 
-function gagnant(var victoire : boolean;plato : plateauDyn;cj1,cj2,cj3,cj4 : integer):integer;
+function pionRestant3(plato : plateauDyn):boolean;
+begin
+	if ((plato[19].p.identif <> 0) or (plato[29].p.identif <> 0) or (plato[39].p.identif <> 0) or (plato[49].p.identif <> 0) or (plato[59].p.identif <> 0) or (plato[69].p.identif <> 0) or (plato[79].p.identif <> 0) or (plato[89].p.identif <> 0)) then pionRestant3 := true
+	else pionRestant3 := false;
+end;
+
+function effaceNil(VAR tmp2 : ptr_noeud;VAR nul : boolean;elt : integer): ptr_noeud;
+begin
+	dispose(tmp2);
+	nul := false;
+	effaceNil := creerNoeud(elt);
+end;
+
+function perdant(plato : plateauDyn):ptr_noeud;
+VAR
+	tmp1, tmp2 : ptr_noeud;
+	nul : boolean;
+begin
+	tmp2 := NIL;
+	tmp1 := NIL;
+	nul := true;
+	if pionRestant1(plato) then tmp2 := effaceNil(tmp2,nul,1);
+	if pionRestant2(plato) then begin
+		if nul = true then tmp2 := effaceNil(tmp2,nul,2)
+		else begin
+			tmp2 := creerNoeud(2);
+			tmp2^.suivant := tmp1;
+			tmp1 := tmp2;
+		end;
+	end;
+	if pionRestant3(plato) then begin
+		if nul = true then tmp2 := effaceNil(tmp2,nul,3)
+		else begin
+			tmp2 := creerNoeud(3);
+			tmp2^.suivant := tmp1;
+			tmp1 := tmp2;
+		end;
+	end;
+	if pionRestant4(plato) then begin
+		if nul = true then tmp2 := effaceNil(tmp2,nul,4)
+		else begin
+			tmp2 := creerNoeud(4);
+			tmp2^.suivant := tmp1;
+		end;
+	end;
+	perdant := tmp2;
+end;
+
+procedure effacePerdants(VAR plato : plateauDyn);
+var
+	i,perd : integer;
+	liste_perdants : ptr_noeud;
+begin
+	liste_perdants := perdant(plato);
+	while liste_perdants <> nil do begin
+		perd := liste_perdants^.valeur;
+		for i := 0 to 99 do begin
+			if plato[i].p.clr = perd then begin
+				plato[i].p.identif := 0;
+				plato[i].p.clr := 0;
+			end;
+		end;
+		liste_perdants := liste_perdants^.suivant;
+	end;
+end;
+
+
+function gagnant(var victoire : boolean;plato : plateauDyn;cj : integer):integer;
 begin
 	if joueur1Gagne(plato) then begin
 		victoire := true;

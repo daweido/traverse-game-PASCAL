@@ -28,6 +28,7 @@ Const
 	SDLttfLibName = 'libSDL_ttf-2.0.0.dylib';
 	{$linklib libSDL_ttf-2.0.0.dylib}
 {$ENDIF}
+
     (* Screen constants *)
     TITLE = 'Traverse - Le Jeu';
     G_SCR_W         = 1000;

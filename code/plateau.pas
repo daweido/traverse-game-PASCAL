@@ -5,7 +5,7 @@ uses gLib2D,SDL_TTF,sysutils,pions,deplacements,highlights;
 
 
 function creaPlateau():plateauDyn;
-procedure affiPlateau(VAR plato : plateauDyn;VAR selectione,j1,j2,j3,j4,saut : boolean;VAR i_d, i_a,i_dAncien,cj1,cj2,cj3,cj4 : integer;nb_joueurs : integer);
+procedure affiPlateau(VAR plato : plateauDyn;VAR selectione,j1,j2,j3,j4,saut : boolean;VAR i_d, i_a,i_dAncien,cj : integer;nb_joueurs : integer);
 procedure def_nb_joueurs(VAR plato : plateauDyn; VAR nb_joueurs : integer);
 
 
@@ -40,7 +40,6 @@ begin
 	plato[9].p.identif := 5;
 	plato[90].p.identif := 5;
 	plato[99].p.identif := 5;
-//////
 	creaPlateau := plato;
 end;
 
@@ -178,7 +177,7 @@ begin
 	end;
 end;
 
-procedure selectionCase(VAR plato : plateauDyn;VAR selectione,j1,j2,j3,j4,saut : boolean;VAR i_d, i_a,i_dAncien,cj1,cj2,cj3,cj4 : integer;nb_joueurs : integer);
+procedure selectionCase(VAR plato : plateauDyn;VAR selectione,j1,j2,j3,j4,saut : boolean;VAR i_d, i_a,i_dAncien,cj : integer;nb_joueurs : integer);
 var
 	i,xm,ym : integer; // i départ ; i arrivé
 begin
@@ -195,7 +194,7 @@ begin
 					i_d := i;
 					writeln(i_d);
 				end
-				else if ((not caseVide(plato,i)) and (selectione = true)) then begin
+				else if ((not caseVide(plato,i)) and (selectione = true) and bon_pion(plato,i,j1,j2,j3,j4)) then begin
 					i_d := i;
 					writeln(i_d);
 				end
@@ -203,7 +202,7 @@ begin
 					i_a := i;
 					writeln(i_a);
 					writeln(i_d);
-					deplacement(plato,selectione,j1,j2,j3,j4,saut,i_d,i_a,i_dAncien,cj1,cj2,cj3,cj4,nb_joueurs);
+					deplacement(plato,selectione,j1,j2,j3,j4,saut,i_d,i_a,i_dAncien,cj,nb_joueurs);
 				end
 				else begin
 					drawContour(3,i,plato);
@@ -212,10 +211,10 @@ begin
 			end;
 		end;
 	end;
-	if (selectione = true) then highlight(plato,i_d);
+	if (selectione = true) then highlight(plato,i_d,i_dAncien,saut);
 end;
 
-procedure affiPlateau(VAR plato : plateauDyn;VAR selectione,j1,j2,j3,j4,saut : boolean;VAR i_d, i_a,i_dAncien,cj1,cj2,cj3,cj4 : integer;nb_joueurs : integer);
+procedure affiPlateau(VAR plato : plateauDyn;VAR selectione,j1,j2,j3,j4,saut : boolean;VAR i_d, i_a,i_dAncien,cj : integer;nb_joueurs : integer);
 var
 	i : integer;
 begin
@@ -223,7 +222,7 @@ begin
 	for i := 0 to 99 do gFillRect(plato[i].x,plato[i].y,60,60,plato[i].couleur);
 	gDrawRect(200,75,600,600,BLACK);
 	affiPions(plato);
-	selectionCase(plato,selectione,j1,j2,j3,j4,saut,i_d,i_a,i_dAncien,cj1,cj2,cj3,cj4,nb_joueurs);
+	selectionCase(plato,selectione,j1,j2,j3,j4,saut,i_d,i_a,i_dAncien,cj,nb_joueurs);
 end;
 
 end.
