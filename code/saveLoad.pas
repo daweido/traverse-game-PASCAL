@@ -23,10 +23,25 @@ begin
 	end;
 end;
 
-procedure load_plateau(Var plato : plateauDyn; i : integer);
+procedure load_plateau(Var plato : plateauDyn; i : integer;str : string);
 var
-
-
+	len,j,l : integer;
+	arg : string;
+begin
+	arg := '';
+	j := 1;
+	len := length(str);
+	repeat
+		arg += str[j];
+		j += 1;
+	until (str[j] = ' ');
+	plato[i].p.identif := IntToStr(arg);
+	arg := '';
+	for l := j to len do begin
+		arg += str[j];
+	end;
+	plato[i].p.clr := IntToStr(arg);
+end;
 
 procedure load(Var plato:plateauDyn);
 var
@@ -41,7 +56,7 @@ begin
 		for i := 0 to 99 do begin
 			reset(fichier);
 			readln(fichier,str);
-			//Mettre fonction qui lis premier mot puis deuxième et fait un StrToInt
+			load_plateau(plato,i,str);
 			closeFile(fichier);
 		end;
 	except
