@@ -93,6 +93,12 @@ begin
 			i_dAncien := i_d;
 			i_d := i_a;
 			saut := true;
+			if not (saut_possible(i_d,i_dAncien,plato)) then begin
+				saut := false;
+				tours(j1,j2,j3,j4,nb_joueurs,cj);
+				selectione := false;
+				i_dAncien := 0;
+			end;
 		end
 		else if (saut_possible(i_d,i_dAncien,plato) and (saut = true)) then begin
 			writeln('Saut possible ; saut = true');
@@ -141,6 +147,12 @@ begin
 			i_dAncien := i_d;
 			i_d := i_a;
 			saut := true;
+			if not (saut_possible(i_d,i_dAncien,plato)) then begin
+				saut := false;
+				tours(j1,j2,j3,j4,nb_joueurs,cj);
+				selectione := false;
+				i_dAncien := 0;
+			end;
 		end
 		else if (saut_possible(i_d,i_dAncien,plato) and (saut = true)) then begin
 			writeln('Saut possible ; saut = true');
@@ -185,6 +197,12 @@ begin
 			i_dAncien := i_d;
 			i_d := i_a;
 			saut := true;
+			if not (saut_possible(i_d,i_dAncien,plato)) then begin
+				saut := false;
+				tours(j1,j2,j3,j4,nb_joueurs,cj);
+				selectione := false;
+				i_dAncien := 0;
+			end;
 		end
 		else if (saut_possible(i_d,i_dAncien,plato) and (saut = true)) then begin
 			writeln('Saut possible ; saut = true');
@@ -229,6 +247,12 @@ begin
 			i_dAncien := i_d;
 			i_d := i_a;
 			saut := true;
+			if not (saut_possible(i_d,i_dAncien,plato)) then begin
+				saut := false;
+				tours(j1,j2,j3,j4,nb_joueurs,cj);
+				selectione := false;
+				i_dAncien := 0;
+			end;
 		end
 		else if (saut_possible(i_d,i_dAncien,plato) and (saut = true)) then begin
 			writeln('Saut possible ; saut = true');
@@ -273,6 +297,12 @@ begin
 			i_dAncien := i_d;
 			i_d := i_a;
 			saut := true;
+			if not (saut_possible(i_d,i_dAncien,plato)) then begin
+				saut := false;
+				tours(j1,j2,j3,j4,nb_joueurs,cj);
+				selectione := false;
+				i_dAncien := 0;
+			end;
 		end
 		else if (saut_possible(i_d,i_dAncien,plato) and (saut = true)) then begin
 			writeln('Saut possible ; saut = true');
@@ -321,6 +351,12 @@ begin
 			i_dAncien := i_d;
 			i_d := i_a;
 			saut := true;
+			if not (saut_possible(i_d,i_dAncien,plato)) then begin
+				saut := false;
+				tours(j1,j2,j3,j4,nb_joueurs,cj);
+				selectione := false;
+				i_dAncien := 0;
+			end;
 		end
 		else if (saut_possible(i_d,i_dAncien,plato) and (saut = true)) then begin
 			writeln('Saut possible ; saut = true');
@@ -369,6 +405,12 @@ begin
 			i_dAncien := i_d;
 			i_d := i_a;
 			saut := true;
+			if not (saut_possible(i_d,i_dAncien,plato)) then begin
+				saut := false;
+				tours(j1,j2,j3,j4,nb_joueurs,cj);
+				selectione := false;
+				i_dAncien := 0;
+			end;
 		end
 		else if (saut_possible(i_d,i_dAncien,plato) and (saut = true)) then begin
 			writeln('Saut possible ; saut = true');

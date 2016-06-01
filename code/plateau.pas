@@ -222,6 +222,7 @@ begin
 	for i := 0 to 99 do gFillRect(plato[i].x,plato[i].y,60,60,plato[i].couleur);
 	gDrawRect(200,75,600,600,BLACK);
 	affiPions(plato);
+	//Ajouter ici la pause.
 	selectionCase(plato,selectione,j1,j2,j3,j4,saut,i_d,i_a,i_dAncien,cj,nb_joueurs);
 end;
 
