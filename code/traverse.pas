@@ -6,11 +6,12 @@ var
 	plato : plateauDyn;
 	mens : men;
 	i_d, i_a,i_dAncien,nb_joueurs,jGagnant,cj : integer;
-	tampo,selectione,j1,j2,j3,j4,saut,victoire : boolean;
+	tampo,selectione,j1,j2,j3,j4,saut,victoire,pause : boolean;
 	menuJ,menuC,menuR : gImage;
 begin
 	j1 := true;
 	j2 := false;
+	pause := false;
 	j3 := false;
 	j4 := false;
 	nb_joueurs := 0;
@@ -39,6 +40,7 @@ begin
 		//else writeln('FALSE');
 
 		while (sdl_update = 1) do begin
+			if (sdl_do_quit) then exit; (* Clic sur la croix pour fermer *)
 			if victoire = true then begin
 				writeln('VICTOIREEEEE');
 				menuFin(victoire,mens,tampo,nb_joueurs,jGagnant);
@@ -49,7 +51,7 @@ begin
 				if mens.id = 1 then begin
 					//writeln('22');
 					if nb_joueurs = 0 then def_nb_joueurs(plato,nb_joueurs);
-					affiPlateau(plato,selectione,j1,j2,j3,j4,saut,i_d,i_a,i_dAncien,cj,nb_joueurs);
+					affiPlateau(plato,selectione,j1,j2,j3,j4,saut,pause,i_d,i_a,i_dAncien,cj,nb_joueurs);
 				end;
 
 				if mens.id = 2 then begin
@@ -66,7 +68,6 @@ begin
 					//if tampo = true then writeln('TRUE')
 					//else writeln('FALSE');
 			end;
-			if (sdl_do_quit) then exit; (* Clic sur la croix pour fermer *)
 			gFlip();
 		end;
 	end;

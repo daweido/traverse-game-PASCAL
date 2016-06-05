@@ -1,11 +1,11 @@
 unit plateau;
 
 interface
-uses gLib2D,SDL_TTF,sysutils,pions,deplacements,highlights;
+uses gLib2D,SDL,SDL_TTF,sysutils,pions,deplacements,highlights,paused;
 
 
 function creaPlateau():plateauDyn;
-procedure affiPlateau(VAR plato : plateauDyn;VAR selectione,j1,j2,j3,j4,saut : boolean;VAR i_d, i_a,i_dAncien,cj : integer;nb_joueurs : integer);
+procedure affiPlateau(VAR plato : plateauDyn;VAR selectione,j1,j2,j3,j4,saut,pause : boolean;VAR i_d, i_a,i_dAncien,cj : integer;nb_joueurs : integer);
 procedure def_nb_joueurs(VAR plato : plateauDyn; VAR nb_joueurs : integer);
 
 
@@ -160,23 +160,6 @@ begin
 	else bon_pion := true;
 end;
 
-
-procedure drawContour(couleur,i : integer;plato : plateauDyn); //1 : SPRING_GREEN, 2 : RED, 3 : BLUE
-begin
-	if couleur = 1 then begin
-		gDrawRect(plato[i].x+2, plato[i].y+2,57,57,SPRING_GREEN);
-		gDrawRect(plato[i].x+3, plato[i].y+3,55,55,SPRING_GREEN);
-	end
-	else if couleur = 2 then begin
-		gDrawRect(plato[i].x+2,plato[i].y+2,57,57,RED);
-		gDrawRect(plato[i].x+3,plato[i].y+3,55,55,RED);
-	end
-	else begin
-		gDrawRect(plato[i].x+2,plato[i].y+2,57,57,BLUE);
-		gDrawRect(plato[i].x+3,plato[i].y+3,55,55,BLUE);
-	end;
-end;
-
 procedure selectionCase(VAR plato : plateauDyn;VAR selectione,j1,j2,j3,j4,saut : boolean;VAR i_d, i_a,i_dAncien,cj : integer;nb_joueurs : integer);
 var
 	i,xm,ym : integer; // i départ ; i arrivé
@@ -190,7 +173,6 @@ begin
 				if (((not caseVide(plato,i)) and (selectione = false)) and (bon_pion(plato,i,j1,j2,j3,j4))) then begin
 					selectione := true;
 					writeln('TRUE');
-					drawContour(1,i,plato);
 					i_d := i;
 					writeln(i_d);
 				end
@@ -205,7 +187,6 @@ begin
 					deplacement(plato,selectione,j1,j2,j3,j4,saut,i_d,i_a,i_dAncien,cj,nb_joueurs);
 				end
 				else begin
-					drawContour(3,i,plato);
 					writeln('NON SELECTION : ',i);
 				end;
 			end;
@@ -214,7 +195,13 @@ begin
 	if (selectione = true) then highlight(plato,i_d,i_dAncien,saut);
 end;
 
-procedure affiPlateau(VAR plato : plateauDyn;VAR selectione,j1,j2,j3,j4,saut : boolean;VAR i_d, i_a,i_dAncien,cj : integer;nb_joueurs : integer);
+function gamePause(pause : boolean): boolean;
+begin
+	IF pause = true then gamePause := false
+	else gamePause := true;
+end;
+
+procedure affiPlateau(VAR plato : plateauDyn;VAR selectione,j1,j2,j3,j4,saut,pause : boolean;VAR i_d, i_a,i_dAncien,cj : integer;nb_joueurs : integer);
 var
 	i : integer;
 begin
@@ -222,8 +209,9 @@ begin
 	for i := 0 to 99 do gFillRect(plato[i].x,plato[i].y,60,60,plato[i].couleur);
 	gDrawRect(200,75,600,600,BLACK);
 	affiPions(plato);
-	//Ajouter ici la pause.
-	selectionCase(plato,selectione,j1,j2,j3,j4,saut,i_d,i_a,i_dAncien,cj,nb_joueurs);
+	if (sdl_get_keypressed = SDLK_ESCAPE) then pause := gamePause(pause);
+	if pause then drawMenuPause
+	else selectionCase(plato,selectione,j1,j2,j3,j4,saut,i_d,i_a,i_dAncien,cj,nb_joueurs);
 end;
 
 end.
