@@ -2,6 +2,7 @@ unit saveLoad;
 {$mode objfpc}
 interface
 
+uses highlights,sysutils;
 
 Implementation
 
@@ -35,12 +36,12 @@ begin
 		arg += str[j];
 		j += 1;
 	until (str[j] = ' ');
-	plato[i].p.identif := IntToStr(arg);
+	plato[i].p.identif := StrToInt(arg);
 	arg := '';
 	for l := j to len do begin
 		arg += str[j];
 	end;
-	plato[i].p.clr := IntToStr(arg);
+	plato[i].p.clr := StrToInt(arg);
 end;
 
 procedure load(Var plato:plateauDyn);

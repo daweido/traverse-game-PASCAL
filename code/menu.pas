@@ -1,7 +1,7 @@
 unit menu;
 
 interface
-uses gLib2D,SDL,plateau,deplacements,highlights;
+uses gLib2D,SDL,plateau,deplacements,highlights,saveLoad;
 
 type men = record
 		menus : boolean;
@@ -11,7 +11,7 @@ type men = record
 const
 	SCR_W = 1000;
 	SCR_H = 750;
-
+////////////////Menu Principal
 	x_min_A = 359.43;
 	x_max_A = 640.9;
 
@@ -27,25 +27,44 @@ const
 	y_min_Ex = 587.4;
 	y_max_Ex = 666.6;
 
-	x_max_retourCR = 967;
-	x_min_retourCR = 685;
+	x_max_retour = 967;
+	x_min_retour = 685;
 
-	y_max_retourCR = 686;
-	y_min_retourCR = 606;
-
-
-
+	y_max_retour = 686;
+	y_min_retour = 606;
+////////////Menu Jouer
+	nv_xmin = 72;
+	nv_xmax = 354;
+	nv_ymin = 335;
+	nv_ymax = 415;
+	charg_xmin = 646;
+	charg_xmax = 928;
+	charg_ymin = 335;
+	charg_ymax = 415;
+/////////Menu Nouvelle partie
+	bouton_jx_min = 359;
+	bouton_jx_max = 641;
+	bouton_1jy_min = 189;
+	bouton_1jy_max = 269;
+	bouton_2jy_min = 319;
+	bouton_2jy_max = 399;
+	bouton_3jy_min = 449;
+	bouton_3jy_max = 529;
+	bouton_4jy_min = 579;
+	bouton_4jy_max = 5659;
 
 function iniMenus(i : integer):gImage;
 function bouttonsJ: men;
 procedure affiMenu(image : gImage);
-procedure principalMenu(var tampo : boolean; var mens : men; plato : plateauDyn; menuJ: gImage);
-procedure commentMenu(var tampo : boolean; var mens : men;menuJ,menuC : gImage); // Recopier la procedure d'en bas mais pour le menu comment Jouer
+procedure principalMenu(var tampo : boolean; var mens : men;menuJ: gImage);
+procedure commentMenu(var retCmt : boolean; var mCmt : men;menuC : gImage);
 procedure reglagesMenu(var tampo : boolean; var mens : men; menuJ,menuR :gImage);
+procedure menuJouer(var mn : men;var menJou : boolean);
+procedure menuNvPartie(var mNb : men;var choixNbJ : boolean);
 
 
 Implementation
-
+////////////////Menu Principal
 // Si plusieurs image faire un tableau d'image
 function iniMenus(i : integer):gImage;
 begin
@@ -109,28 +128,25 @@ function bouttonCR: men;
 var
 	tmp : men;
 begin
-	if ((sdl_get_mouse_x < x_max_retourCR) and (sdl_get_mouse_x > x_min_retourCR) and (sdl_get_mouse_y < y_max_retourCR) and (sdl_get_mouse_y > y_min_retourCR)) then begin
+	if ((sdl_get_mouse_x < x_max_retour) and (sdl_get_mouse_x > x_min_retour) and (sdl_get_mouse_y < y_max_retour) and (sdl_get_mouse_y > y_min_retour)) then begin
 		if sdl_mouse_left_down then begin
 			tmp.menus := false;
+			tmp.id := 1;
 		end;
 	end
 	else tmp.menus := true;
 	bouttonCR := tmp;
 end;
 
-procedure commentMenu(var tampo : boolean; var mens : men;menuJ,menuC : gImage); // Recopier la procedure d'en bas mais pour le menu comment Jouer
+procedure commentMenu(var retCmt : boolean; var mCmt : men;menuC : gImage); // Recopier la procedure d'en bas mais pour le menu comment Jouer
 begin
-	mens := bouttonCR;
+	mCmt := bouttonCR;
 	writeln('120');
-	if (mens.menus = true) then begin
+	if (mCmt.menus = true) then begin
 		writeln('121');
 		affiMenu(menuC);
 	end
-	else begin
-		affiMenu(menuJ);
-		writeln('123');
-		tampo := true;
-	end;
+	else retCmt := false;
 end;
 
 procedure reglagesMenu(var tampo : boolean; var mens : men; menuJ,menuR :gImage);
@@ -141,21 +157,113 @@ begin
 		affiMenu(menuR);
 	end
 	else begin
-		affiMenu(menuJ);
-		writeln('123');
 		tampo := true;
 	end;
 end;
 
 
-procedure principalMenu(var tampo : boolean; var mens : men; plato : plateauDyn; menuJ: gImage);
+procedure principalMenu(var tampo : boolean; var mens : men;menuJ: gImage);
 begin
 	mens := bouttonsJ;
 	if mens.menus = true then begin
 		affiMenu(menuJ);
 	end
-	else begin
-		tampo := false;
-	end;
+	else tampo := false;
 end;
+
+/////////////////Menu Jouer
+function choixJouer():men;
+var
+	tmp : men;
+begin
+if ((sdl_get_mouse_x < nv_xmax) and (sdl_get_mouse_x > nv_xmin) and (sdl_get_mouse_y < nv_ymax) and (sdl_get_mouse_y > nv_ymin)) then begin
+	if sdl_mouse_left_down then begin
+		tmp.menus := false;
+		tmp.id := 1;
+	end;
+end
+else if ((sdl_get_mouse_x < charg_xmax) and (sdl_get_mouse_x > charg_xmin) and (sdl_get_mouse_y < charg_ymax) and (sdl_get_mouse_y > charg_ymin)) then begin
+	if sdl_mouse_left_down then begin
+		tmp.menus := false;
+		tmp.id := 2;
+	end;
+end
+else if ((sdl_get_mouse_x < x_max_retour) and (sdl_get_mouse_x > x_min_retour) and (sdl_get_mouse_y < y_max_retour) and (sdl_get_mouse_y > y_min_retour)) then begin
+	if sdl_mouse_left_down then begin
+		tmp.menus := false;
+		tmp.id := 3;
+	end;
+end
+else begin
+	tmp.menus := true;
+	writeln('Non Selection MEN3')
+end;
+choixJouer := tmp;
+end;
+
+procedure menuJouer(var mn : men;var menJou : boolean);
+var
+	menuJou : gImage;
+begin
+	mn := choixJouer();
+	if mn.menus = true then begin
+		menuJou := gTexLoad('jouer.png');
+		affiMenu(menuJou);
+	end
+	else menJou := false;
+end;
+/////////////////////Menu Nouvelle partie
+function choixNbJoueurs():men;
+var
+	tmp : men;
+begin
+if ((sdl_get_mouse_x < bouton_jx_max) and (sdl_get_mouse_x > bouton_jx_min)) then begin
+	if ((sdl_get_mouse_y < bouton_1jy_max) and (sdl_get_mouse_y > bouton_1jy_min)) then begin
+		if sdl_mouse_left_down then begin
+			tmp.menus := false;
+			tmp.id := 1;
+		end;
+	end
+	else if ((sdl_get_mouse_y < bouton_2jy_max) and (sdl_get_mouse_y > bouton_2jy_min)) then begin
+		if sdl_mouse_left_down then begin
+			tmp.menus := false;
+			tmp.id := 2;
+		end;
+	end
+	else if ((sdl_get_mouse_y < bouton_3jy_max) and (sdl_get_mouse_y > bouton_3jy_min)) then begin
+		if sdl_mouse_left_down then begin
+			tmp.menus := false;
+			tmp.id := 3;
+		end;
+	end
+	else if ((sdl_get_mouse_y < bouton_4jy_max) and (sdl_get_mouse_y > bouton_4jy_min)) then begin
+		if sdl_mouse_left_down then begin
+			tmp.menus := false;
+			tmp.id := 4;
+		end;
+	end
+	else tmp.menus := true;
+end
+else if ((sdl_get_mouse_x < x_max_retour) and (sdl_get_mouse_x > x_min_retour) and (sdl_get_mouse_y < y_max_retour) and (sdl_get_mouse_y > y_min_retour)) then begin
+	if sdl_mouse_left_down then begin
+		tmp.menus := false;
+		tmp.id := 5;
+	end;
+end
+else tmp.menus := true;
+choixNbJoueurs := tmp;
+end;
+
+procedure menuNvPartie(var mNb : men;var choixNbJ : boolean);
+var
+	menuNv : gImage;
+begin
+	mNb := choixNbJoueurs();
+	if mNb.menus = true then begin
+		menuNv := gTexLoad('nouvellePartie.png');
+		affiMenu(menuNv);
+	end
+	else choixNbJ := false;
+end;
+
 end.

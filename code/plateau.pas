@@ -6,7 +6,7 @@ uses gLib2D,SDL,SDL_TTF,sysutils,pions,deplacements,highlights,paused;
 
 function creaPlateau():plateauDyn;
 procedure affiPlateau(VAR plato : plateauDyn;VAR selectione,j1,j2,j3,j4,saut,pause : boolean;VAR i_d, i_a,i_dAncien,cj : integer;nb_joueurs : integer);
-procedure def_nb_joueurs(VAR plato : plateauDyn; VAR nb_joueurs : integer);
+procedure def_nb_joueurs(VAR plato : plateauDyn;nb_joueurs : integer);
 
 
 Implementation
@@ -120,10 +120,8 @@ begin
 	plato[80].p.identif := 1;
 end;
 
-procedure def_nb_joueurs(VAR plato : plateauDyn; VAR nb_joueurs : integer);
+procedure def_nb_joueurs(VAR plato : plateauDyn;nb_joueurs : integer);
 begin
-	write('Nombre de joueurs : ');
-	readln(nb_joueurs);
 	if nb_joueurs = 1 then ini_1j(plato)
 	else if nb_joueurs = 2 then ini_2j(plato)
 	else if nb_joueurs = 3 then ini_3j(plato)
@@ -210,7 +208,7 @@ begin
 	gDrawRect(200,75,600,600,BLACK);
 	affiPions(plato);
 	if (sdl_get_keypressed = SDLK_ESCAPE) then pause := gamePause(pause);
-	if pause then drawMenuPause
+	if pause then drawMenuPause(pause)
 	else selectionCase(plato,selectione,j1,j2,j3,j4,saut,i_d,i_a,i_dAncien,cj,nb_joueurs);
 end;
 
