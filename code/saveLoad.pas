@@ -4,9 +4,22 @@ interface
 
 uses highlights,sysutils;
 
+procedure sauvegarde(plato:plateauDyn;j1,j2,j3,j4 : boolean;nb_joueurs,cj : integer);
+procedure load(Var plato : plateauDyn;VAR nb_joueurs,cj : integer; var j1,j2,j3,j4,loaded : boolean);
+
+
 Implementation
 
-procedure sauvegarde(plato:plateauDyn);
+function sortie_tour(j1,j2,j3,j4 : boolean):integer;
+begin
+	if j1 = true then sortie_tour := 1
+	else if j2 = true then sortie_tour := 2
+	else if j3 = true then sortie_tour := 3
+	else sortie_tour := 4;
+end;
+
+
+procedure sauvegarde(plato:plateauDyn;j1,j2,j3,j4 : boolean;nb_joueurs,cj : integer);
 var
 	Fichier : TextFile;
 	i : integer;
@@ -18,7 +31,11 @@ begin
 		for i := 0 to 99 do begin
 			writeln(fichier, plato[i].p.identif,' ',plato[i].p.clr);
 		end;
+		writeln(fichier,nb_joueurs);
+		writeln(fichier,sortie_tour(j1,j2,j3,j4));
+		writeln(fichier,cj);
 		closeFile(fichier);
+		writeln('Sauvegarde terminé !');
 	except
 		on E: EInOutError do writeln('Erreur lors de la sauvegarde');
 	end;
@@ -26,40 +43,79 @@ end;
 
 procedure load_plateau(Var plato : plateauDyn; i : integer;str : string);
 var
-	len,j,l : integer;
-	arg : string;
+	arg : integer;
 begin
-	arg := '';
-	j := 1;
-	len := length(str);
-	repeat
-		arg += str[j];
-		j += 1;
-	until (str[j] = ' ');
-	plato[i].p.identif := StrToInt(arg);
-	arg := '';
-	for l := j to len do begin
-		arg += str[j];
-	end;
-	plato[i].p.clr := StrToInt(arg);
+	writeln('36 ',i);
+	arg := StrToInt(str[1]);
+	plato[i].p.identif := arg;
+	writeln('i = ',i,'; ',plato[i].p.identif);
+	arg := StrToInt(str[3]);
+	plato[i].p.clr := arg;
+	writeln('i1 = ',i,'; ',plato[i].p.clr);
 end;
 
-procedure load(Var plato:plateauDyn);
+procedure load_tours(VAR j1,j2,j3,j4 : boolean;strTour : string);
+begin
+	if strTour = '1' then begin
+		j1 := true;
+		j2 := false;
+		j3 := false;
+		j4 := false;
+	end
+	else if strTour = '2' then begin
+		j1 := false;
+		j2 := true;
+		j3 := false;
+		j4 := false;
+	end
+	else if strTour = '3' then begin
+		j1 := false;
+		j2 := false;
+		j3 := true;
+		j4 := false;
+	end
+	else begin
+		j1 := false;
+		j2 := false;
+		j3 := false;
+		j4 := true;
+	end;
+end;
+
+procedure load_params(VAR nb_joueurs,cj : integer; var j1,j2,j3,j4 : boolean;strnb,strCj,strTour : string);
+begin
+	nb_joueurs := StrToInt(strnb);
+	cj := StrToInt(strCj);
+	load_tours(j1,j2,j3,j4,strTour);
+end;
+
+procedure load(Var plato : plateauDyn;VAR nb_joueurs,cj : integer; var j1,j2,j3,j4,loaded : boolean);
 var
 	Fichier : TextFile;
 	i : integer;
-	str : string;
+	str,strnb,strCj,strTour : string;
 begin
+	writeln('57');
 	str := '';
 	assignFile(fichier,'partie.txt');
 	{$I+}
 	try
+		reset(fichier);
 		for i := 0 to 99 do begin
-			reset(fichier);
+			writeln('63',i);
 			readln(fichier,str);
 			load_plateau(plato,i,str);
-			closeFile(fichier);
 		end;
+		readln(fichier,strNb);
+		writeln(strNb);
+		readln(fichier,strTour);
+		writeln(strTour);
+		readln(fichier,strCj);
+		writeln(strCj);
+		load_params(nb_joueurs,cj,j1,j2,j3,j4,strnb,strCj,strTour);
+		closeFile(fichier);
+		writeln('Chargement finis');
+		loaded := true;
 	except
 		on E: EInOutError do writeln('Erreur lors du chargement');
 	end;

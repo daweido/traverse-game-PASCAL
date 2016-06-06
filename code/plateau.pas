@@ -5,7 +5,7 @@ uses gLib2D,SDL,SDL_TTF,sysutils,pions,deplacements,highlights,paused;
 
 
 function creaPlateau():plateauDyn;
-procedure affiPlateau(VAR plato : plateauDyn;VAR selectione,j1,j2,j3,j4,saut,pause : boolean;VAR i_d, i_a,i_dAncien,cj : integer;nb_joueurs : integer);
+procedure affiPlateau(VAR plato : plateauDyn;VAR tampo,selectione,j1,j2,j3,j4,saut,pause,menJou,choixNbJ : boolean;VAR i_d, i_a,i_dAncien,cj : integer;nb_joueurs : integer);
 procedure def_nb_joueurs(VAR plato : plateauDyn;nb_joueurs : integer);
 
 
@@ -199,7 +199,7 @@ begin
 	else gamePause := true;
 end;
 
-procedure affiPlateau(VAR plato : plateauDyn;VAR selectione,j1,j2,j3,j4,saut,pause : boolean;VAR i_d, i_a,i_dAncien,cj : integer;nb_joueurs : integer);
+procedure affiPlateau(VAR plato : plateauDyn;VAR tampo,selectione,j1,j2,j3,j4,saut,pause,menJou,choixNbJ : boolean;VAR i_d, i_a,i_dAncien,cj : integer;nb_joueurs : integer);
 var
 	i : integer;
 begin
@@ -208,7 +208,7 @@ begin
 	gDrawRect(200,75,600,600,BLACK);
 	affiPions(plato);
 	if (sdl_get_keypressed = SDLK_ESCAPE) then pause := gamePause(pause);
-	if pause then drawMenuPause(pause)
+	if pause then drawMenuPause(tampo,pause,menJou,choixNbJ,j1,j2,j3,j4,plato,cj,nb_joueurs)
 	else selectionCase(plato,selectione,j1,j2,j3,j4,saut,i_d,i_a,i_dAncien,cj,nb_joueurs);
 end;
 

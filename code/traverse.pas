@@ -1,12 +1,12 @@
 program traverse;
 
-uses gLib2D,SDL_TTF,sysutils,plateau,widget,menu,deplacements,highlights,fin,gagne;
+uses gLib2D,SDL_TTF,sysutils,plateau,widget,menu,deplacements,highlights,fin,gagne,saveLoad;
 
 var
 	plato : plateauDyn;
 	mens,mn,mNb,mCmt : men;
 	i_d, i_a,i_dAncien,nb_joueurs,jGagnant,cj : integer;
-	tampo,selectione,j1,j2,j3,j4,saut,victoire,pause,menJou,choixNbJ,retCmt : boolean;
+	tampo,selectione,j1,j2,j3,j4,saut,victoire,pause,menJou,choixNbJ,retCmt,loaded : boolean;
 	menuJ,menuC,menuR : gImage;
 begin
 	j1 := true;
@@ -19,6 +19,7 @@ begin
 	i_dAncien := 0;
 	jGagnant := 0;
 	plato := creaPlateau();
+	loaded := false;
 	menuJ := iniMenus(1);
 	menuC := iniMenus(2);
 	menuR := iniMenus(3);
@@ -51,40 +52,38 @@ begin
 						if mn.id = 1 then begin
 							if choixNbJ = true then menuNvPartie(mNb,choixNbJ)
 							else begin
-								if mNb.id = 0 then affiPlateau(plato,selectione,j1,j2,j3,j4,saut,pause,i_d,i_a,i_dAncien,cj,nb_joueurs);
+								if mNb.id = 0 then affiPlateau(plato,tampo,selectione,j1,j2,j3,j4,saut,pause,menJou,choixNbJ,i_d,i_a,i_dAncien,cj,nb_joueurs);
 								if mNb.id = 1 then begin
 									def_nb_joueurs(plato,1);
 									nb_joueurs := 1;
 									mNb.id := 0;
 								end;
-
 								if mNb.id = 2 then begin
 									def_nb_joueurs(plato,2);
 									nb_joueurs := 2;
 									mNb.id := 0;
 								end;
-
 								if mNb.id = 3 then begin
 									def_nb_joueurs(plato,3);
 									nb_joueurs := 3;
 									mNb.id := 0;
 								end;
-
 								if mNb.id = 4 then begin
 									def_nb_joueurs(plato,4);
 									nb_joueurs := 4;
 									mNb.id := 0;
 								end;
-
 								if mNb.id = 5 then begin
 									mNb.menus := true;
 									choixNbJ := true;
 									menJou := true;
 								end;
-
 							end;
 						end;
-						if mn.id = 2 then writeln('Charger');
+						if mn.id = 2 then begin
+							if loaded = false then load(plato,nb_joueurs,cj,j1,j2,j3,j4,loaded)
+							else affiPlateau(plato,tampo,selectione,j1,j2,j3,j4,saut,pause,menJou,choixNbJ,i_d,i_a,i_dAncien,cj,nb_joueurs);
+						end;
 						if mn.id = 3 then begin
 							mn.menus := true;
 							tampo := true;

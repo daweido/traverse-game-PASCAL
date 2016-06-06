@@ -1,7 +1,7 @@
 unit paused;
 
 interface
-uses gLib2D,saveLoad;
+uses gLib2D,saveLoad,restart,highlights;
 
 const
 	pause_x_min = 374;
@@ -13,23 +13,29 @@ const
 	pause_quity_min = 471;
 	pause_quity_max = 529;
 
-procedure drawMenuPause(var pause : boolean);
+procedure drawMenuPause(var tampo,pause,menJou,choixNbJ,j1,j2,j3,j4 : boolean;VAR plato : plateauDyn;VAR cj : integer;nb_joueurs : integer);
 
 Implementation
 
-procedure menu_pause(Var pause : boolean);
+procedure menu_pause(Var tampo,pause,menJou,choixNbJ,j1,j2,j3,j4 : boolean;VAR plato : plateauDyn;VAR cj : integer;nb_joueurs : integer);
 begin
 	if ((sdl_get_mouse_x < pause_x_max) and (sdl_get_mouse_x > pause_x_min)) then begin
 		if ((sdl_get_mouse_y < pause_repry_max) and (sdl_get_mouse_y > pause_repry_min)) then begin //Bouton Jouer MenuA
 			if sdl_mouse_left_down then pause := false;
 		end;
-
 		if ((sdl_get_mouse_y < pause_savey_max) and (sdl_get_mouse_y > pause_savey_min)) then begin
-			if sdl_mouse_left_down then writeln('SAUVEGARDER');
+			if sdl_mouse_left_down then begin
+				sauvegarde(plato,j1,j2,j3,j4,nb_joueurs,cj);
+			end;
 		end;
-
 		if ((sdl_get_mouse_y < pause_quity_max) and (sdl_get_mouse_y > pause_quity_min)) then begin
-			if sdl_mouse_left_down then writeln('quitter');
+			if sdl_mouse_left_down then begin
+				choixNbJ := true;
+				menJou := true;
+				pause := false;
+				tampo := true;
+				rein(plato,j1,j2,j3,j4,cj);
+			end;
 		end;
 	end;
 end;
@@ -45,13 +51,13 @@ begin
 	gEnd();
 end;
 
-procedure drawMenuPause(var pause : boolean);
+procedure drawMenuPause(var tampo,pause,menJou,choixNbJ,j1,j2,j3,j4 : boolean;VAR plato : plateauDyn;VAR cj : integer;nb_joueurs : integer);
 var
 	pauseMenu : gImage;
 begin
 	gFillRectAlpha(0, 0, 1000, 750,BLACK,125);
 	loadPause(pauseMenu);
-	 menu_pause(pause);
+	 menu_pause(tampo,pause,menJou,choixNbJ,j1,j2,j3,j4,plato,cj,nb_joueurs);
 end;
 
 
