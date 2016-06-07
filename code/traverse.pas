@@ -1,12 +1,14 @@
 program traverse;
 
-uses gLib2D,SDL_TTF,sysutils,plateau,widget,menu,deplacements,highlights,fin,gagne,saveLoad;
+uses gLib2D,SDL_TTF,sysutils,plateau,menu,deplacements,highlights,fin,gagne,saveLoad;
 
 var
 	plato : plateauDyn;
-	mens,mn,mNb,mCmt : men;
+	mens,mn,mNb,mCmt,mnR : men;
 	i_d, i_a,i_dAncien,nb_joueurs,jGagnant,cj : integer;
-	tampo,selectione,j1,j2,j3,j4,saut,victoire,pause,menJou,choixNbJ,retCmt,loaded : boolean;
+	cjb,nbb : longint;
+	tampo,selectione,j1,j2,j3,j4,saut,victoire,pause,menJou,choixNbJ,retCmt,loaded,
+	retReg : boolean;
 	menuJ,menuC,menuR : gImage;
 begin
 	j1 := true;
@@ -28,20 +30,19 @@ begin
 	menJou := true;
 	choixNbJ := true;
 	retCmt := true;
+	retReg := true;
 	victoire := false;
 ///////////////////
 	selectione := false;
 	saut := false;
 	cj := 0;
 	while true do begin
-		//Pas oublié que si il fait rejoueur réinitialiser touts les paramètres ainsi que le plateau et les Booleans
 		jGagnant := gagnant(victoire,plato,cj);
 		if cj = 30 then effacePerdants(plato);
-
 		while (sdl_update = 1) do begin
 			if (sdl_do_quit) then exit; (* Clic sur la croix pour fermer *)
 			if victoire = true then begin
-				writeln('VICTOIREEEEE');
+				writeln('VICTOIRE');
 				menuFin(victoire,mens,tampo,nb_joueurs,jGagnant);
 			end
 			else if tampo = true then principalMenu(tampo,mens,menuJ)
@@ -52,28 +53,33 @@ begin
 						if mn.id = 1 then begin
 							if choixNbJ = true then menuNvPartie(mNb,choixNbJ)
 							else begin
-								if mNb.id = 0 then affiPlateau(plato,tampo,selectione,j1,j2,j3,j4,saut,pause,menJou,choixNbJ,i_d,i_a,i_dAncien,cj,nb_joueurs);
+								if mNb.id = 0 then affiPlateau(plato,tampo,selectione,j1,j2,j3,j4,saut,pause,menJou,choixNbJ,loaded,i_d,i_a,i_dAncien,cj,nb_joueurs);
 								if mNb.id = 1 then begin
+									writeln('Début du jeu à 1 joueur');
 									def_nb_joueurs(plato,1);
 									nb_joueurs := 1;
 									mNb.id := 0;
 								end;
 								if mNb.id = 2 then begin
+									writeln('Début du jeu à 2 joueur');
 									def_nb_joueurs(plato,2);
 									nb_joueurs := 2;
 									mNb.id := 0;
 								end;
 								if mNb.id = 3 then begin
+									writeln('Début du jeu à 3 joueur');
 									def_nb_joueurs(plato,3);
 									nb_joueurs := 3;
 									mNb.id := 0;
 								end;
 								if mNb.id = 4 then begin
+									writeln('Début du jeu à 4 joueur');
 									def_nb_joueurs(plato,4);
 									nb_joueurs := 4;
 									mNb.id := 0;
 								end;
 								if mNb.id = 5 then begin
+									writeln('Retour Menu Jouer');
 									mNb.menus := true;
 									choixNbJ := true;
 									menJou := true;
@@ -81,8 +87,14 @@ begin
 							end;
 						end;
 						if mn.id = 2 then begin
-							if loaded = false then load(plato,nb_joueurs,cj,j1,j2,j3,j4,loaded)
-							else affiPlateau(plato,tampo,selectione,j1,j2,j3,j4,saut,pause,menJou,choixNbJ,i_d,i_a,i_dAncien,cj,nb_joueurs);
+							if loaded = false then begin
+								cjb := cj;
+								nbb := nb_joueurs;
+								load(plato,nbb,cjb,j1,j2,j3,j4,loaded);
+							end
+							else begin
+								affiPlateau(plato,tampo,selectione,j1,j2,j3,j4,saut,pause,menJou,choixNbJ,loaded,i_d,i_a,i_dAncien,cj,nb_joueurs);
+							end;
 						end;
 						if mn.id = 3 then begin
 							mn.menus := true;
@@ -91,7 +103,6 @@ begin
 						end;
 					end;
 				end;
-
 				if mens.id = 2 then begin
 					if retCmt = true then commentMenu(retCmt,mCmt,menuC)
 					else begin
@@ -103,7 +114,32 @@ begin
 				end;
 
 				if mens.id = 3 then begin
-					reglagesMenu(tampo,mens,menuJ,menuR);
+					if retReg = true then reglagesMenu(retReg,mnR,menuR)
+					else begin
+						if mnR.id = 1 then begin
+							writeln('Thème1');
+							retReg := true;
+							mnR.id := 0;
+							mnR.menus := true;
+						end;
+						if mnR.id = 2 then begin
+							writeln('Thème2');
+							retReg := true;
+							mnR.id := 0;
+							mnR.menus := true;
+						end;
+						if mnR.id = 3 then begin
+							writeln('Thème3');
+							retReg := true;
+							mnR.id := 0;
+							mnR.menus := true;
+						end;
+						if mnR.id = 4 then begin
+							tampo := true;
+							retReg := true;
+						end;
+					end;
+
 				end;
 
 				if mens.id = 4 then exit;

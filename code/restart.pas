@@ -7,9 +7,6 @@ uses highlights;
 procedure rein(var plato : plateauDyn;VAR j1,j2,j3,j4 : boolean;VAR cj : integer);
 
 Implementation
-////Ajouter les booleans de tours à réinitialliser
-///Réinitialliser le nombre de tours
-//Et voir si il y en a que j'ai oublié
 
 procedure reinitialiser_tours(VAR j1,j2,j3,j4 : boolean;VAR cj : integer);
 begin

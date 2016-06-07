@@ -28,7 +28,7 @@ var
 	sqr_blue_alpha,sqr_red_alpha,sqr_green_alpha,sqr_purple_alpha : gImage;
 begin
 	if color = 1 then begin
-		sqr_blue_alpha := gTexLoad('sqr_blue_alpha.png');
+		sqr_blue_alpha := gTexLoad('./images/sqr_blue_alpha.png');
 		gBeginRects(sqr_blue_alpha);
 			gSetCoordMode(G_CENTER);
 			gSetScaleWH(width,height);
@@ -37,7 +37,7 @@ begin
 		gEnd();
 	end
 	else if color = 2 then begin
-		sqr_red_alpha := gTexLoad('sqr_red_alpha.png');
+		sqr_red_alpha := gTexLoad('./images/sqr_red_alpha.png');
 		gBeginRects(sqr_red_alpha);
 			gSetCoordMode(G_CENTER);
 			gSetScaleWH(width,height);
@@ -46,7 +46,7 @@ begin
 		gEnd();
 	end
 	else if color = 3 then begin
-		sqr_green_alpha := gTexLoad('sqr_green_alpha.png');
+		sqr_green_alpha := gTexLoad('./images/sqr_green_alpha.png');
 		gBeginRects(sqr_green_alpha);
 			gSetCoordMode(G_CENTER);
 			gSetScaleWH(width,height);
@@ -55,7 +55,7 @@ begin
 		gEnd();
 	end
 	else begin
-		sqr_purple_alpha := gTexLoad('sqr_purple_alpha.png');
+		sqr_purple_alpha := gTexLoad('./images/sqr_purple_alpha.png');
 		gBeginRects(sqr_purple_alpha);
 			gSetCoordMode(G_CENTER);
 			gSetScaleWH(width,height);
@@ -70,7 +70,7 @@ var
  cir_blue_alpha,cir_red_alpha,cir_green_alpha,cir_purple_alpha : gImage;
 begin
 	if color = 1 then begin
-		cir_blue_alpha := gTexLoad('cir_blue_alpha.png');
+		cir_blue_alpha := gTexLoad('./images/cir_blue_alpha.png');
 		gBeginRects(cir_blue_alpha);
 			gSetCoordMode(G_CENTER);
 			gSetScaleWH(width,height);
@@ -79,7 +79,7 @@ begin
 		gEnd();
 	end
 	else if color = 2 then begin
-		cir_red_alpha := gTexLoad('cir_red_alpha.png');
+		cir_red_alpha := gTexLoad('./images/cir_red_alpha.png');
 		gBeginRects(cir_red_alpha);
 			gSetCoordMode(G_CENTER);
 			gSetScaleWH(width,height);
@@ -88,7 +88,7 @@ begin
 		gEnd();
 	end
 	else if color = 3 then begin
-		cir_green_alpha := gTexLoad('cir_green_alpha.png');
+		cir_green_alpha := gTexLoad('./images/cir_green_alpha.png');
 		gBeginRects(cir_green_alpha);
 			gSetCoordMode(G_CENTER);
 			gSetScaleWH(width,height);
@@ -97,7 +97,7 @@ begin
 		gEnd();
 	end
 	else begin
-		cir_purple_alpha := gTexLoad('cir_purple_alpha.png');
+		cir_purple_alpha := gTexLoad('./images/cir_purple_alpha.png');
 		gBeginRects(cir_purple_alpha);
 			gSetCoordMode(G_CENTER);
 			gSetScaleWH(width,height);
@@ -112,7 +112,7 @@ var
 	tri_blue_alpha,tri_red_alpha,tri_green_alpha,tri_purple_alpha : gImage;
 begin
 	if color = 1 then begin
-		tri_blue_alpha := gTexLoad('tri_blue_alpha.png');
+		tri_blue_alpha := gTexLoad('./images/tri_blue_alpha.png');
 		gBeginRects(tri_blue_alpha);
 			gSetCoordMode(G_CENTER);
 			gSetScaleWH(width,height);
@@ -121,7 +121,7 @@ begin
 		gEnd();
 	end
 	else if color = 2 then begin
-		tri_red_alpha := gTexLoad('tri_red_alpha.png');
+		tri_red_alpha := gTexLoad('./images/tri_red_alpha.png');
 		gBeginRects(tri_red_alpha);
 			gSetCoordMode(G_CENTER);
 			gSetScaleWH(width,height);
@@ -131,7 +131,7 @@ begin
 		gEnd();
 	end
 	else if color = 3 then begin
-		tri_green_alpha := gTexLoad('tri_green_alpha.png');
+		tri_green_alpha := gTexLoad('./images/tri_green_alpha.png');
 		gBeginRects(tri_green_alpha);
 			gSetCoordMode(G_CENTER);
 			gSetScaleWH(width,height);
@@ -141,7 +141,7 @@ begin
 		gEnd();
 	end
 	else begin
-		tri_purple_alpha := gTexLoad('tri_purple_alpha.png');
+		tri_purple_alpha := gTexLoad('./images/tri_purple_alpha.png');
 		gBeginRects(tri_purple_alpha);
 			gSetCoordMode(G_CENTER);
 			gSetScaleWH(width,height);
@@ -157,7 +157,7 @@ var
 	lo_blue_alpha,lo_red_alpha,lo_green_alpha,lo_purple_alpha : gImage;
 begin
 	if color = 1 then begin
-		lo_blue_alpha := gTexLoad('lo_blue_alpha.png');
+		lo_blue_alpha := gTexLoad('./images/lo_blue_alpha.png');
 		gBeginRects(lo_blue_alpha);
 			gSetCoordMode(G_CENTER);
 			gSetScaleWH(width,height);
@@ -166,7 +166,7 @@ begin
 		gEnd();
 	end
 	else if color = 2 then begin
-		lo_red_alpha := gTexLoad('lo_red_alpha.png');
+		lo_red_alpha := gTexLoad('./images/lo_red_alpha.png');
 		gBeginRects(lo_red_alpha);
 			gSetCoordMode(G_CENTER);
 			gSetScaleWH(width,height);
@@ -175,7 +175,7 @@ begin
 		gEnd();
 	end
 	else if color = 3 then begin
-		lo_green_alpha := gTexLoad('lo_green_alpha.png');
+		lo_green_alpha := gTexLoad('./images/lo_green_alpha.png');
 		gBeginRects(lo_green_alpha);
 			gSetCoordMode(G_CENTER);
 			gSetScaleWH(width,height);
@@ -184,7 +184,7 @@ begin
 		gEnd();
 	end
 	else begin
-		lo_purple_alpha := gTexLoad('lo_purple_alpha.png');
+		lo_purple_alpha := gTexLoad('./images/lo_purple_alpha.png');
 		gBeginRects(lo_purple_alpha);
 			gSetCoordMode(G_CENTER);
 			gSetScaleWH(width,height);

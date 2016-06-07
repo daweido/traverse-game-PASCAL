@@ -13,11 +13,11 @@ const
 	pause_quity_min = 471;
 	pause_quity_max = 529;
 
-procedure drawMenuPause(var tampo,pause,menJou,choixNbJ,j1,j2,j3,j4 : boolean;VAR plato : plateauDyn;VAR cj : integer;nb_joueurs : integer);
+procedure drawMenuPause(var tampo,pause,menJou,choixNbJ,j1,j2,j3,j4,loaded : boolean;VAR plato : plateauDyn;VAR cj : integer;nb_joueurs : integer);
 
 Implementation
 
-procedure menu_pause(Var tampo,pause,menJou,choixNbJ,j1,j2,j3,j4 : boolean;VAR plato : plateauDyn;VAR cj : integer;nb_joueurs : integer);
+procedure menu_pause(Var tampo,pause,menJou,choixNbJ,j1,j2,j3,j4,loaded : boolean;VAR plato : plateauDyn;VAR cj : integer;nb_joueurs : integer);
 begin
 	if ((sdl_get_mouse_x < pause_x_max) and (sdl_get_mouse_x > pause_x_min)) then begin
 		if ((sdl_get_mouse_y < pause_repry_max) and (sdl_get_mouse_y > pause_repry_min)) then begin //Bouton Jouer MenuA
@@ -34,6 +34,7 @@ begin
 				menJou := true;
 				pause := false;
 				tampo := true;
+				loaded := false;
 				rein(plato,j1,j2,j3,j4,cj);
 			end;
 		end;
@@ -42,7 +43,7 @@ end;
 
 procedure loadPause(var pauseMenu : gImage);
 begin
-	pauseMenu := gTexLoad('pause.png');
+	pauseMenu := gTexLoad('./images/pause.png');
 	gBeginRects(pauseMenu);
 		gSetCoordMode(G_CENTER);
 		gSetScaleWH(500,375);
@@ -51,13 +52,13 @@ begin
 	gEnd();
 end;
 
-procedure drawMenuPause(var tampo,pause,menJou,choixNbJ,j1,j2,j3,j4 : boolean;VAR plato : plateauDyn;VAR cj : integer;nb_joueurs : integer);
+procedure drawMenuPause(var tampo,pause,menJou,choixNbJ,j1,j2,j3,j4,loaded : boolean;VAR plato : plateauDyn;VAR cj : integer;nb_joueurs : integer);
 var
 	pauseMenu : gImage;
 begin
 	gFillRectAlpha(0, 0, 1000, 750,BLACK,125);
 	loadPause(pauseMenu);
-	 menu_pause(tampo,pause,menJou,choixNbJ,j1,j2,j3,j4,plato,cj,nb_joueurs);
+	 menu_pause(tampo,pause,menJou,choixNbJ,j1,j2,j3,j4,loaded,plato,cj,nb_joueurs);
 end;
 
 

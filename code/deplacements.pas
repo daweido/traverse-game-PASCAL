@@ -80,16 +80,12 @@ procedure deplacementCarre(var plato : plateauDyn;var selectione,j1,j2,j3,j4,sau
 begin
 	if (plato[i_d].p.clr = 1) or (plato[i_d].p.clr = 2) or (plato[i_d].p.clr = 3) or (plato[i_d].p.clr = 4) then begin
 		if ((saut = false) and ((i_a = i_d+1) or (i_a = i_d-1) or (i_a = i_d+10) or (i_a = i_d-10))) then begin
-			writeln('déplacement/saut ; saut = false');
 			changement(plato,i_d,i_a);
-			writeln('i_a = ',i_a);
-			writeln('i_d = ',i_d);
 			tours(j1,j2,j3,j4,nb_joueurs,cj);
 			selectione := false;
 		end
 		else if (saut_pion(plato,i_d,i_a,i_dAncien) and (saut = false)) then begin
 			changement(plato,i_d,i_a);
-			writeln('Saut fait; saut = true');
 			i_dAncien := i_d;
 			i_d := i_a;
 			saut := true;
@@ -101,9 +97,7 @@ begin
 			end;
 		end
 		else if (saut_possible(i_d,i_dAncien,plato) and (saut = true)) then begin
-			writeln('Saut possible ; saut = true');
 			if saut_pion(plato,i_d,i_a,i_dAncien) then begin
-				writeln('Sauts multiples : Saut = true');
 				changement(plato,i_d,i_a);
 				i_dAncien := i_d;
 				i_d := i_a;
@@ -116,7 +110,6 @@ begin
 				end;
 			end
 			else begin
-				writeln('Saut effectué mais plus de saut possible ; saut = true');
 					saut := false;
 					tours(j1,j2,j3,j4,nb_joueurs,cj);
 					selectione := false;
@@ -143,7 +136,6 @@ begin
 		end
 		else if (saut_pion(plato,i_d,i_a,i_dAncien) and (saut = false)) then begin
 			changement(plato,i_d,i_a);
-			writeln('Saut fait; saut = true');
 			i_dAncien := i_d;
 			i_d := i_a;
 			saut := true;
@@ -155,9 +147,7 @@ begin
 			end;
 		end
 		else if (saut_possible(i_d,i_dAncien,plato) and (saut = true)) then begin
-			writeln('Saut possible ; saut = true');
 			if saut_pion(plato,i_d,i_a,i_dAncien) then begin
-				writeln('Sauts multiples : Saut = true');
 				changement(plato,i_d,i_a);
 				i_dAncien := i_d;
 				i_d := i_a;
@@ -170,7 +160,6 @@ begin
 				end;
 			end
 			else begin
-				writeln('Saut effectué mais plus de saut possible ; saut = true');
 					saut := false;
 					tours(j1,j2,j3,j4,nb_joueurs,cj);
 					selectione := false;
@@ -193,7 +182,6 @@ begin
 		end
 		else if (saut_pion(plato,i_d,i_a,i_dAncien) and (saut = false)) then begin
 			changement(plato,i_d,i_a);
-			writeln('Saut fait; saut = true');
 			i_dAncien := i_d;
 			i_d := i_a;
 			saut := true;
@@ -205,9 +193,7 @@ begin
 			end;
 		end
 		else if (saut_possible(i_d,i_dAncien,plato) and (saut = true)) then begin
-			writeln('Saut possible ; saut = true');
 			if saut_pion(plato,i_d,i_a,i_dAncien) then begin
-				writeln('Sauts multiples : Saut = true');
 				changement(plato,i_d,i_a);
 				i_dAncien := i_d;
 				i_d := i_a;
@@ -220,7 +206,6 @@ begin
 				end;
 			end
 			else begin
-				writeln('Saut effectué mais plus de saut possible ; saut = true');
 				saut := false;
 				tours(j1,j2,j3,j4,nb_joueurs,cj);
 				selectione := false;
@@ -243,7 +228,6 @@ begin
 		end
 		else if (saut_pion(plato,i_d,i_a,i_dAncien) and (saut = false)) then begin
 			changement(plato,i_d,i_a);
-			writeln('Saut fait; saut = true');
 			i_dAncien := i_d;
 			i_d := i_a;
 			saut := true;
@@ -255,9 +239,7 @@ begin
 			end;
 		end
 		else if (saut_possible(i_d,i_dAncien,plato) and (saut = true)) then begin
-			writeln('Saut possible ; saut = true');
 			if saut_pion(plato,i_d,i_a,i_dAncien) then begin
-				writeln('Sauts multiples : Saut = true');
 				changement(plato,i_d,i_a);
 				i_dAncien := i_d;
 				i_d := i_a;
@@ -270,7 +252,6 @@ begin
 				end;
 			end
 			else begin
-				writeln('Saut effectué mais plus de saut possible ; saut = true');
 				saut := false;
 				tours(j1,j2,j3,j4,nb_joueurs,cj);
 				selectione := false;
@@ -293,7 +274,6 @@ begin
 		end
 		else if (saut_pion(plato,i_d,i_a,i_dAncien) and (saut = false)) then begin
 			changement(plato,i_d,i_a);
-			writeln('Saut fait; saut = true');
 			i_dAncien := i_d;
 			i_d := i_a;
 			saut := true;
@@ -305,9 +285,7 @@ begin
 			end;
 		end
 		else if (saut_possible(i_d,i_dAncien,plato) and (saut = true)) then begin
-			writeln('Saut possible ; saut = true');
 			if saut_pion(plato,i_d,i_a,i_dAncien) then begin
-				writeln('Sauts multiples : Saut = true');
 				changement(plato,i_d,i_a);
 				i_dAncien := i_d;
 				i_d := i_a;
@@ -320,7 +298,6 @@ begin
 				end;
 			end
 			else begin
-				writeln('Saut effectué mais plus de saut possible ; saut = true');
 				saut := false;
 				tours(j1,j2,j3,j4,nb_joueurs,cj);
 				selectione := false;
@@ -347,7 +324,6 @@ begin
 		end
 		else if (saut_pion(plato,i_d,i_a,i_dAncien) and (saut = false)) then begin
 			changement(plato,i_d,i_a);
-			writeln('Saut fait; saut = true');
 			i_dAncien := i_d;
 			i_d := i_a;
 			saut := true;
@@ -359,9 +335,7 @@ begin
 			end;
 		end
 		else if (saut_possible(i_d,i_dAncien,plato) and (saut = true)) then begin
-			writeln('Saut possible ; saut = true');
 			if saut_pion(plato,i_d,i_a,i_dAncien) then begin
-				writeln('Sauts multiples : Saut = true');
 				changement(plato,i_d,i_a);
 				i_dAncien := i_d;
 				i_d := i_a;
@@ -374,7 +348,6 @@ begin
 				end;
 			end
 			else begin
-				writeln('Saut effectué mais plus de saut possible ; saut = true');
 				saut := false;
 				tours(j1,j2,j3,j4,nb_joueurs,cj);
 				selectione := false;
@@ -401,7 +374,6 @@ begin
 		end
 		else if (saut_pion(plato,i_d,i_a,i_dAncien) and (saut = false)) then begin
 			changement(plato,i_d,i_a);
-			writeln('Saut fait; saut = true');
 			i_dAncien := i_d;
 			i_d := i_a;
 			saut := true;
@@ -413,9 +385,7 @@ begin
 			end;
 		end
 		else if (saut_possible(i_d,i_dAncien,plato) and (saut = true)) then begin
-			writeln('Saut possible ; saut = true');
 			if saut_pion(plato,i_d,i_a,i_dAncien) then begin
-				writeln('Sauts multiples : Saut = true');
 				changement(plato,i_d,i_a);
 				i_dAncien := i_d;
 				i_d := i_a;
@@ -428,7 +398,6 @@ begin
 				end;
 			end
 			else begin
-				writeln('Saut effectué mais plus de saut possible ; saut = true');
 				saut := false;
 				tours(j1,j2,j3,j4,nb_joueurs,cj);
 				selectione := false;

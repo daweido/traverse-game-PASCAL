@@ -24,7 +24,7 @@ var
 	Fichier : TextFile;
 	i : integer;
 begin
-	assignFile(fichier,'partie.txt');
+	assignFile(fichier,'./sauvegarde/partie.txt');
 	{$I+}
 	try
 		rewrite(fichier);
@@ -45,13 +45,10 @@ procedure load_plateau(Var plato : plateauDyn; i : integer;str : string);
 var
 	arg : integer;
 begin
-	writeln('36 ',i);
 	arg := StrToInt(str[1]);
 	plato[i].p.identif := arg;
-	writeln('i = ',i,'; ',plato[i].p.identif);
 	arg := StrToInt(str[3]);
 	plato[i].p.clr := arg;
-	writeln('i1 = ',i,'; ',plato[i].p.clr);
 end;
 
 procedure load_tours(VAR j1,j2,j3,j4 : boolean;strTour : string);
@@ -95,14 +92,12 @@ var
 	i : integer;
 	str,strnb,strCj,strTour : string;
 begin
-	writeln('57');
 	str := '';
-	assignFile(fichier,'partie.txt');
+	assignFile(fichier,'./sauvegarde/partie.txt');
 	{$I+}
 	try
 		reset(fichier);
 		for i := 0 to 99 do begin
-			writeln('63',i);
 			readln(fichier,str);
 			load_plateau(plato,i,str);
 		end;

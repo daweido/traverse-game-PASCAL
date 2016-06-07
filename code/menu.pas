@@ -52,13 +52,20 @@ const
 	bouton_3jy_max = 529;
 	bouton_4jy_min = 579;
 	bouton_4jy_max = 5659;
+//////////////Menu Réglgages
+	bouton1_y_min = 214;
+	bouton1_y_max = 294;
+	bouton2_y_min = 354;
+	bouton2_y_max = 434;
+	bouton3_y_min = 494;
+	bouton3_y_max = 574;
 
 function iniMenus(i : integer):gImage;
 function bouttonsJ: men;
 procedure affiMenu(image : gImage);
 procedure principalMenu(var tampo : boolean; var mens : men;menuJ: gImage);
 procedure commentMenu(var retCmt : boolean; var mCmt : men;menuC : gImage);
-procedure reglagesMenu(var tampo : boolean; var mens : men; menuJ,menuR :gImage);
+procedure reglagesMenu(var retReg : boolean; var mnR : men;menuR :gImage);
 procedure menuJouer(var mn : men;var menJou : boolean);
 procedure menuNvPartie(var mNb : men;var choixNbJ : boolean);
 
@@ -68,9 +75,9 @@ Implementation
 // Si plusieurs image faire un tableau d'image
 function iniMenus(i : integer):gImage;
 begin
-	if i = 1 then iniMenus := gTexLoad('menu.png')
-	else if i = 2 then iniMenus := gTexLoad('commentJouer.png')
-	else iniMenus := gTexLoad('reglages.png')
+	if i = 1 then iniMenus := gTexLoad('./images/menu.png')
+	else if i = 2 then iniMenus := gTexLoad('./images/commentJouer.png')
+	else iniMenus := gTexLoad('./images/reglages.png')
 end;
 
 procedure affiMenu(image : gImage);
@@ -124,7 +131,7 @@ begin
 end;
 
 
-function bouttonCR: men;
+function boutonCmt: men;
 var
 	tmp : men;
 begin
@@ -135,32 +142,61 @@ begin
 		end;
 	end
 	else tmp.menus := true;
-	bouttonCR := tmp;
+	boutonCmt := tmp;
 end;
 
-procedure commentMenu(var retCmt : boolean; var mCmt : men;menuC : gImage); // Recopier la procedure d'en bas mais pour le menu comment Jouer
+function boutonReg: men;
+var
+	tmp : men;
 begin
-	mCmt := bouttonCR;
-	writeln('120');
+	if ((sdl_get_mouse_x < x_max_retour) and (sdl_get_mouse_x > x_min_retour) and (sdl_get_mouse_y < y_max_retour) and (sdl_get_mouse_y > y_min_retour)) then begin
+		if sdl_mouse_left_down then begin
+			tmp.menus := false;
+			tmp.id := 4;
+		end;
+	end
+	else if ((sdl_get_mouse_x < x_max_A) and (sdl_get_mouse_x > x_min_A)) then begin
+		if ((sdl_get_mouse_y < bouton1_y_max) and (sdl_get_mouse_y > bouton1_y_min)) then begin //Bouton Jouer MenuA
+			if sdl_mouse_left_down then begin
+				tmp.id := 1;
+				tmp.menus := false;
+			end;
+		end
+		else if ((sdl_get_mouse_y < bouton2_y_max) and (sdl_get_mouse_y > bouton2_y_min)) then begin
+			if sdl_mouse_left_down then begin
+				tmp.id := 2;
+				tmp.menus := false;
+			end;
+		end
+		else if ((sdl_get_mouse_y < bouton3_y_max) and (sdl_get_mouse_y > bouton3_y_min)) then begin
+			if sdl_mouse_left_down then begin
+				tmp.id := 3;
+				tmp.menus := false;
+			end;
+		end;
+	end
+	else tmp.menus := true;
+	boutonReg := tmp;
+end;
+
+procedure commentMenu(var retCmt : boolean; var mCmt : men; menuC : gImage); // Recopier la procedure d'en bas mais pour le menu comment Jouer
+begin
+	mCmt := boutonCmt;
 	if (mCmt.menus = true) then begin
-		writeln('121');
 		affiMenu(menuC);
 	end
 	else retCmt := false;
 end;
 
-procedure reglagesMenu(var tampo : boolean; var mens : men; menuJ,menuR :gImage);
+////////////////////////Réglages
+procedure reglagesMenu(var retReg : boolean; var mnR : men;menuR :gImage);
 begin
-	mens := bouttonCR;
-	if (mens.menus = true) then begin
-		writeln('121');
+	mnR := boutonReg;
+	if (mnR.menus = true) then begin
 		affiMenu(menuR);
 	end
-	else begin
-		tampo := true;
-	end;
+	else retReg := false;
 end;
-
 
 procedure principalMenu(var tampo : boolean; var mens : men;menuJ: gImage);
 begin
@@ -196,7 +232,6 @@ else if ((sdl_get_mouse_x < x_max_retour) and (sdl_get_mouse_x > x_min_retour) a
 end
 else begin
 	tmp.menus := true;
-	writeln('Non Selection MEN3')
 end;
 choixJouer := tmp;
 end;
@@ -207,7 +242,7 @@ var
 begin
 	mn := choixJouer();
 	if mn.menus = true then begin
-		menuJou := gTexLoad('jouer.png');
+		menuJou := gTexLoad('./images/jouer.png');
 		affiMenu(menuJou);
 	end
 	else menJou := false;
@@ -260,7 +295,7 @@ var
 begin
 	mNb := choixNbJoueurs();
 	if mNb.menus = true then begin
-		menuNv := gTexLoad('nouvellePartie.png');
+		menuNv := gTexLoad('./images/nouvellePartie.png');
 		affiMenu(menuNv);
 	end
 	else choixNbJ := false;

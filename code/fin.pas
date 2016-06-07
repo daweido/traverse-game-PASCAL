@@ -22,10 +22,10 @@ Implementation
 
 procedure loadFin(VAR findepartie : gImage;jGagnant : integer);
 begin
-	if jGagnant = 1 then findepartie := gTexLoad('findepartieJ1.png');
-	if jGagnant = 2 then findepartie := gTexLoad('findepartieJ2.png');
-	if jGagnant = 3 then findepartie := gTexLoad('findepartieJ3.png');
-	if jGagnant = 4 then findepartie := gTexLoad('findepartieJ4.png');
+	if jGagnant = 1 then findepartie := gTexLoad('./images/findepartieJ1.png');
+	if jGagnant = 2 then findepartie := gTexLoad('./images/findepartieJ2.png');
+	if jGagnant = 3 then findepartie := gTexLoad('./images/findepartieJ3.png');
+	if jGagnant = 4 then findepartie := gTexLoad('./images/findepartieJ4.png');
 end;
 
 function bouttonsF(VAR tampo : boolean;var nb_joueurs : integer): men;
