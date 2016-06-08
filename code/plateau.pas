@@ -1,7 +1,7 @@
 unit plateau;
 
 interface
-uses gLib2D,SDL,SDL_TTF,sysutils,pions,deplacements,highlights,paused;
+uses gLib2D,SDL,SDL_TTF,sysutils,pions,deplacements,highlights,paused,intelligence;
 
 
 function creaPlateau():plateauDyn;
@@ -206,6 +206,7 @@ begin
 	affiPions(plato);
 	if (sdl_get_keypressed = SDLK_ESCAPE) then pause := gamePause(pause);
 	if pause then drawMenuPause(tampo,pause,menJou,choixNbJ,j1,j2,j3,j4,loaded,plato,cj,nb_joueurs)
+	else if (nb_joueurs = 1) and (not j1) then IA(plato,selectione,j1,j2,j3,j4,saut,i_dAncien,cj,nb_joueurs)
 	else selectionCase(plato,selectione,j1,j2,j3,j4,saut,i_d,i_a,i_dAncien,cj,nb_joueurs);
 end;
 

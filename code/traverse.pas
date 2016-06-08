@@ -56,7 +56,7 @@ begin
 								if mNb.id = 0 then affiPlateau(plato,tampo,selectione,j1,j2,j3,j4,saut,pause,menJou,choixNbJ,loaded,i_d,i_a,i_dAncien,cj,nb_joueurs);
 								if mNb.id = 1 then begin
 									writeln('Début du jeu à 1 joueur');
-									def_nb_joueurs(plato,1);
+									def_nb_joueurs(plato,2);
 									nb_joueurs := 1;
 									mNb.id := 0;
 								end;
