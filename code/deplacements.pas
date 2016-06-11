@@ -1,19 +1,13 @@
 unit deplacements;
 
 interface
-uses gLib2D,SDL_TTF,sysutils,pions,highlights,sauts,tours;
+uses gLib2D,SDL_TTF,sysutils,pions,highlights,sauts,tours,eval,arbre,changements;
 
 procedure deplacement(var plato : plateauDyn;var selectione,j1,j2,j3,j4,saut : boolean; VAR i_d, i_a,i_dAncien,cj : integer; nb_joueurs : integer);
 
 Implementation
 
-procedure changement(var plato : plateauDyn;i_d,i_a : integer);
-begin
-	plato[i_a].p.identif := plato[i_d].p.identif;
-	plato[i_a].p.clr := plato[i_d].p.clr;
-	plato[i_d].p.identif := 0;
-	plato[i_d].p.clr := 0;
-end;
+
 
 procedure deplacementCarre(var plato : plateauDyn;var selectione,j1,j2,j3,j4,saut : boolean; VAR i_d, i_a,i_dAncien,cj : integer; nb_joueurs : integer);
 begin
@@ -21,6 +15,7 @@ begin
 		if ((saut = false) and ((i_a = i_d+1) or (i_a = i_d-1) or (i_a = i_d+10) or (i_a = i_d-10))) then begin
 			changement(plato,i_d,i_a);
 			changemenTours(j1,j2,j3,j4,nb_joueurs,cj);
+			verifTours(plato,j1,j2,j3,j4,nb_joueurs,cj);
 			selectione := false;
 		end
 		else if (saut_pion(plato,i_d,i_a,i_dAncien) and (saut = false)) then begin
@@ -31,6 +26,7 @@ begin
 			if not (saut_possible(i_d,i_dAncien,plato)) then begin
 				saut := false;
 				changemenTours(j1,j2,j3,j4,nb_joueurs,cj);
+				verifTours(plato,j1,j2,j3,j4,nb_joueurs,cj);
 				selectione := false;
 				i_dAncien := 0;
 			end;
@@ -43,6 +39,7 @@ begin
 				if saut_possible(i_d,i_dAncien,plato) then saut := true
 				else begin
 					changemenTours(j1,j2,j3,j4,nb_joueurs,cj);
+					verifTours(plato,j1,j2,j3,j4,nb_joueurs,cj);
 					selectione := false;
 					i_dAncien := 0;
 					saut := false;
@@ -51,6 +48,7 @@ begin
 			else begin
 					saut := false;
 					changemenTours(j1,j2,j3,j4,nb_joueurs,cj);
+					verifTours(plato,j1,j2,j3,j4,nb_joueurs,cj);
 					selectione := false;
 					i_dAncien := 0;
 			end;
@@ -71,6 +69,7 @@ begin
 		if (((i_a = i_d+10) or (i_a = i_d-9) or (i_a = i_d-11)) and (saut = false)) then begin
 			changement(plato,i_d,i_a);
 			changemenTours(j1,j2,j3,j4,nb_joueurs,cj);
+			verifTours(plato,j1,j2,j3,j4,nb_joueurs,cj);
 			selectione := false;
 		end
 		else if (saut_pion(plato,i_d,i_a,i_dAncien) and (saut = false)) then begin
@@ -81,6 +80,7 @@ begin
 			if not (saut_possible(i_d,i_dAncien,plato)) then begin
 				saut := false;
 				changemenTours(j1,j2,j3,j4,nb_joueurs,cj);
+				verifTours(plato,j1,j2,j3,j4,nb_joueurs,cj);
 				selectione := false;
 				i_dAncien := 0;
 			end;
@@ -93,6 +93,7 @@ begin
 				if saut_possible(i_d,i_dAncien,plato) then saut := true
 				else begin
 					changemenTours(j1,j2,j3,j4,nb_joueurs,cj);
+					verifTours(plato,j1,j2,j3,j4,nb_joueurs,cj);
 					selectione := false;
 					i_dAncien := 0;
 					saut := false;
@@ -101,6 +102,7 @@ begin
 			else begin
 					saut := false;
 					changemenTours(j1,j2,j3,j4,nb_joueurs,cj);
+					verifTours(plato,j1,j2,j3,j4,nb_joueurs,cj);
 					selectione := false;
 					i_dAncien := 0;
 			end;
@@ -117,6 +119,7 @@ begin
 		if (((i_a = i_d-10) or (i_a = i_d+9) or (i_a = i_d+11)) and (saut = false)) then begin
 			changement(plato,i_d,i_a);
 			changemenTours(j1,j2,j3,j4,nb_joueurs,cj);
+			verifTours(plato,j1,j2,j3,j4,nb_joueurs,cj);
 			selectione := false;
 		end
 		else if (saut_pion(plato,i_d,i_a,i_dAncien) and (saut = false)) then begin
@@ -127,6 +130,7 @@ begin
 			if not (saut_possible(i_d,i_dAncien,plato)) then begin
 				saut := false;
 				changemenTours(j1,j2,j3,j4,nb_joueurs,cj);
+				verifTours(plato,j1,j2,j3,j4,nb_joueurs,cj);
 				selectione := false;
 				i_dAncien := 0;
 			end;
@@ -139,6 +143,7 @@ begin
 				if saut_possible(i_d,i_dAncien,plato) then saut := true
 				else begin
 					changemenTours(j1,j2,j3,j4,nb_joueurs,cj);
+					verifTours(plato,j1,j2,j3,j4,nb_joueurs,cj);
 					selectione := false;
 					i_dAncien := 0;
 					saut := false;
@@ -147,6 +152,7 @@ begin
 			else begin
 				saut := false;
 				changemenTours(j1,j2,j3,j4,nb_joueurs,cj);
+				verifTours(plato,j1,j2,j3,j4,nb_joueurs,cj);
 				selectione := false;
 				i_dAncien := 0;
 			end;
@@ -163,6 +169,7 @@ begin
 		if (((i_a = i_d+1) or (i_a = i_d+9) or (i_a = i_d-11)) and (saut = false)) then begin
 			changement(plato,i_d,i_a);
 			changemenTours(j1,j2,j3,j4,nb_joueurs,cj);
+			verifTours(plato,j1,j2,j3,j4,nb_joueurs,cj);
 			selectione := false;
 		end
 		else if (saut_pion(plato,i_d,i_a,i_dAncien) and (saut = false)) then begin
@@ -173,6 +180,7 @@ begin
 			if not (saut_possible(i_d,i_dAncien,plato)) then begin
 				saut := false;
 				changemenTours(j1,j2,j3,j4,nb_joueurs,cj);
+				verifTours(plato,j1,j2,j3,j4,nb_joueurs,cj);
 				selectione := false;
 				i_dAncien := 0;
 			end;
@@ -185,6 +193,7 @@ begin
 				if saut_possible(i_d,i_dAncien,plato) then saut := true
 				else begin
 					changemenTours(j1,j2,j3,j4,nb_joueurs,cj);
+					verifTours(plato,j1,j2,j3,j4,nb_joueurs,cj);
 					selectione := false;
 					i_dAncien := 0;
 					saut := false;
@@ -193,6 +202,7 @@ begin
 			else begin
 				saut := false;
 				changemenTours(j1,j2,j3,j4,nb_joueurs,cj);
+				verifTours(plato,j1,j2,j3,j4,nb_joueurs,cj);
 				selectione := false;
 				i_dAncien := 0;
 			end;
@@ -209,6 +219,7 @@ begin
 		if (((i_a = i_d-1) or (i_a = i_d-9) or (i_a = i_d+11)) and (saut = false)) then begin
 			changement(plato,i_d,i_a);
 			changemenTours(j1,j2,j3,j4,nb_joueurs,cj);
+			verifTours(plato,j1,j2,j3,j4,nb_joueurs,cj);
 			selectione := false;
 		end
 		else if (saut_pion(plato,i_d,i_a,i_dAncien) and (saut = false)) then begin
@@ -219,6 +230,7 @@ begin
 			if not (saut_possible(i_d,i_dAncien,plato)) then begin
 				saut := false;
 				changemenTours(j1,j2,j3,j4,nb_joueurs,cj);
+				verifTours(plato,j1,j2,j3,j4,nb_joueurs,cj);
 				selectione := false;
 				i_dAncien := 0;
 			end;
@@ -231,6 +243,7 @@ begin
 				if saut_possible(i_d,i_dAncien,plato) then saut := true
 				else begin
 					changemenTours(j1,j2,j3,j4,nb_joueurs,cj);
+					verifTours(plato,j1,j2,j3,j4,nb_joueurs,cj);
 					selectione := false;
 					i_dAncien := 0;
 					saut := false;
@@ -239,6 +252,7 @@ begin
 			else begin
 				saut := false;
 				changemenTours(j1,j2,j3,j4,nb_joueurs,cj);
+				verifTours(plato,j1,j2,j3,j4,nb_joueurs,cj);
 				selectione := false;
 				i_dAncien := 0;
 			end;
@@ -259,6 +273,7 @@ begin
 		if (((i_a = i_d+11) or (i_a = i_d-11) or (i_a = i_d+9) or (i_a = i_d-9)) and (saut = false)) then begin
 			changement(plato,i_d,i_a);
 			changemenTours(j1,j2,j3,j4,nb_joueurs,cj);
+			verifTours(plato,j1,j2,j3,j4,nb_joueurs,cj);
 			selectione := false;
 		end
 		else if (saut_pion(plato,i_d,i_a,i_dAncien) and (saut = false)) then begin
@@ -269,6 +284,7 @@ begin
 			if not (saut_possible(i_d,i_dAncien,plato)) then begin
 				saut := false;
 				changemenTours(j1,j2,j3,j4,nb_joueurs,cj);
+				verifTours(plato,j1,j2,j3,j4,nb_joueurs,cj);
 				selectione := false;
 				i_dAncien := 0;
 			end;
@@ -281,6 +297,7 @@ begin
 				if saut_possible(i_d,i_dAncien,plato) then saut := true
 				else begin
 					changemenTours(j1,j2,j3,j4,nb_joueurs,cj);
+					verifTours(plato,j1,j2,j3,j4,nb_joueurs,cj);
 					selectione := false;
 					i_dAncien := 0;
 					saut := false;
@@ -289,6 +306,7 @@ begin
 			else begin
 				saut := false;
 				changemenTours(j1,j2,j3,j4,nb_joueurs,cj);
+				verifTours(plato,j1,j2,j3,j4,nb_joueurs,cj);
 				selectione := false;
 				i_dAncien := 0;
 			end;
@@ -309,6 +327,7 @@ begin
 		if (((i_a = i_d+1) or (i_a = i_d-1) or (i_a = i_d+9) or (i_a = i_d-9) or (i_a = i_d+10) or (i_a = i_d-10) or (i_a = i_d+11) or (i_a = i_d-11)) and (saut = false)) then begin
 			changement(plato,i_d,i_a);
 			changemenTours(j1,j2,j3,j4,nb_joueurs,cj);
+			verifTours(plato,j1,j2,j3,j4,nb_joueurs,cj);
 			selectione := false;
 		end
 		else if (saut_pion(plato,i_d,i_a,i_dAncien) and (saut = false)) then begin
@@ -319,6 +338,7 @@ begin
 			if not (saut_possible(i_d,i_dAncien,plato)) then begin
 				saut := false;
 				changemenTours(j1,j2,j3,j4,nb_joueurs,cj);
+				verifTours(plato,j1,j2,j3,j4,nb_joueurs,cj);
 				selectione := false;
 				i_dAncien := 0;
 			end;
@@ -331,6 +351,7 @@ begin
 				if saut_possible(i_d,i_dAncien,plato) then saut := true
 				else begin
 					changemenTours(j1,j2,j3,j4,nb_joueurs,cj);
+					verifTours(plato,j1,j2,j3,j4,nb_joueurs,cj);
 					selectione := false;
 					i_dAncien := 0;
 					saut := false;
@@ -339,6 +360,7 @@ begin
 			else begin
 				saut := false;
 				changemenTours(j1,j2,j3,j4,nb_joueurs,cj);
+				verifTours(plato,j1,j2,j3,j4,nb_joueurs,cj);
 				selectione := false;
 				i_dAncien := 0;
 			end;
@@ -355,6 +377,7 @@ end;
 
 procedure deplacement(var plato : plateauDyn;var selectione,j1,j2,j3,j4,saut : boolean; VAR i_d, i_a,i_dAncien,cj : integer; nb_joueurs : integer);
 begin
+	//CreaArbre(plato);
 ////Carré
 	if plato[i_d].p.identif = 1 then deplacementCarre(plato,selectione,j1,j2,j3,j4,saut,i_d, i_a,i_dAncien,cj,nb_joueurs)
 ////Triangle
@@ -369,5 +392,6 @@ begin
 		i_dAncien := 0;
 		selectione := false;
 	end;
+	parcourToutTableau(plato);
 end;
 end.

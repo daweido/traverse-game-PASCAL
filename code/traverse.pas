@@ -1,6 +1,6 @@
 program traverse;
 
-uses gLib2D,SDL_TTF,sysutils,plateau,menu,deplacements,highlights,fin,gagne,saveLoad;
+uses gLib2D,SDL_TTF,sysutils,plateau,menu,deplacements,highlights,fin,gagne,saveLoad,tours;
 
 var
 	plato : plateauDyn;
@@ -36,9 +36,13 @@ begin
 	selectione := false;
 	saut := false;
 	cj := 0;
+	nb_joueurs := 0;
 	while true do begin
 		jGagnant := gagnant(victoire,plato,cj);
-		if cj = 30 then effacePerdants(plato);
+		if cj = 30 then begin
+			effacePerdants(plato);
+			verifTours(plato,j1,j2,j3,j4,nb_joueurs,cj);
+		end;
 		while (sdl_update = 1) do begin
 			if (sdl_do_quit) then exit; (* Clic sur la croix pour fermer *)
 			if victoire = true then begin
@@ -55,6 +59,8 @@ begin
 							else begin
 								if mNb.id = 0 then affiPlateau(plato,tampo,selectione,j1,j2,j3,j4,saut,pause,menJou,choixNbJ,loaded,i_d,i_a,i_dAncien,cj,nb_joueurs);
 								if mNb.id = 1 then begin
+									j1 :=false;
+									j2 := true;
 									writeln('Début du jeu à 1 joueur');
 									def_nb_joueurs(plato,2);
 									nb_joueurs := 1;

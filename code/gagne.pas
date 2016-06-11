@@ -15,14 +15,14 @@ procedure effacePerdants(VAR plato : plateauDyn);
 
 Implementation
 
-FUNCTION creerNoeud (elt : INTEGER) : ptr_noeud;
+FUNCTION creerNoeudG(elt : INTEGER) : ptr_noeud;
 VAR
   nv : ptr_noeud;
 BEGIN
   new(nv);
   nv^.valeur := elt;
   nv^.suivant := Nil;
-  creerNoeud := nv;
+  creerNoeudG := nv;
 END;
 
 function joueur1Gagne(plato : plateauDyn):boolean;
@@ -37,6 +37,16 @@ begin
 			break;
 		end;
 	end;
+
+	{for j := 0 to 99 do begin
+		if plat[j].p.clr <> 2) and plat[j].p.clr <> 3) and plat[j].p.clr <> 4) then valeur := true
+		else begin
+			valeur := false;
+			break;
+		end;
+
+	end;}
+
 	joueur1Gagne := valeur;
 end;
 
@@ -157,7 +167,7 @@ function effaceNil(VAR tmp2 : ptr_noeud;VAR nul : boolean;elt : integer): ptr_no
 begin
 	dispose(tmp2);
 	nul := false;
-	effaceNil := creerNoeud(elt);
+	effaceNil := creerNoeudG(elt);
 end;
 
 function perdant(plato : plateauDyn):ptr_noeud;
@@ -172,7 +182,7 @@ begin
 	if pionRestant2(plato) then begin
 		if nul = true then tmp2 := effaceNil(tmp2,nul,2)
 		else begin
-			tmp2 := creerNoeud(2);
+			tmp2 := creerNoeudG(2);
 			tmp2^.suivant := tmp1;
 			tmp1 := tmp2;
 		end;
@@ -180,7 +190,7 @@ begin
 	if pionRestant3(plato) then begin
 		if nul = true then tmp2 := effaceNil(tmp2,nul,3)
 		else begin
-			tmp2 := creerNoeud(3);
+			tmp2 := creerNoeudG(3);
 			tmp2^.suivant := tmp1;
 			tmp1 := tmp2;
 		end;
@@ -188,7 +198,7 @@ begin
 	if pionRestant4(plato) then begin
 		if nul = true then tmp2 := effaceNil(tmp2,nul,4)
 		else begin
-			tmp2 := creerNoeud(4);
+			tmp2 := creerNoeudG(4);
 			tmp2^.suivant := tmp1;
 		end;
 	end;
