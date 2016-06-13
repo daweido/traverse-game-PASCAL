@@ -196,6 +196,11 @@ begin
 	else gamePause := true;
 end;
 
+procedure actionPause(var pause : boolean);
+begin
+	if ((sdl_get_keypressed = SDLK_ESCAPE) {or ((sdl_get_mouse_x < x_max) and (sdl_get_mouse_x > x_min) and (sdl_get_mouse_y < y_max) and (sdl_get_mouse_y > y_min))}) then pause := gamePause(pause);
+end;
+
 procedure affiPlateau(VAR plato : plateauDyn;VAR tampo,selectione,j1,j2,j3,j4,saut,pause,menJou,choixNbJ,loaded : boolean;VAR i_d, i_a,i_dAncien,cj : integer;nb_joueurs : integer);
 var
 	i : integer;
@@ -204,7 +209,7 @@ begin
 	for i := 0 to 99 do gFillRect(plato[i].x,plato[i].y,60,60,plato[i].couleur);
 	gDrawRect(200,75,600,600,BLACK);
 	affiPions(plato);
-	if (sdl_get_keypressed = SDLK_ESCAPE) then pause := gamePause(pause);
+	actionPause(pause);
 	if pause then drawMenuPause(tampo,pause,menJou,choixNbJ,j1,j2,j3,j4,loaded,plato,cj,nb_joueurs)
 	else if (nb_joueurs = 1) and (not j1) then IA(plato,selectione,j1,j2,j3,j4,saut,i_dAncien,cj,nb_joueurs)
 	else selectionCase(plato,selectione,j1,j2,j3,j4,saut,i_d,i_a,i_dAncien,cj,nb_joueurs);

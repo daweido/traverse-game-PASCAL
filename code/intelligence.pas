@@ -77,9 +77,8 @@ var
 	i_dd,i_aa : integer;
 begin
 	writeln('cj =',cj);
-	parcourToutTableau(plato);
-	//CreaArbre(plato);
-	if cj < 12 then premier_depl(cj,i_dd,i_aa,i_dAncien,saut,selectione,j1,j2,j3,j4,nb_joueurs);
+	if cj < 12 then premier_depl(cj,i_dd,i_aa,i_dAncien,saut,selectione,j1,j2,j3,j4,nb_joueurs)
+	else CreaArbre(plato,i_dd,i_aa);
 	deplacement(plato,selectione,j1,j2,j3,j4,saut,i_dd,i_aa,i_dAncien,cj,nb_joueurs);
 	if j1 = true then writeln('J1 TRUE')
 	else writeln('J2 TRUE');

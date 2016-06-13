@@ -27,6 +27,12 @@ begin
 	plato[i].p.identif := 0;
 	plato[i].p.clr := 0;
 	end;
+//////Partie Inaccessible/////
+	plato[0].p.identif := 5;
+	plato[9].p.identif := 5;
+	plato[90].p.identif := 5;
+	plato[99].p.identif := 5;
+/////////Tours////
 	reinitialiser_tours(j1,j2,j3,j4,cj);
 end;
 

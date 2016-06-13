@@ -5,11 +5,13 @@ uses highlights,changements;
 TYPE pnoeud = ^noeud;
 pfils = ^fils;
 fils=RECORD
+		precedent : pnoeud;
     courant:pnoeud;
     suivant:pfils;
     END;
 noeud = RECORD
-    valeur,i_dep,i_arr:INTEGER;
+    i_dep,i_arr:INTEGER;
+		valeur : real;
 		platEval : plateauDyn;
     listefils:pfils;
 END;
@@ -65,6 +67,7 @@ BEGIN
     new(tmp2);
     tmp2^.courant:=creerNoeudA(val,id,ia,plat);
     tmp2^.suivant:=nil;
+		tmp2^.precedent := sommet;
     IF (sommet^.listefils = Nil) then
     begin
         sommet^.listefils:=tmp2;
@@ -87,6 +90,8 @@ BEGIN
 		writeln('i_d : ',sommet^.i_dep,' i_a : ',sommet^.i_arr);
     IF (sommet^.listefils<>nil) THEN
     BEGIN
+			writeln('Précédent de liste des fils de : ',sommet^.valeur);
+			writeln(sommet^.listefils^.precedent^.valeur);
         WRITELN('liste des fils de : ', sommet^.valeur);
         tmp:=sommet^.listefils;
         WHILE(tmp<>nil) DO
@@ -103,22 +108,22 @@ procedure depICarr(plato : plateauDyn;i : integer;sommet : pnoeud);
 var
 	platoC0 : plateauDyn;
 begin
-	if (plato[i+10].p.identif = 0) then begin
+	if ((i <= 89) and (plato[i+10].p.identif = 0)) then begin
 		platoC0 := copiePlat(plato);
 		changement(platoC0,i,i+10);
 		sommet := ajoutfils(0,i,i+10,platoC0,sommet);
 	end;
-	if (plato[i-10].p.identif = 0) then begin
+	if ((i >= 10) and (plato[i-10].p.identif = 0)) then begin
 		platoC0 := copiePlat(plato);
 		changement(platoC0,i,i-10);
 		sommet := ajoutfils(0,i,i-10,platoC0,sommet);
 	end;
-	if (plato[i+1].p.identif = 0) then begin
+	if ((i <= 98) and (plato[i+1].p.identif = 0)) then begin
 		platoC0 := copiePlat(plato);
 		changement(platoC0,i,i+1);
 		sommet := ajoutfils(0,i,i+1,platoC0,sommet);
 	end;
-	if (plato[i-1].p.identif = 0) then begin
+	if ((i >= 1) and (plato[i-1].p.identif = 0)) then begin
 		platoC0 := copiePlat(plato);
 		changement(platoC0,i,i-1);
 		sommet := ajoutfils(0,i,i-1,platoC0,sommet);
@@ -129,17 +134,17 @@ procedure depITria1(plato : plateauDyn;i : integer;sommet : pnoeud);
 var
 	platoT0 : plateauDyn;
 begin
-	if (plato[i+10].p.identif = 0) then begin
+	if ((i <= 89) and (plato[i+10].p.identif = 0)) then begin
 		platoT0 := copiePlat(plato);
 		changement(platoT0,i,i+10);
 		sommet := ajoutfils(0,i,i+10,platoT0,sommet);
 	end;
-	if (plato[i-9].p.identif = 0) then begin
+	if ((i >= 9) and (plato[i-9].p.identif = 0)) then begin
 		platoT0 := copiePlat(plato);
 		changement(platoT0,i,i-9);
 		sommet := ajoutfils(0,i,i-9,platoT0,sommet);
 	end;
-	if (plato[i-11].p.identif = 0) then begin
+	if ((i >= 11) and (plato[i-11].p.identif = 0)) then begin
 		platoT0 := copiePlat(plato);
 		changement(platoT0,i,i-11);
 		sommet := ajoutfils(0,i,i-11,platoT0,sommet);
@@ -150,43 +155,45 @@ procedure depITria2(plato : plateauDyn;i : integer;sommet : pnoeud);
 var
 	platoT0 : plateauDyn;
 begin
-	if (plato[i-10].p.identif = 0) then begin
+	if ((i >= 10) and (plato[i-10].p.identif = 0)) then begin
 		platoT0 := copiePlat(plato);
 		changement(platoT0,i,i+10);
-		sommet := ajoutfils(0,i,i+10,platoT0,sommet);
+		sommet := ajoutfils(0,i,i-10,platoT0,sommet);
 	end;
-	if (plato[i+9].p.identif = 0) then begin
+
+	if ((i <= 90) and (plato[i+9].p.identif = 0)) then begin
 		platoT0 := copiePlat(plato);
-		changement(platoT0,i,i-9);
-		sommet := ajoutfils(0,i,i-9,platoT0,sommet);
+		changement(platoT0,i,i+9);
+		sommet := ajoutfils(0,i,i+9,platoT0,sommet);
 	end;
-	if (plato[i+11].p.identif = 0) then begin
+	if ((i <= 88) and (plato[i+11].p.identif = 0)) then begin
 		platoT0 := copiePlat(plato);
-		changement(platoT0,i,i-11);
-		sommet := ajoutfils(0,i,i-11,platoT0,sommet);
+		changement(platoT0,i,i+11);
+		sommet := ajoutfils(0,i,i+11,platoT0,sommet);
 	end;
+
 end;
 ////////Losange
 procedure depILos(plato : plateauDyn;i : integer;sommet : pnoeud);
 var
 	platoL0 : plateauDyn;
 begin
-	if (plato[i+11].p.identif = 0) then begin
+	if ((i <= 88) and (plato[i+11].p.identif = 0)) then begin
 		platoL0 := copiePlat(plato);
 		changement(platoL0,i,i+11);
 		sommet := ajoutfils(0,i,i+11,platoL0,sommet);
 	end;
-	if (plato[i-11].p.identif = 0) then begin
+	if ((i >= 11) and (plato[i-11].p.identif = 0)) then begin
 		platoL0 := copiePlat(plato);
 		changement(platoL0,i,i-11);
 		sommet := ajoutfils(0,i,i-11,platoL0,sommet);
 	end;
-	if (plato[i+9].p.identif = 0) then begin
+	if ((i <= 9) and (plato[i+9].p.identif = 0)) then begin
 		platoL0 := copiePlat(plato);
 		changement(platoL0,i,i+9);
 		sommet := ajoutfils(0,i,i+9,platoL0,sommet);
 	end;
-	if (plato[i-9].p.identif = 0) then begin
+	if ((i >= 9) and (plato[i-9].p.identif = 0)) then begin
 		platoL0 := copiePlat(plato);
 		changement(platoL0,i,i-9);
 		sommet := ajoutfils(0,i,i-9,platoL0,sommet);
@@ -197,46 +204,42 @@ procedure depICerc(plato : plateauDyn;i : integer;sommet : pnoeud);
 var
 	platoCe0 : plateauDyn;
 begin
-	if (plato[i+1].p.identif = 0) then begin
+	if ((i <= 98) and (plato[i+1].p.identif = 0)) then begin
 		platoCe0 := copiePlat(plato);
-		writeln('PlatoCe0 : ',platoCe0[i].p.identif,'   plato : ',plato[i].p.identif,'    i: ',i);
 		changement(platoCe0,i,i+1);
 		sommet := ajoutfils(0,i,i+1,platoCe0,sommet);
 	end;
-	if (plato[i-1].p.identif = 0) then begin
+	if ((i >= 1) and (plato[i-1].p.identif = 0)) then begin
 		platoCe0 := copiePlat(plato);
 		changement(platoCe0,i,i-1);
 		sommet := ajoutfils(0,i,i-1,platoCe0,sommet);
 	end;
-	if (plato[i+9].p.identif = 0) then begin
+	if ((i <= 90) and (plato[i+9].p.identif = 0)) then begin
 		platoCe0 := copiePlat(plato);
-		writeln('PlatoCe0 : ',platoCe0[i].p.identif,'   plato : ',plato[i].p.identif,'    i: ',i);
 		changement(platoCe0,i,i+9);
 		sommet := ajoutfils(0,i,i+9,platoCe0,sommet);
 	end;
-	if (plato[i-9].p.identif = 0) then begin
+	if ((i >= 9) and (plato[i-9].p.identif = 0)) then begin
 		platoCe0 := copiePlat(plato);
 		changement(platoCe0,i,i-9);
 		sommet := ajoutfils(0,i,i-9,platoCe0,sommet);
 	end;
-	if (plato[i+10].p.identif = 0) then begin
+	if ((i <= 89) and (plato[i+10].p.identif = 0)) then begin
 		platoCe0 := copiePlat(plato);
-		writeln('PlatoCe0 : ',platoCe0[i].p.identif,'   plato : ',plato[i].p.identif,'    i: ',i);
 		changement(platoCe0,i,i+10);
 		sommet := ajoutfils(0,i,i+10,platoCe0,sommet);
 	end;
-	if (plato[i-10].p.identif = 0) then begin
+	if ((i >= 10) and (plato[i-10].p.identif = 0)) then begin
 		platoCe0 := copiePlat(plato);
 		changement(platoCe0,i,i-10);
 		sommet := ajoutfils(0,i,i-10,platoCe0,sommet);
 	end;
-	if (plato[i+11].p.identif = 0) then begin
+	if ((i <= 88) and (plato[i+11].p.identif = 0)) then begin
 		platoCe0 := copiePlat(plato);
-		writeln('PlatoCe0 : ',platoCe0[i].p.identif,'   plato : ',plato[i].p.identif,'    i: ',i);
 		changement(platoCe0,i,i+11);
 		sommet := ajoutfils(0,i,i+11,platoCe0,sommet);
 	end;
-	if (plato[i-11].p.identif = 0) then begin
+	if ((i >= 11) and (plato[i-11].p.identif = 0)) then begin
 		platoCe0 := copiePlat(plato);
 		changement(platoCe0,i,i-11);
 		sommet := ajoutfils(0,i,i-11,platoCe0,sommet);

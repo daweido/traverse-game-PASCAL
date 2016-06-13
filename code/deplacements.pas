@@ -9,10 +9,20 @@ Implementation
 
 
 
+{function verifDepl(plato : plateauDyn;i_d,i_a : integer):boolean;
+begin
+	if entrerHighDep(i) then begin
+		if highlightDepart1(plato,i_d,i) or highlightDepart2(plato,i_d,i) or highlightDepart3(plato,i_d,i) or highlightDepart4(plato,i_d,i) then verifDepl := true
+		else verifDepl := false;
+	end
+	else verifDepl := true;
+end;}
+
+
 procedure deplacementCarre(var plato : plateauDyn;var selectione,j1,j2,j3,j4,saut : boolean; VAR i_d, i_a,i_dAncien,cj : integer; nb_joueurs : integer);
 begin
 	if (plato[i_d].p.clr = 1) or (plato[i_d].p.clr = 2) or (plato[i_d].p.clr = 3) or (plato[i_d].p.clr = 4) then begin
-		if ((saut = false) and ((i_a = i_d+1) or (i_a = i_d-1) or (i_a = i_d+10) or (i_a = i_d-10))) then begin
+		if ((saut = false) and ((i_a = i_d+1) or (i_a = i_d-1) or (i_a = i_d+10) or (i_a = i_d-10)) and highlightDepart(plato,i_d,i_a) and not(TraverseTableau(i_d,i_a))) then begin
 			changement(plato,i_d,i_a);
 			changemenTours(j1,j2,j3,j4,nb_joueurs,cj);
 			verifTours(plato,j1,j2,j3,j4,nb_joueurs,cj);
@@ -66,7 +76,7 @@ end;
 procedure deplacementTriangle(var plato : plateauDyn;var selectione,j1,j2,j3,j4,saut : boolean; VAR i_d, i_a,i_dAncien,cj : integer; nb_joueurs : integer);
 begin
 	if (plato[i_d].p.clr = 1) then begin
-		if (((i_a = i_d+10) or (i_a = i_d-9) or (i_a = i_d-11)) and (saut = false)) then begin
+		if (((i_a = i_d+10) or (i_a = i_d-9) or (i_a = i_d-11)) and (saut = false) and highlightDepart(plato,i_d,i_a) and not(TraverseTableau(i_d,i_a))) then begin
 			changement(plato,i_d,i_a);
 			changemenTours(j1,j2,j3,j4,nb_joueurs,cj);
 			verifTours(plato,j1,j2,j3,j4,nb_joueurs,cj);
@@ -116,7 +126,7 @@ begin
 		end;
 	end
 	else if (plato[i_d].p.clr = 2) then begin
-		if (((i_a = i_d-10) or (i_a = i_d+9) or (i_a = i_d+11)) and (saut = false)) then begin
+		if (((i_a = i_d-10) or (i_a = i_d+9) or (i_a = i_d+11)) and (saut = false) and highlightDepart(plato,i_d,i_a) and not(TraverseTableau(i_d,i_a))) then begin
 			changement(plato,i_d,i_a);
 			changemenTours(j1,j2,j3,j4,nb_joueurs,cj);
 			verifTours(plato,j1,j2,j3,j4,nb_joueurs,cj);
@@ -166,7 +176,7 @@ begin
 		end;
 	end
 	else if (plato[i_d].p.clr = 3) then begin
-		if (((i_a = i_d+1) or (i_a = i_d+9) or (i_a = i_d-11)) and (saut = false)) then begin
+		if (((i_a = i_d+1) or (i_a = i_d+9) or (i_a = i_d-11)) and (saut = false) and highlightDepart(plato,i_d,i_a) and not(TraverseTableau(i_d,i_a))) then begin
 			changement(plato,i_d,i_a);
 			changemenTours(j1,j2,j3,j4,nb_joueurs,cj);
 			verifTours(plato,j1,j2,j3,j4,nb_joueurs,cj);
@@ -216,7 +226,7 @@ begin
 		end;
 	end
 	else begin
-		if (((i_a = i_d-1) or (i_a = i_d-9) or (i_a = i_d+11)) and (saut = false)) then begin
+		if (((i_a = i_d-1) or (i_a = i_d-9) or (i_a = i_d+11)) and (saut = false) and highlightDepart(plato,i_d,i_a) and not(TraverseTableau(i_d,i_a))) then begin
 			changement(plato,i_d,i_a);
 			changemenTours(j1,j2,j3,j4,nb_joueurs,cj);
 			verifTours(plato,j1,j2,j3,j4,nb_joueurs,cj);
@@ -270,7 +280,7 @@ end;
 procedure deplacementLosange(var plato : plateauDyn;var selectione,j1,j2,j3,j4,saut : boolean; VAR i_d, i_a,i_dAncien,cj : integer; nb_joueurs : integer);
 begin
 	if (plato[i_d].p.clr = 1) or (plato[i_d].p.clr = 2) or (plato[i_d].p.clr = 3) or (plato[i_d].p.clr = 4) then begin
-		if (((i_a = i_d+11) or (i_a = i_d-11) or (i_a = i_d+9) or (i_a = i_d-9)) and (saut = false)) then begin
+		if (((i_a = i_d+11) or (i_a = i_d-11) or (i_a = i_d+9) or (i_a = i_d-9)) and (saut = false) and highlightDepart(plato,i_d,i_a) and not(TraverseTableau(i_d,i_a))) then begin
 			changement(plato,i_d,i_a);
 			changemenTours(j1,j2,j3,j4,nb_joueurs,cj);
 			verifTours(plato,j1,j2,j3,j4,nb_joueurs,cj);
@@ -324,7 +334,7 @@ end;
 procedure deplacementCercle(var plato : plateauDyn;var selectione,j1,j2,j3,j4,saut : boolean; VAR i_d, i_a,i_dAncien,cj : integer; nb_joueurs : integer);
 begin
 	if (plato[i_d].p.clr = 1) or (plato[i_d].p.clr = 2) or (plato[i_d].p.clr = 3) or (plato[i_d].p.clr = 4) then begin
-		if (((i_a = i_d+1) or (i_a = i_d-1) or (i_a = i_d+9) or (i_a = i_d-9) or (i_a = i_d+10) or (i_a = i_d-10) or (i_a = i_d+11) or (i_a = i_d-11)) and (saut = false)) then begin
+		if (((i_a = i_d+1) or (i_a = i_d-1) or (i_a = i_d+9) or (i_a = i_d-9) or (i_a = i_d+10) or (i_a = i_d-10) or (i_a = i_d+11) or (i_a = i_d-11)) and (saut = false) and highlightDepart(plato,i_d,i_a) and not(TraverseTableau(i_d,i_a))) then begin
 			changement(plato,i_d,i_a);
 			changemenTours(j1,j2,j3,j4,nb_joueurs,cj);
 			verifTours(plato,j1,j2,j3,j4,nb_joueurs,cj);
@@ -392,6 +402,5 @@ begin
 		i_dAncien := 0;
 		selectione := false;
 	end;
-	parcourToutTableau(plato);
 end;
 end.

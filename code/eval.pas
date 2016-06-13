@@ -8,102 +8,294 @@ const
 	val_tri = 1.5;
 	val_los = 1.75;
 
-procedure parcourToutTableau(plato : plateauDyn);
+function parcourToutTableau(plato : plateauDyn): real;
 
 Implementation
 
 //Fonction d'évaluation
+//Si entourage non vide, alors regarder la nature du pion et voir si il peut nous sauter ou non.
+//Passer les conditions d'entourage dans une fonction boolenne et qui ressort un boolean inclus avec sautable ou non. fonction pour joueur1 et 2 sont différentes.
 
-function evalDep_car1(plato : plateauDyn;i : integer): integer;
+
+function sautable1(i : integer;plato : plateauDyn): boolean;
 var
-	res : integer;
+	sauta : boolean;
+begin
+	sauta := false;
+	if (i-11 >= 0) and (not sauta) then begin
+		if (((plato[i-11].p.identif = 2) or (plato[i-11].p.identif = 3) or (plato[i-11].p.identif = 4)) and (plato[i-11].p.clr = 2)) then sauta := true;
+	end;
+
+	if (i-10 >= 0) and (not sauta) then begin
+		if (((plato[i-10].p.identif = 1) or (plato[i-10].p.identif = 4)) and (plato[i-10].p.clr = 2)) then sauta := true;
+	end;
+
+	if (i-9 >= 0) and (not sauta) then begin
+		if (((plato[i-9].p.identif = 2) or (plato[i-9].p.identif = 3) or (plato[i-9].p.identif = 4)) and (plato[i-9].p.clr = 2)) then sauta := true;
+	end;
+
+	if (i-1 >= 0) and (not sauta) then begin
+		if (((plato[i-1].p.identif = 1) or (plato[i-1].p.identif = 4)) and (plato[i-1].p.clr = 2)) then sauta := true;
+	end;
+
+	if (i+1 <= 99) and (not sauta) then begin
+		if (((plato[i+1].p.identif = 1) or (plato[i+1].p.identif = 4)) and (plato[i+1].p.clr = 2))  then sauta := true;
+	end;
+
+	sautable1 := sauta;
+end;
+
+function sautable2(i : integer;plato : plateauDyn): boolean;
+var
+	sauta : boolean;
+begin
+	sauta := false;
+	if (i+11 <= 99) and (not sauta) then begin
+		if (((plato[i+11].p.identif = 2) or (plato[i+11].p.identif = 3) or (plato[i+11].p.identif = 4)) and (plato[i+11].p.clr =1)) then sauta := true;
+	end;
+
+	if (i+10 <= 99) and (not sauta) then begin
+		if (((plato[i+10].p.identif = 1) or (plato[i+10].p.identif = 4)) and (plato[i+10].p.clr =1)) then sauta := true;
+	end;
+
+	if (i+9 <= 99) and (not sauta) then begin
+		if (((plato[i+9].p.identif = 2) or (plato[i+9].p.identif = 3) or (plato[i+9].p.identif = 4)) and (plato[i+9].p.clr =1)) then sauta := true;
+	end;
+
+	if (i+1 <= 99) and (not sauta) then begin
+		if (((plato[i+1].p.identif = 1) or (plato[i+1].p.identif = 4)) and (plato[i+1].p.clr =1)) then sauta := true;
+	end;
+
+	if (i-1 >= 0) and (not sauta) then begin
+		if (((plato[i-1].p.identif = 1) or (plato[i-1].p.identif = 4)) and (plato[i-1].p.clr =1)) then sauta := true;
+	end;
+
+	sautable2 := sauta;
+end;
+
+function evalDep_car1(plato : plateauDyn;i : integer): real;
+var
+	res : real;
 begin
 	res := 0;
-		if (plato[i-10].p.identif = 0) then res += 1;
-		if (((i > 20) and (plato[i-20].p.identif = 0)) and (plato[i-10].p.identif <> 0)) then res += 2;
+		if (plato[i-10].p.identif = 0) then begin
+			if sautable1(i-10,plato) then res += 0
+			else res += 1;
+		end;
+
+		if (((i > 20) and (plato[i-20].p.identif = 0)) and (plato[i-10].p.identif <> 0)) then begin
+			if sautable1(i-20,plato) then res += 0
+			else res += 2;
+		end;
 	evalDep_car1 := res;
 end;
 
-function evalDep_car2(plato : plateauDyn;i : integer): integer;
+function evalDep_car2(plato : plateauDyn;i : integer): real;
 var
-	res : integer;
+	res : real;
 begin
 	res := 0;
-		if (plato[i+10].p.identif = 0) then res += 1;
-		if (((i < 79) and (plato[i+20].p.identif = 0)) and (plato[i+10].p.identif <> 0)) then res += 2;
+		if (plato[i+10].p.identif = 0) then begin
+			if sautable2(i+10,plato) then res += 0
+			else res += 1;
+		end;
+
+		if (((i < 79) and (plato[i+20].p.identif = 0)) and (plato[i+10].p.identif <> 0)) then begin
+			if sautable2(i+20,plato) then res += 0
+			else res += 2;
+		end;
 	evalDep_car2 := res;
 end;
 
-function evalDep_tri1(plato : plateauDyn;i : integer): integer;
+function evalDep_tri1(plato : plateauDyn;i : integer): real;
 var
-	res : integer;
+	res : real;
 begin
 	res := 0;
-		if ((plato[i-9].p.identif = 0) or (plato[i-11].p.identif = 0)) then res += 1;
-		if (((plato[i-9].p.identif <> 0) and ((i > 18) and (plato[i-18].p.identif = 0))) or
-			((plato[i-11].p.identif <> 0) and ((i > 22) and (plato[i-22].p.identif = 0)))) then res += 2;
+		if (plato[i-9].p.identif = 0) then begin
+			if sautable1(i-9,plato) then res += 0
+			else res += 1;
+		end;
+
+
+		if (plato[i-11].p.identif = 0) then begin
+			if sautable1(i-11,plato) then res += 0
+			else res += 1;
+		end;
+
+		if ((plato[i-9].p.identif <> 0) and ((i > 18) and (plato[i-18].p.identif = 0))) then begin
+			if sautable1(i-18,plato) then res += 0
+			else res += 2;
+		end;
+
+			if ((plato[i-11].p.identif <> 0) and ((i > 22) and (plato[i-22].p.identif = 0))) then begin
+				if sautable1(i-22,plato) then res += 0
+				else res += 2;
+			end;
 	evalDep_tri1 := res;
 end;
 
-function evalDep_tri2(plato : plateauDyn;i : integer): integer;
+function evalDep_tri2(plato : plateauDyn;i : integer): real;
 var
-	res : integer;
+	res : real;
 begin
 	res := 0;
-		if ((plato[i+9].p.identif = 0) or (plato[i+11].p.identif = 0)) then res += 1;
-		if (((plato[i+9].p.identif <> 0) and ((i < 81) and (plato[i+18].p.identif = 0))) or
-			((plato[i+11].p.identif <> 0)
-			 and ((i < 77) and (plato[i+22].p.identif = 0)))) then res += 2;
-	evalDep_tri2 := res;
+	if (plato[i+9].p.identif = 0) then begin
+		if sautable2(i+9,plato) then res += 0
+		else res += 1;
+	end;
+
+	if (plato[i+11].p.identif = 0) then begin
+		if sautable2(i+11,plato) then res += 0
+		else res += 1;
+	end;
+
+	if ((plato[i+9].p.identif <> 0) and ((i < 81) and (plato[i+18].p.identif = 0))) then begin
+		if sautable2(i+18,plato) then res += 0
+		else res += 2;
+	end;
+
+	if ((plato[i+11].p.identif <> 0) and ((i < 77) and (plato[i+22].p.identif = 0))) then begin
+		if sautable2(i+22,plato) then res += 0
+		else res += 2;
+	end;
+evalDep_tri2 := res;
 end;
 
-function evalDep_los1(plato : plateauDyn;i : integer): integer;
+function evalDep_los1(plato : plateauDyn;i : integer): real;
 var
-	res : integer;
+	res : real;
 begin
 	res := 0;
-	if ((plato[i-11].p.identif = 0) or (plato[i-9].p.identif = 0)) then res += 1;
-	if (((plato[i-9].p.identif <> 0) and ((i > 18) and (plato[i-18].p.identif = 0))) or
-		 ((plato[i-11].p.identif <> 0) and ((i > 22) and (plato[i-22].p.identif = 0)))) then res += 2;
+	if (plato[i-11].p.identif = 0) then begin
+		if sautable1(i-11,plato) then res += 0
+		else res += 1;
+	end;
+
+	if (plato[i-9].p.identif = 0) then begin
+		if sautable1(i-9,plato) then res += 0
+		else res += 1;
+	end;
+
+	if ((plato[i-9].p.identif <> 0) and ((i > 18) and (plato[i-18].p.identif = 0))) then begin
+		if sautable1(i-18,plato) then res += 0
+		else res += 2;
+	end;
+
+	if ((plato[i-11].p.identif <> 0) and ((i > 22) and (plato[i-22].p.identif = 0))) then begin
+		if sautable1(i-22,plato) then res += 0
+		else res += 2;
+	end;
 	evalDep_los1 := res;
 end;
 
-function evalDep_los2(plato : plateauDyn;i : integer): integer;
+function evalDep_los2(plato : plateauDyn;i : integer): real;
 var
-	res : integer;
+	res : real;
 begin
 	res := 0;
-	if ((plato[i+11].p.identif = 0) or (plato[i+9].p.identif = 0)) then res += 1;
-	if (((plato[i+9].p.identif <> 0) and ((i < 81) and (plato[i+18].p.identif = 0))) or
-		 ((plato[i+11].p.identif <> 0) and ((i < 77) and (plato[i+22].p.identif = 0)))) then res += 2;
-	evalDep_los2 := res;
+
+	if (plato[i+11].p.identif = 0) then begin
+		if sautable2(i+11,plato) then res += 0
+		else res += 1;
+	end;
+
+	if (plato[i+9].p.identif = 0) then begin
+		if sautable2(i+9,plato) then res += 0
+		else res += 1;
+	end;
+
+	if ((plato[i+9].p.identif <> 0) and ((i < 81) and (plato[i+18].p.identif = 0))) then begin
+		if sautable2(i+18,plato) then res += 0
+		else res += 2;
+	end;
+
+	if ((plato[i+11].p.identif <> 0) and ((i < 77) and (plato[i+22].p.identif = 0))) then begin
+		if sautable2(i+22,plato) then res += 0
+		else res += 2;
+	end;
+
+evalDep_los2 := res;
 end;
 
-function evalDep_cer1(plato : plateauDyn;i : integer):integer;
+function evalDep_cer1(plato : plateauDyn;i : integer):real;
 var
-	res : integer;
+	res : real;
 begin
 	res := 0;
-	if ((plato[i-11].p.identif = 0) or (plato[i-9].p.identif = 0) or (plato[i-10].p.identif = 0)) then res += 1;
-	if (((plato[i-9].p.identif <> 0) and ((i > 18) and (plato[i-18].p.identif = 0))) or
-		 ((plato[i-11].p.identif <> 0) and ((i > 22) and (plato[i-22].p.identif = 0))) or ((i > 20) and ((plato[i-20].p.identif = 0) and (plato[i-10].p.identif <> 0)))) then res += 2;
+	if (plato[i-11].p.identif = 0) then begin
+		if sautable1(i-11,plato) then res += 0
+		else res += 1;
+	end;
+
+	if (plato[i-9].p.identif = 0) then begin
+		if sautable1(i-9,plato) then res += 0
+		else res += 1;
+	end;
+
+	if (plato[i-10].p.identif = 0) then begin
+		if sautable1(i-10,plato) then res += 0
+		else res += 1;
+	end;
+
+	if ((plato[i-9].p.identif <> 0) and ((i > 18) and (plato[i-18].p.identif = 0))) then begin
+		if sautable1(i-18,plato) then res += 0
+		else res += 2;
+	end;
+
+	if ((plato[i-11].p.identif <> 0) and ((i > 22) and (plato[i-22].p.identif = 0))) then begin
+		if sautable1(i-22,plato) then res += 0
+		else res += 2;
+	end;
+
+	if ((i > 20) and ((plato[i-20].p.identif = 0) and (plato[i-10].p.identif <> 0))) then begin
+		if sautable1(i-20,plato) then res += 0
+		else res += 1;
+	end;
 	evalDep_cer1 := res;
 end;
 
-function evalDep_cer2(plato : plateauDyn;i : integer):integer;
+function evalDep_cer2(plato : plateauDyn;i : integer):real;
 var
-	res : integer;
+	res : real;
 begin
 	res := 0;
-	if ((plato[i+11].p.identif = 0) or (plato[i+9].p.identif = 0) or (plato[i+10].p.identif = 0)) then res += 1;
-	if (((plato[i+9].p.identif <> 0) and ((i < 81) and (plato[i+18].p.identif = 0))) or
-		 ((plato[i+11].p.identif <> 0) and ((i < 77) and (plato[i+22].p.identif = 0))) or ((i < 79) and ((plato[i+20].p.identif = 0) and (plato[i+10].p.identif <> 0)))) then res += 2;
-	evalDep_cer2 := res;
+	if (plato[i+11].p.identif = 0) then begin
+		if sautable2(i+11,plato) then res += 0
+		else res += 1;
+	end;
+
+	if (plato[i+9].p.identif = 0) then begin
+		if sautable2(i+9,plato) then res += 0
+		else res += 1;
+	end;
+
+	if (plato[i+10].p.identif = 0) then begin
+		if sautable2(i+10,plato) then res += 0
+		else res += 1;
+	end;
+
+	if ((plato[i+9].p.identif <> 0) and ((i < 81) and (plato[i+18].p.identif = 0))) then begin
+		if sautable2(i+18,plato) then res += 0
+		else res += 2;
+	end;
+
+	if ((plato[i+11].p.identif <> 0) and ((i < 77) and (plato[i+22].p.identif = 0))) then begin
+		if sautable2(i+22,plato) then res += 0
+		else res += 2;
+	end;
+
+	if ((i < 79) and ((plato[i+20].p.identif = 0) and (plato[i+10].p.identif <> 0))) then begin
+		if sautable2(i+20,plato) then res += 0
+		else res += 2;
+	end;
+
+evalDep_cer2 := res;
 end;
 
-function evalDep(plato : plateauDyn;i : integer):integer;
+function evalDep(plato : plateauDyn;i : integer):real;
 var
-	evalDep_num : integer;
+	evalDep_num : real;
 begin
 	evalDep_num := 0;
 	if plato[i].p.identif = 1 then begin
@@ -187,11 +379,11 @@ begin
 dep := evalDep(plato,i);
 emp := evalEmp(plato,i);
 nat := evalNat(plato,i);
-
 evalPion := nat*(dep+emp);
 end;
 
-procedure parcourToutTableau(plato : plateauDyn);
+
+function parcourToutTableau(plato : plateauDyn): real;
 var
 	i : integer;
 	evalplato1,evalplato2,evalplat : real;
@@ -203,8 +395,8 @@ begin
 		if plato[i].p.clr = 2 then evalplato2 += evalPion(plato,i);
 	end;
 	evalplat := evalplato2 - evalplato1;
-	writeln('Valeur du plateau j1 : ',evalplato1:5:3);
-	writeln('Valeur du plateau j2 : ',evalplato2:5:3);
 	writeln('Valeur plateau général : ',evalplat:5:3);
+	parcourToutTableau := evalplat;
 end;
+
 end.

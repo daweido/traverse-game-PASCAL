@@ -20,6 +20,9 @@ type
 
 function casesCote(plato : plateauDyn;i_a,i_d : integer): boolean;
 procedure highlight(plato : plateauDyn;i_d,i_dAncien : integer;saut : boolean);
+function highlightDepart(plato : plateauDyn;i_d,i : integer): boolean;
+function TraverseTableau(i_d,i_a : integer): boolean;
+
 
 Implementation
 
@@ -193,6 +196,57 @@ begin
 		gEnd();
 	end;
 end;
+//////////Traversé du tableau//////////
+function deplDroiteGauche(i_d,i_a : integer): boolean;
+begin
+	if (((i_a = 10) or
+	(i_a = 1) or (i_a = 11) or (i_a = 20) or (i_a = 21) or (i_a = 30) or (i_a = 31) or
+	(i_a = 40) or (i_a = 41) or (i_a = 50) or (i_a = 51) or (i_a = 60) or (i_a = 61) or
+	(i_a = 70) or (i_a = 71) or (i_a = 80) or (i_a = 81) or (i_a = 91)) and ((i_d = 8) or
+	(i_d = 18) or (i_d = 28) or (i_d = 38) or (i_d = 48) or (i_d = 58) or (i_d = 68) or
+	(i_d = 78) or (i_d = 88) or (i_d = 19) or (i_d = 29) or (i_d = 39) or (i_d = 49) or
+	(i_d = 59) or (i_d = 69) or (i_d = 79) or (i_d = 89) or (i_d = 98))) then deplDroiteGauche := true
+	else deplDroiteGauche := false;
+end;
+
+function deplGaucheDroite(i_d,i_a : integer):boolean;
+begin
+	if (((i_d = 10) or (i_d = 1) or (i_d = 11) or (i_d = 20) or (i_d = 21) or (i_d = 30) or (i_d = 31) or
+		(i_d = 40) or (i_d = 41) or (i_d = 50) or (i_d = 51) or (i_d = 60) or (i_d = 61) or
+		(i_d = 70) or (i_d = 71) or (i_d = 80) or (i_d = 81) or (i_d = 91)) and ((i_a = 8) or
+		(i_a = 18) or (i_a = 28) or (i_a = 38) or (i_a = 48) or (i_a = 58) or (i_a = 68) or
+		(i_a = 78) or (i_a = 88) or (i_a = 19) or (i_a = 29) or (i_a = 39) or (i_a = 49) or
+		(i_a = 59) or (i_a = 69) or (i_a = 79) or (i_a = 89) or (i_a = 98))) then deplGaucheDroite := true
+	else deplGaucheDroite := false;
+end;
+
+
+function concerne(i_d,i_a : integer): boolean;
+begin
+	if (((i_d = 10) or (i_d = 1) or (i_d = 11) or (i_d = 20) or (i_d = 21) or (i_d = 30) or (i_d = 31) or
+		(i_d = 40) or (i_d = 41) or (i_d = 50) or (i_d = 51) or (i_d = 60) or (i_d = 61) or
+		(i_d = 70) or (i_d = 71) or (i_d = 80) or (i_d = 81) or (i_d = 91)) and ((i_a = 8) or
+		(i_a = 18) or (i_a = 28) or (i_a = 38) or (i_a = 48) or (i_a = 58) or (i_a = 68) or
+		(i_a = 78) or (i_a = 88) or (i_a = 19) or (i_a = 29) or (i_a = 39) or (i_a = 49) or
+		(i_a = 59) or (i_a = 69) or (i_a = 79) or (i_a = 89) or (i_a = 98))) or ((i_a = 10) or
+		(i_a = 1) or (i_a = 11) or (i_a = 20) or (i_a = 21) or (i_a = 30) or (i_a = 31) or
+		(i_a = 40) or (i_a = 41) or (i_a = 50) or (i_a = 51) or (i_a = 60) or (i_a = 61) or
+		(i_a = 70) or (i_a = 71) or (i_a = 80) or (i_a = 81) or (i_a = 91)) and ((i_d = 8) or
+		(i_d = 18) or (i_d = 28) or (i_d = 38) or (i_d = 48) or (i_d = 58) or (i_d = 68) or
+		(i_d = 78) or (i_d = 88) or (i_d = 19) or (i_d = 29) or (i_d = 39) or (i_d = 49) or
+		(i_d = 59) or (i_d = 69) or (i_d = 79) or (i_d = 89) or (i_d = 98)) then concerne := true
+		else concerne := false;
+end;
+
+function TraverseTableau(i_d,i_a : integer): boolean;
+begin
+	if concerne(i_d,i_a) then begin
+		if deplGaucheDroite(i_d,i_a) or deplDroiteGauche(i_d,i_a) then TraverseTableau := true
+		else TraverseTableau := false;
+	end
+	else TraverseTableau:= false;
+end;
+
 
 function casesj1(plato : plateauDyn;i_a,i_d : integer): boolean;
 begin
@@ -235,140 +289,152 @@ end;
 
 function highlightDepart1(plato : plateauDyn;i_d,i : integer): boolean;
 begin
-	if (((plato[i_d].p.clr <> 2) or(plato[i_d].p.clr <> 1)) and ((i = 91) or (i = 92) or (i = 93) or (i = 94) or (i = 95) or (i = 96) or (i = 97) or (i = 98))) then highlightDepart1 := false
-	else highlightDepart1 := true;
+	if (((i=91) or (i=92) or (i=93) or (i=94) or (i=95) or (i = 96) or (i=97) or (i=98)) and ((plato[i_d].p.clr = 1) or (plato[i_d].p.clr = 2))) then highlightDepart1 := true
+	else highlightDepart1 := false
 end;
 
 function highlightDepart2(plato : plateauDyn;i_d,i : integer): boolean;
 begin
-	if (((plato[i_d].p.clr <> 2) or(plato[i_d].p.clr <> 1)) and ((i = 1) or (i = 2) or (i = 3) or (i = 4) or (i = 5) or (i = 6) or (i = 7) or (i = 8))) then highlightDepart2 := false
-	else highlightDepart2 := true;
+	if (((i=1) or (i=2) or (i=3) or (i=4) or (i=5) or (i = 6) or (i=7) or (i=8)) and ((plato[i_d].p.clr = 1) or (plato[i_d].p.clr = 2))) then highlightDepart2 := true
+	else highlightDepart2 := false;
 end;
 
 function highlightDepart3(plato : plateauDyn;i_d,i : integer): boolean;
 begin
-	if (((plato[i_d].p.clr <> 3) or(plato[i_d].p.clr <> 4)) and ((i = 19) or (i = 29) or (i = 39) or (i = 49) or (i = 59) or (i = 69) or (i = 79) or (i = 89))) then highlightDepart3 := false
-	else highlightDepart3 := true;
+	if (((i=19) or (i=29) or (i=39) or (i=49) or (i=59) or (i = 69) or (i=79) or (i=89)) and ((plato[i_d].p.clr = 3) or (plato[i_d].p.clr = 4))) then highlightDepart3 := true
+	else highlightDepart3 := false;
 end;
 
 function highlightDepart4(plato : plateauDyn;i_d,i : integer): boolean;
 begin
-	if (((plato[i_d].p.clr <> 3) or(plato[i_d].p.clr <> 4)) and ((i = 10) or (i = 20) or (i = 30) or (i = 40) or (i = 50) or (i = 60) or (i = 70) or (i = 80))) then highlightDepart4 := false
-	else highlightDepart4 := true;
+	if (((i=10) or (i=20) or (i=30) or (i=40) or (i=50) or (i = 60) or (i=70) or (i=80)) and ((plato[i_d].p.clr = 3) or (plato[i_d].p.clr = 4))) then highlightDepart4 := true
+	else highlightDepart4 := false;
+end;
+
+function entrerHighDep(i : integer):boolean;
+begin
+	if ((i=91) or (i=92) or (i=93) or (i=94) or (i=95) or (i = 96) or (i=97) or
+		(i=98) or (i=1) or (i=2) or (i=3) or (i=4) or (i=5) or (i = 6) or (i=7) or
+		(i=8) or (i=19) or (i=29) or (i=39) or (i=49) or (i=59) or (i = 69) or (i=79)
+		or (i=89) or (i=10) or (i=20) or (i=30) or (i=40) or (i=50) or (i = 60) or
+		(i=70) or (i=80)) then entrerHighDep := true
+		else entrerHighDep := false;
 end;
 
 function highlightDepart(plato : plateauDyn;i_d,i : integer): boolean;
 begin
-	if  highlightDepart1(plato,i_d,i) and highlightDepart2(plato,i_d,i) and highlightDepart3(plato,i_d,i) and highlightDepart4(plato,i_d,i)  then highlightDepart := true
-	else highlightDepart := false;
-
+	if entrerHighDep(i) then begin
+		if highlightDepart1(plato,i_d,i) or highlightDepart2(plato,i_d,i) or highlightDepart3(plato,i_d,i) or highlightDepart4(plato,i_d,i) then highlightDepart := true
+		else highlightDepart := false;
+	end
+	else highlightDepart := true;
 end;
 
 procedure highlightCarreSaut(plato : plateauDyn;i_d,i_dAncien : integer);
 begin
-  if i_d < 97 then if ((plato[i_d+2].p.identif = 0) and (i_d+2 <> i_dAncien) and (plato[i_d+1].p.identif <> 0) and highlightDepart(plato,i_d,i_d+2)) then carres_alpha(plato[i_d+2].x,plato[i_d+2].y,plato[i_d].p.clr);
-  if i_d > 2 then if ((plato[i_d-2].p.identif = 0) and (i_d-2 <> i_dAncien) and (plato[i_d-1].p.identif <> 0) and highlightDepart(plato,i_d,i_d-2)) then carres_alpha(plato[i_d-2].x,plato[i_d-2].y,plato[i_d].p.clr);
-  if i_d < 79 then if ((plato[i_d+20].p.identif = 0) and (i_d+20 <> i_dAncien) and (plato[i_d+10].p.identif <> 0) and highlightDepart(plato,i_d,i_d+20)) then carres_alpha(plato[i_d+20].x,plato[i_d+20].y,plato[i_d].p.clr);
-  if i_d > 20 then if ((plato[i_d-20].p.identif = 0) and (i_d-20 <> i_dAncien) and (plato[i_d-10].p.identif <> 0) and highlightDepart(plato,i_d,i_d-20)) then carres_alpha(plato[i_d-20].x,plato[i_d-20].y,plato[i_d].p.clr);
+  if i_d < 97 then if ((plato[i_d+2].p.identif = 0) and (i_d+2 <> i_dAncien) and (plato[i_d+1].p.identif <> 0) and highlightDepart(plato,i_d,i_d+2) and not(TraverseTableau(i_d,i_d+2))) then carres_alpha(plato[i_d+2].x,plato[i_d+2].y,plato[i_d].p.clr);
+  if i_d > 2 then if ((plato[i_d-2].p.identif = 0) and (i_d-2 <> i_dAncien) and (plato[i_d-1].p.identif <> 0) and highlightDepart(plato,i_d,i_d-2) and not(TraverseTableau(i_d,i_d-2))) then carres_alpha(plato[i_d-2].x,plato[i_d-2].y,plato[i_d].p.clr);
+  if i_d < 79 then if ((plato[i_d+20].p.identif = 0) and (i_d+20 <> i_dAncien) and (plato[i_d+10].p.identif <> 0) and highlightDepart(plato,i_d,i_d+20) and not(TraverseTableau(i_d,i_d+20))) then carres_alpha(plato[i_d+20].x,plato[i_d+20].y,plato[i_d].p.clr);
+  if i_d > 20 then if ((plato[i_d-20].p.identif = 0) and (i_d-20 <> i_dAncien) and (plato[i_d-10].p.identif <> 0) and highlightDepart(plato,i_d,i_d-20) and not(TraverseTableau(i_d,i_d-20))) then carres_alpha(plato[i_d-20].x,plato[i_d-20].y,plato[i_d].p.clr);
 end;
 
 procedure highlightCarre(plato : plateauDyn;i_d,i_dAncien : integer);
 begin
-  if i_d < 98 then if ((plato[i_d+1].p.identif = 0) and highlightDepart(plato,i_d,i_d+1)) then carres_alpha(plato[i_d+1].x,plato[i_d+1].y,plato[i_d].p.clr);
-  if i_d > 1 then if ((plato[i_d-1].p.identif = 0) and highlightDepart(plato,i_d,i_d-1)) then carres_alpha(plato[i_d-1].x,plato[i_d-1].y,plato[i_d].p.clr);
-  if i_d < 89 then if ((plato[i_d+10].p.identif = 0) and highlightDepart(plato,i_d,i_d+10)) then carres_alpha(plato[i_d+10].x,plato[i_d+10].y,plato[i_d].p.clr);
-  if i_d > 10 then if ((plato[i_d-10].p.identif = 0) and highlightDepart(plato,i_d,i_d-10)) then carres_alpha(plato[i_d-10].x,plato[i_d-10].y,plato[i_d].p.clr);
+  if i_d < 98 then if ((plato[i_d+1].p.identif = 0) and highlightDepart(plato,i_d,i_d+1) and not(TraverseTableau(i_d,i_d+1))) then carres_alpha(plato[i_d+1].x,plato[i_d+1].y,plato[i_d].p.clr);
+  if i_d > 1 then if ((plato[i_d-1].p.identif = 0) and highlightDepart(plato,i_d,i_d-1) and not(TraverseTableau(i_d,i_d-1))) then carres_alpha(plato[i_d-1].x,plato[i_d-1].y,plato[i_d].p.clr);
+  if i_d < 89 then if ((plato[i_d+10].p.identif = 0) and highlightDepart(plato,i_d,i_d+10) and not(TraverseTableau(i_d,i_d+10))) then carres_alpha(plato[i_d+10].x,plato[i_d+10].y,plato[i_d].p.clr);
+  if i_d > 10 then if ((plato[i_d-10].p.identif = 0) and highlightDepart(plato,i_d,i_d-10) and not(TraverseTableau(i_d,i_d-10))) then carres_alpha(plato[i_d-10].x,plato[i_d-10].y,plato[i_d].p.clr);
 	highlightCarreSaut(plato,i_d,i_dAncien);
 end;
 
 procedure highlightTriangleSaut(plato : plateauDyn;i_d,i_dAncien : integer);
 begin
   if (plato[i_d].p.clr = 1) then begin
-    if i_d < 79 then if ((plato[i_d+20].p.identif = 0) and (i_d+20 <> i_dAncien) and (plato[i_d+10].p.identif <> 0) and highlightDepart(plato,i_d,i_d+20)) then triangles_alpha(plato[i_d+20].x,plato[i_d+20].y,plato[i_d].p.clr);
-    if i_d > 18 then if ((plato[i_d-18].p.identif = 0) and (i_d-18 <> i_dAncien) and (plato[i_d-9].p.identif <> 0) and highlightDepart(plato,i_d,i_d-18)) then triangles_alpha(plato[i_d-18].x,plato[i_d-18].y,plato[i_d].p.clr);
-    if i_d > 22 then if ((plato[i_d-22].p.identif = 0) and (i_d-22 <> i_dAncien) and (plato[i_d-11].p.identif <> 0) and highlightDepart(plato,i_d,i_d-22)) then triangles_alpha(plato[i_d-22].x,plato[i_d-22].y,plato[i_d].p.clr);
+    if i_d < 79 then if ((plato[i_d+20].p.identif = 0) and (i_d+20 <> i_dAncien) and (plato[i_d+10].p.identif <> 0) and highlightDepart(plato,i_d,i_d+20) and not(TraverseTableau(i_d,i_d+20))) then triangles_alpha(plato[i_d+20].x,plato[i_d+20].y,plato[i_d].p.clr);
+    if i_d > 18 then if ((plato[i_d-18].p.identif = 0) and (i_d-18 <> i_dAncien) and (plato[i_d-9].p.identif <> 0) and highlightDepart(plato,i_d,i_d-18) and not(TraverseTableau(i_d,i_d-18))) then triangles_alpha(plato[i_d-18].x,plato[i_d-18].y,plato[i_d].p.clr);
+    if i_d > 22 then if ((plato[i_d-22].p.identif = 0) and (i_d-22 <> i_dAncien) and (plato[i_d-11].p.identif <> 0) and highlightDepart(plato,i_d,i_d-22) and not(TraverseTableau(i_d,i_d-22))) then triangles_alpha(plato[i_d-22].x,plato[i_d-22].y,plato[i_d].p.clr);
   end
 	else if (plato[i_d].p.clr = 2) then begin
-    if i_d > 20 then if ((plato[i_d-20].p.identif = 0) and (i_d-20 <> i_dAncien) and (plato[i_d-10].p.identif <> 0) and highlightDepart(plato,i_d,i_d-20)) then triangles_alpha(plato[i_d-20].x,plato[i_d-20].y,plato[i_d].p.clr);
-    if i_d < 81 then if ((plato[i_d+18].p.identif = 0) and (i_d+18 <> i_dAncien) and (plato[i_d+9].p.identif <> 0) and highlightDepart(plato,i_d,i_d+18)) then triangles_alpha(plato[i_d+18].x,plato[i_d+18].y,plato[i_d].p.clr);
-    if i_d < 77 then if ((plato[i_d+22].p.identif = 0) and (i_d+22 <> i_dAncien) and (plato[i_d+11].p.identif <> 0) and highlightDepart(plato,i_d,i_d+22)) then triangles_alpha(plato[i_d+22].x,plato[i_d+22].y,plato[i_d].p.clr);
+    if i_d > 20 then if ((plato[i_d-20].p.identif = 0) and (i_d-20 <> i_dAncien) and (plato[i_d-10].p.identif <> 0) and highlightDepart(plato,i_d,i_d-20) and not(TraverseTableau(i_d,i_d-20))) then triangles_alpha(plato[i_d-20].x,plato[i_d-20].y,plato[i_d].p.clr);
+    if i_d < 81 then if ((plato[i_d+18].p.identif = 0) and (i_d+18 <> i_dAncien) and (plato[i_d+9].p.identif <> 0) and highlightDepart(plato,i_d,i_d+18) and not(TraverseTableau(i_d,i_d+18))) then triangles_alpha(plato[i_d+18].x,plato[i_d+18].y,plato[i_d].p.clr);
+    if i_d < 77 then if ((plato[i_d+22].p.identif = 0) and (i_d+22 <> i_dAncien) and (plato[i_d+11].p.identif <> 0) and highlightDepart(plato,i_d,i_d+22) and not(TraverseTableau(i_d,i_d+22))) then triangles_alpha(plato[i_d+22].x,plato[i_d+22].y,plato[i_d].p.clr);
   end
   else if (plato[i_d].p.clr = 3) then begin
-    if i_d < 97 then if ((plato[i_d+2].p.identif = 0) and (i_d+2 <> i_dAncien) and (plato[i_d+1].p.identif <> 0) and highlightDepart(plato,i_d,i_d+2)) then triangles_alpha(plato[i_d+2].x,plato[i_d+2].y,plato[i_d].p.clr);
-    if i_d < 81 then if ((plato[i_d+18].p.identif = 0) and (i_d+18 <> i_dAncien) and (plato[i_d+9].p.identif <> 0) and highlightDepart(plato,i_d,i_d+18)) then triangles_alpha(plato[i_d+18].x,plato[i_d+18].y,plato[i_d].p.clr);
-    if i_d > 22 then if ((plato[i_d-22].p.identif = 0) and (i_d-22 <> i_dAncien) and (plato[i_d-11].p.identif <> 0) and highlightDepart(plato,i_d,i_d-22)) then triangles_alpha(plato[i_d-22].x,plato[i_d-22].y,plato[i_d].p.clr);
+    if i_d < 97 then if ((plato[i_d+2].p.identif = 0) and (i_d+2 <> i_dAncien) and (plato[i_d+1].p.identif <> 0) and highlightDepart(plato,i_d,i_d+2) and not(TraverseTableau(i_d,i_d+2))) then triangles_alpha(plato[i_d+2].x,plato[i_d+2].y,plato[i_d].p.clr);
+    if i_d < 81 then if ((plato[i_d+18].p.identif = 0) and (i_d+18 <> i_dAncien) and (plato[i_d+9].p.identif <> 0) and highlightDepart(plato,i_d,i_d+18) and not(TraverseTableau(i_d,i_d+18))) then triangles_alpha(plato[i_d+18].x,plato[i_d+18].y,plato[i_d].p.clr);
+    if i_d > 22 then if ((plato[i_d-22].p.identif = 0) and (i_d-22 <> i_dAncien) and (plato[i_d-11].p.identif <> 0) and highlightDepart(plato,i_d,i_d-22) and not(TraverseTableau(i_d,i_d-22))) then triangles_alpha(plato[i_d-22].x,plato[i_d-22].y,plato[i_d].p.clr);
   end
   else begin
-    if i_d > 2 then if ((plato[i_d-2].p.identif = 0) and (i_d-2 <> i_dAncien) and (plato[i_d-1].p.identif <> 0) and highlightDepart(plato,i_d,i_d-2)) then triangles_alpha(plato[i_d-2].x,plato[i_d-2].y,plato[i_d].p.clr);
-    if i_d > 18 then if ((plato[i_d-18].p.identif = 0) and (i_d-18 <> i_dAncien) and (plato[i_d-9].p.identif <> 0) and highlightDepart(plato,i_d,i_d-18)) then triangles_alpha(plato[i_d-18].x,plato[i_d-18].y,plato[i_d].p.clr);
-    if i_d < 77 then if ((plato[i_d+22].p.identif = 0) and (i_d+22 <> i_dAncien) and (plato[i_d+11].p.identif <> 0) and highlightDepart(plato,i_d,i_d+22)) then triangles_alpha(plato[i_d+22].x,plato[i_d+22].y,plato[i_d].p.clr);
+    if i_d > 2 then if ((plato[i_d-2].p.identif = 0) and (i_d-2 <> i_dAncien) and (plato[i_d-1].p.identif <> 0) and highlightDepart(plato,i_d,i_d-2) and not(TraverseTableau(i_d,i_d-2))) then triangles_alpha(plato[i_d-2].x,plato[i_d-2].y,plato[i_d].p.clr);
+    if i_d > 18 then if ((plato[i_d-18].p.identif = 0) and (i_d-18 <> i_dAncien) and (plato[i_d-9].p.identif <> 0) and highlightDepart(plato,i_d,i_d-18) and not(TraverseTableau(i_d,i_d-18))) then triangles_alpha(plato[i_d-18].x,plato[i_d-18].y,plato[i_d].p.clr);
+    if i_d < 77 then if ((plato[i_d+22].p.identif = 0) and (i_d+22 <> i_dAncien) and (plato[i_d+11].p.identif <> 0) and highlightDepart(plato,i_d,i_d+22) and not(TraverseTableau(i_d,i_d+22))) then triangles_alpha(plato[i_d+22].x,plato[i_d+22].y,plato[i_d].p.clr);
   end;
 end;
 
 procedure highlightTriangle(plato : plateauDyn;i_d,i_dAncien : integer);
 begin
   if (plato[i_d].p.clr = 1) then begin
-    if i_d < 89 then if ((plato[i_d+10].p.identif = 0) and highlightDepart(plato,i_d,i_d+10)) then triangles_alpha(plato[i_d+10].x,plato[i_d+10].y,plato[i_d].p.clr);
-    if i_d > 9 then if ((plato[i_d-9].p.identif = 0) and highlightDepart(plato,i_d,i_d-9)) then triangles_alpha(plato[i_d-9].x,plato[i_d-9].y,plato[i_d].p.clr);
-    if i_d > 11 then if ((plato[i_d-11].p.identif = 0) and highlightDepart(plato,i_d,i_d-11)) then triangles_alpha(plato[i_d-11].x,plato[i_d-11].y,plato[i_d].p.clr);
+    if i_d < 89 then if ((plato[i_d+10].p.identif = 0) and highlightDepart(plato,i_d,i_d+10) and not(TraverseTableau(i_d,i_d+10))) then triangles_alpha(plato[i_d+10].x,plato[i_d+10].y,plato[i_d].p.clr);
+    if i_d > 9 then if ((plato[i_d-9].p.identif = 0) and highlightDepart(plato,i_d,i_d-9) and not(TraverseTableau(i_d,i_d-9))) then triangles_alpha(plato[i_d-9].x,plato[i_d-9].y,plato[i_d].p.clr);
+    if i_d > 11 then if ((plato[i_d-11].p.identif = 0) and highlightDepart(plato,i_d,i_d-11) and not(TraverseTableau(i_d,i_d-11))) then triangles_alpha(plato[i_d-11].x,plato[i_d-11].y,plato[i_d].p.clr);
   end
 	else if (plato[i_d].p.clr = 2) then begin
-    if i_d > 10 then if ((plato[i_d-10].p.identif = 0) and highlightDepart(plato,i_d,i_d-10)) then triangles_alpha(plato[i_d-10].x,plato[i_d-10].y,plato[i_d].p.clr);
-    if i_d < 90 then if ((plato[i_d+9].p.identif = 0) and highlightDepart(plato,i_d,i_d+9)) then triangles_alpha(plato[i_d+9].x,plato[i_d+9].y,plato[i_d].p.clr);
-    if i_d < 88 then if ((plato[i_d+11].p.identif = 0) and highlightDepart(plato,i_d,i_d+11)) then triangles_alpha(plato[i_d+11].x,plato[i_d+11].y,plato[i_d].p.clr);
+    if i_d > 10 then if ((plato[i_d-10].p.identif = 0) and highlightDepart(plato,i_d,i_d-10) and not(TraverseTableau(i_d,i_d-10))) then triangles_alpha(plato[i_d-10].x,plato[i_d-10].y,plato[i_d].p.clr);
+    if i_d < 90 then if ((plato[i_d+9].p.identif = 0) and highlightDepart(plato,i_d,i_d+9) and not(TraverseTableau(i_d,i_d+9))) then triangles_alpha(plato[i_d+9].x,plato[i_d+9].y,plato[i_d].p.clr);
+    if i_d < 88 then if ((plato[i_d+11].p.identif = 0) and highlightDepart(plato,i_d,i_d+11) and not(TraverseTableau(i_d,i_d+11))) then triangles_alpha(plato[i_d+11].x,plato[i_d+11].y,plato[i_d].p.clr);
   end
   else if (plato[i_d].p.clr = 3) then begin
-    if i_d < 98 then if ((plato[i_d+1].p.identif = 0) and highlightDepart(plato,i_d,i_d+1)) then triangles_alpha(plato[i_d+1].x,plato[i_d+1].y,plato[i_d].p.clr);
-    if i_d < 90 then if ((plato[i_d+9].p.identif = 0) and highlightDepart(plato,i_d,i_d+9)) then triangles_alpha(plato[i_d+9].x,plato[i_d+9].y,plato[i_d].p.clr);
-    if i_d > 11 then if ((plato[i_d-11].p.identif = 0) and highlightDepart(plato,i_d,i_d-11)) then triangles_alpha(plato[i_d-11].x,plato[i_d-11].y,plato[i_d].p.clr);
+    if i_d < 98 then if ((plato[i_d+1].p.identif = 0) and highlightDepart(plato,i_d,i_d+1) and not(TraverseTableau(i_d,i_d+1))) then triangles_alpha(plato[i_d+1].x,plato[i_d+1].y,plato[i_d].p.clr);
+    if i_d < 90 then if ((plato[i_d+9].p.identif = 0) and highlightDepart(plato,i_d,i_d+9) and not(TraverseTableau(i_d,i_d+9))) then triangles_alpha(plato[i_d+9].x,plato[i_d+9].y,plato[i_d].p.clr);
+    if i_d > 11 then if ((plato[i_d-11].p.identif = 0) and highlightDepart(plato,i_d,i_d-11) and not(TraverseTableau(i_d,i_d-11))) then triangles_alpha(plato[i_d-11].x,plato[i_d-11].y,plato[i_d].p.clr);
   end
   else begin
-    if i_d > 1 then if ((plato[i_d-1].p.identif = 0) and highlightDepart(plato,i_d,i_d-1)) then triangles_alpha(plato[i_d-1].x,plato[i_d-1].y,plato[i_d].p.clr);
-    if i_d > 9 then if ((plato[i_d-9].p.identif = 0) and highlightDepart(plato,i_d,i_d-9)) then triangles_alpha(plato[i_d-9].x,plato[i_d-9].y,plato[i_d].p.clr);
-    if i_d < 88 then if ((plato[i_d+11].p.identif = 0) and highlightDepart(plato,i_d,i_d+11)) then triangles_alpha(plato[i_d+11].x,plato[i_d+11].y,plato[i_d].p.clr);
+    if i_d > 1 then if ((plato[i_d-1].p.identif = 0) and highlightDepart(plato,i_d,i_d-1) and not(TraverseTableau(i_d,i_d-1))) then triangles_alpha(plato[i_d-1].x,plato[i_d-1].y,plato[i_d].p.clr);
+    if i_d > 9 then if ((plato[i_d-9].p.identif = 0) and highlightDepart(plato,i_d,i_d-9) and not(TraverseTableau(i_d,i_d-9))) then triangles_alpha(plato[i_d-9].x,plato[i_d-9].y,plato[i_d].p.clr);
+    if i_d < 88 then if ((plato[i_d+11].p.identif = 0) and highlightDepart(plato,i_d,i_d+11) and not(TraverseTableau(i_d,i_d+11))) then triangles_alpha(plato[i_d+11].x,plato[i_d+11].y,plato[i_d].p.clr);
   end;
 	highlightTriangleSaut(plato,i_d,i_dAncien);
 end;
 
 procedure highlightLosangeSaut(plato : plateauDyn;i_d,i_dAncien : integer);
 begin
-	if i_d < 77 then if ((plato[i_d+22].p.identif = 0) and (i_d+22 <> i_dAncien) and (plato[i_d+11].p.identif <> 0) and highlightDepart(plato,i_d,i_d+22)) then losanges_alpha(plato[i_d+22].x,plato[i_d+22].y,plato[i_d].p.clr);
-  if i_d > 22 then if ((plato[i_d-22].p.identif = 0) and (i_d-22 <> i_dAncien) and (plato[i_d-11].p.identif <> 0) and highlightDepart(plato,i_d,i_d-22)) then losanges_alpha(plato[i_d-22].x,plato[i_d-22].y,plato[i_d].p.clr);
-  if i_d < 81 then if ((plato[i_d+18].p.identif = 0) and (i_d+18 <> i_dAncien) and (plato[i_d+9].p.identif <> 0) and highlightDepart(plato,i_d,i_d+18)) then losanges_alpha(plato[i_d+18].x,plato[i_d+18].y,plato[i_d].p.clr);
-  if i_d > 18 then if ((plato[i_d-18].p.identif = 0) and (i_d-18 <> i_dAncien) and (plato[i_d-9].p.identif <> 0) and highlightDepart(plato,i_d,i_d-18)) then losanges_alpha(plato[i_d-18].x,plato[i_d-18].y,plato[i_d].p.clr);
+	if i_d < 77 then if ((plato[i_d+22].p.identif = 0) and (i_d+22 <> i_dAncien) and (plato[i_d+11].p.identif <> 0) and highlightDepart(plato,i_d,i_d+22) and not(TraverseTableau(i_d,i_d+22))) then losanges_alpha(plato[i_d+22].x,plato[i_d+22].y,plato[i_d].p.clr);
+  if i_d > 22 then if ((plato[i_d-22].p.identif = 0) and (i_d-22 <> i_dAncien) and (plato[i_d-11].p.identif <> 0) and highlightDepart(plato,i_d,i_d-22) and not(TraverseTableau(i_d,i_d-22))) then losanges_alpha(plato[i_d-22].x,plato[i_d-22].y,plato[i_d].p.clr);
+  if i_d < 81 then if ((plato[i_d+18].p.identif = 0) and (i_d+18 <> i_dAncien) and (plato[i_d+9].p.identif <> 0) and highlightDepart(plato,i_d,i_d+18) and not(TraverseTableau(i_d,i_d+18))) then losanges_alpha(plato[i_d+18].x,plato[i_d+18].y,plato[i_d].p.clr);
+  if i_d > 18 then if ((plato[i_d-18].p.identif = 0) and (i_d-18 <> i_dAncien) and (plato[i_d-9].p.identif <> 0) and highlightDepart(plato,i_d,i_d-18) and not(TraverseTableau(i_d,i_d-18))) then losanges_alpha(plato[i_d-18].x,plato[i_d-18].y,plato[i_d].p.clr);
 end;
 
 procedure highlightLosange(plato : plateauDyn;i_d,i_dAncien : integer);
 begin
-	if i_d < 88 then if ((plato[i_d+11].p.identif = 0) and highlightDepart(plato,i_d,i_d+11)) then losanges_alpha(plato[i_d+11].x,plato[i_d+11].y,plato[i_d].p.clr);
-  if i_d > 11 then if ((plato[i_d-11].p.identif = 0) and highlightDepart(plato,i_d,i_d-11)) then losanges_alpha(plato[i_d-11].x,plato[i_d-11].y,plato[i_d].p.clr);
-  if i_d < 90 then if ((plato[i_d+9].p.identif = 0) and highlightDepart(plato,i_d,i_d+9)) then losanges_alpha(plato[i_d+9].x,plato[i_d+9].y,plato[i_d].p.clr);
-  if i_d > 9 then if ((plato[i_d-9].p.identif = 0) and highlightDepart(plato,i_d,i_d-9)) then losanges_alpha(plato[i_d-9].x,plato[i_d-9].y,plato[i_d].p.clr);
+	if i_d < 88 then if ((plato[i_d+11].p.identif = 0) and highlightDepart(plato,i_d,i_d+11) and not(TraverseTableau(i_d,i_d+11))) then losanges_alpha(plato[i_d+11].x,plato[i_d+11].y,plato[i_d].p.clr);
+  if i_d > 11 then if ((plato[i_d-11].p.identif = 0) and highlightDepart(plato,i_d,i_d-11) and not(TraverseTableau(i_d,i_d-11))) then losanges_alpha(plato[i_d-11].x,plato[i_d-11].y,plato[i_d].p.clr);
+  if i_d < 90 then if ((plato[i_d+9].p.identif = 0) and highlightDepart(plato,i_d,i_d+9) and not(TraverseTableau(i_d,i_d+9))) then losanges_alpha(plato[i_d+9].x,plato[i_d+9].y,plato[i_d].p.clr);
+  if i_d > 9 then if ((plato[i_d-9].p.identif = 0) and highlightDepart(plato,i_d,i_d-9) and not(TraverseTableau(i_d,i_d-9))) then losanges_alpha(plato[i_d-9].x,plato[i_d-9].y,plato[i_d].p.clr);
 	highlightLosangeSaut(plato,i_d,i_dAncien);
 end;
 
 procedure highlightCercleSaut(plato : plateauDyn;i_d,i_dAncien : integer);
 begin
-  if i_d < 97 then if (plato[i_d+2].p.identif = 0) and (i_d+2 <> i_dAncien) and (plato[i_d+1].p.identif <> 0) and highlightDepart(plato,i_d,i_d+2) then cercles_alpha(plato[i_d+2].x,plato[i_d+2].y,plato[i_d].p.clr);
-  if i_d > 2 then if (plato[i_d-2].p.identif = 0) and (i_d-2 <> i_dAncien) and (plato[i_d-1].p.identif <> 0) and highlightDepart(plato,i_d,i_d-2) then cercles_alpha(plato[i_d-2].x,plato[i_d-2].y,plato[i_d].p.clr);
-  if i_d < 71 then if (plato[i_d+18].p.identif = 0) and (i_d+18 <> i_dAncien) and (plato[i_d+9].p.identif <> 0) and highlightDepart(plato,i_d,i_d+18) then cercles_alpha(plato[i_d+18].x,plato[i_d+18].y,plato[i_d].p.clr);
-  if i_d > 18 then if (plato[i_d-18].p.identif = 0) and (i_d-18 <> i_dAncien) and (plato[i_d-9].p.identif <> 0) and highlightDepart(plato,i_d,i_d-18) then cercles_alpha(plato[i_d-18].x,plato[i_d-18].y,plato[i_d].p.clr);
-  if i_d < 79 then if (plato[i_d+20].p.identif = 0) and (i_d+20 <> i_dAncien) and (plato[i_d+10].p.identif <> 0) and highlightDepart(plato,i_d,i_d+20) then cercles_alpha(plato[i_d+20].x,plato[i_d+20].y,plato[i_d].p.clr);
-  if i_d > 20 then if (plato[i_d-20].p.identif = 0) and (i_d-20 <> i_dAncien) and (plato[i_d-10].p.identif <> 0) and highlightDepart(plato,i_d,i_d-20) then cercles_alpha(plato[i_d-20].x,plato[i_d-20].y,plato[i_d].p.clr);
-  if i_d < 77 then if (plato[i_d+22].p.identif = 0) and (i_d+22 <> i_dAncien) and (plato[i_d+11].p.identif <> 0) and highlightDepart(plato,i_d,i_d+22) then cercles_alpha(plato[i_d+22].x,plato[i_d+22].y,plato[i_d].p.clr);
-  if i_d > 22 then if (plato[i_d-22].p.identif = 0) and (i_d-22 <> i_dAncien) and (plato[i_d-11].p.identif <> 0) and highlightDepart(plato,i_d,i_d-22) then cercles_alpha(plato[i_d-22].x,plato[i_d-22].y,plato[i_d].p.clr);
+  if i_d < 97 then if (plato[i_d+2].p.identif = 0) and (i_d+2 <> i_dAncien) and (plato[i_d+1].p.identif <> 0) and highlightDepart(plato,i_d,i_d+2)  and not(TraverseTableau(i_d,i_d+2)) then cercles_alpha(plato[i_d+2].x,plato[i_d+2].y,plato[i_d].p.clr);
+  if i_d > 2 then if (plato[i_d-2].p.identif = 0) and (i_d-2 <> i_dAncien) and (plato[i_d-1].p.identif <> 0) and highlightDepart(plato,i_d,i_d-2) and not(TraverseTableau(i_d,i_d-2))  then cercles_alpha(plato[i_d-2].x,plato[i_d-2].y,plato[i_d].p.clr);
+  if i_d < 71 then if (plato[i_d+18].p.identif = 0) and (i_d+18 <> i_dAncien) and (plato[i_d+9].p.identif <> 0) and highlightDepart(plato,i_d,i_d+18) and not(TraverseTableau(i_d,i_d+18))  then cercles_alpha(plato[i_d+18].x,plato[i_d+18].y,plato[i_d].p.clr);
+  if i_d > 18 then if (plato[i_d-18].p.identif = 0) and (i_d-18 <> i_dAncien) and (plato[i_d-9].p.identif <> 0) and highlightDepart(plato,i_d,i_d-18) and not(TraverseTableau(i_d,i_d-18))  then cercles_alpha(plato[i_d-18].x,plato[i_d-18].y,plato[i_d].p.clr);
+  if i_d < 79 then if (plato[i_d+20].p.identif = 0) and (i_d+20 <> i_dAncien) and (plato[i_d+10].p.identif <> 0) and highlightDepart(plato,i_d,i_d+20) and not(TraverseTableau(i_d,i_d+20))  then cercles_alpha(plato[i_d+20].x,plato[i_d+20].y,plato[i_d].p.clr);
+  if i_d > 20 then if (plato[i_d-20].p.identif = 0) and (i_d-20 <> i_dAncien) and (plato[i_d-10].p.identif <> 0) and highlightDepart(plato,i_d,i_d-20) and not(TraverseTableau(i_d,i_d-20))  then cercles_alpha(plato[i_d-20].x,plato[i_d-20].y,plato[i_d].p.clr);
+  if i_d < 77 then if (plato[i_d+22].p.identif = 0) and (i_d+22 <> i_dAncien) and (plato[i_d+11].p.identif <> 0) and highlightDepart(plato,i_d,i_d+22) and not(TraverseTableau(i_d,i_d+22))  then cercles_alpha(plato[i_d+22].x,plato[i_d+22].y,plato[i_d].p.clr);
+  if i_d > 22 then if (plato[i_d-22].p.identif = 0) and (i_d-22 <> i_dAncien) and (plato[i_d-11].p.identif <> 0) and highlightDepart(plato,i_d,i_d-22) and not(TraverseTableau(i_d,i_d-22))  then cercles_alpha(plato[i_d-22].x,plato[i_d-22].y,plato[i_d].p.clr);
 end;
 
 procedure highlightCercle(plato : plateauDyn;i_d,i_dAncien : integer);
 begin
-  if i_d < 98 then if (plato[i_d+1].p.identif = 0) and highlightDepart(plato,i_d,i_d+1) then cercles_alpha(plato[i_d+1].x,plato[i_d+1].y,plato[i_d].p.clr);
-  if i_d > 1 then if (plato[i_d-1].p.identif = 0) and highlightDepart(plato,i_d,i_d-1) then cercles_alpha(plato[i_d-1].x,plato[i_d-1].y,plato[i_d].p.clr);
-  if i_d < 90 then if (plato[i_d+9].p.identif = 0) and highlightDepart(plato,i_d,i_d+9) then cercles_alpha(plato[i_d+9].x,plato[i_d+9].y,plato[i_d].p.clr);
-  if i_d > 9 then if (plato[i_d-9].p.identif = 0) and highlightDepart(plato,i_d,i_d-9) then cercles_alpha(plato[i_d-9].x,plato[i_d-9].y,plato[i_d].p.clr);
-  if i_d < 89 then if (plato[i_d+10].p.identif = 0) and highlightDepart(plato,i_d,i_d+10) then cercles_alpha(plato[i_d+10].x,plato[i_d+10].y,plato[i_d].p.clr);
-  if i_d > 10 then if (plato[i_d-10].p.identif = 0) and highlightDepart(plato,i_d,i_d-10) then cercles_alpha(plato[i_d-10].x,plato[i_d-10].y,plato[i_d].p.clr);
-  if i_d < 88 then if (plato[i_d+11].p.identif = 0) and highlightDepart(plato,i_d,i_d+11) then cercles_alpha(plato[i_d+11].x,plato[i_d+11].y,plato[i_d].p.clr);
-  if i_d > 11 then if (plato[i_d-11].p.identif = 0) and highlightDepart(plato,i_d,i_d-11) then cercles_alpha(plato[i_d-11].x,plato[i_d-11].y,plato[i_d].p.clr);
+  if i_d < 98 then if (plato[i_d+1].p.identif = 0) and highlightDepart(plato,i_d,i_d+1) and not(TraverseTableau(i_d,i_d+1))  then cercles_alpha(plato[i_d+1].x,plato[i_d+1].y,plato[i_d].p.clr);
+  if i_d > 1 then if (plato[i_d-1].p.identif = 0) and highlightDepart(plato,i_d,i_d-1) and not(TraverseTableau(i_d,i_d-1))  then cercles_alpha(plato[i_d-1].x,plato[i_d-1].y,plato[i_d].p.clr);
+  if i_d < 90 then if (plato[i_d+9].p.identif = 0) and highlightDepart(plato,i_d,i_d+9) and not(TraverseTableau(i_d,i_d+9))  then cercles_alpha(plato[i_d+9].x,plato[i_d+9].y,plato[i_d].p.clr);
+  if i_d > 9 then if (plato[i_d-9].p.identif = 0) and highlightDepart(plato,i_d,i_d-9) and not(TraverseTableau(i_d,i_d-9))  then cercles_alpha(plato[i_d-9].x,plato[i_d-9].y,plato[i_d].p.clr);
+  if i_d < 89 then if (plato[i_d+10].p.identif = 0) and highlightDepart(plato,i_d,i_d+10) and not(TraverseTableau(i_d,i_d+10))  then cercles_alpha(plato[i_d+10].x,plato[i_d+10].y,plato[i_d].p.clr);
+  if i_d > 10 then if (plato[i_d-10].p.identif = 0) and highlightDepart(plato,i_d,i_d-10)  and not(TraverseTableau(i_d,i_d-10)) then cercles_alpha(plato[i_d-10].x,plato[i_d-10].y,plato[i_d].p.clr);
+  if i_d < 88 then if (plato[i_d+11].p.identif = 0) and highlightDepart(plato,i_d,i_d+11)  and not(TraverseTableau(i_d,i_d+11)) then cercles_alpha(plato[i_d+11].x,plato[i_d+11].y,plato[i_d].p.clr);
+  if i_d > 11 then if (plato[i_d-11].p.identif = 0) and highlightDepart(plato,i_d,i_d-11) and not(TraverseTableau(i_d,i_d-11))  then cercles_alpha(plato[i_d-11].x,plato[i_d-11].y,plato[i_d].p.clr);
 	highlightCercleSaut(plato,i_d,i_dAncien);
 end;
 

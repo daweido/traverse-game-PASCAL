@@ -1,7 +1,7 @@
 unit fin;
 
 interface
-uses gLib2D,SDL_TTF,menu;
+uses gLib2D,SDL_TTF,menu,highlights,restart;
 
 const
 x_max_tt = 641;
@@ -16,7 +16,7 @@ y_min_menu = 475;
 y_max_quitter = 700;
 y_min_quitter = 620;
 
-procedure menuFin(VAR victoire : boolean; var mens : men;VAR tampo : boolean;var nb_joueurs : integer;jGagnant : integer);
+procedure menuFin(var mens : men;VAR victoire,tampo,menJou,choixNbJ,j1,j2,j3,j4: boolean;var nb_joueurs,cj : integer;jGagnant : integer;VAR plato : plateauDyn);
 
 Implementation
 
@@ -28,7 +28,7 @@ begin
 	if jGagnant = 4 then findepartie := gTexLoad('./images/findepartieJ4.png');
 end;
 
-function bouttonsF(VAR tampo : boolean;var nb_joueurs : integer): men;
+function bouttonsF(VAR tampo,menJou,choixNbJ,victoire,j1,j2,j3,j4 : boolean;var nb_joueurs,cj : integer;var plato : plateauDyn): men;
 var
 	tmp : men;
 begin
@@ -37,8 +37,11 @@ begin
 			if sdl_mouse_left_down then begin
 				writeln('REJOUER');
 				tmp.menus := false;
-				nb_joueurs := 0;
+				menJou := true;
+				choixNbJ := true;
 				tampo := false;
+				victoire := false;
+				rein(plato,j1,j2,j3,j4,cj);
 				tmp.id := 1;
 			end;
 		end
@@ -46,12 +49,17 @@ begin
 			if sdl_mouse_left_down then begin
 				tmp.menus := false;
 				tampo := true;
+				menJou := true;
+				rein(plato,j1,j2,j3,j4,cj);
+				choixNbJ := true;
 			end;
 		end
 		else if ((sdl_get_mouse_y < y_max_quitter) and (sdl_get_mouse_y > y_min_quitter)) then begin
 			if sdl_mouse_left_down then begin
 				tmp.menus := false;
 				tampo := false;
+				menJou := true;
+				choixNbJ := true;
 				tmp.id := 4;
 			end;
 		end
@@ -76,9 +84,9 @@ begin
 	gEnd();
 end;
 
-procedure menuFin(VAR victoire : boolean; var mens : men;VAR tampo : boolean;var nb_joueurs : integer;jGagnant : integer);
+procedure menuFin(var mens : men;VAR victoire,tampo,menJou,choixNbJ,j1,j2,j3,j4: boolean;var nb_joueurs,cj : integer;jGagnant : integer;VAR plato : plateauDyn);
 begin
-	mens := bouttonsF(tampo,nb_joueurs);
+	mens := bouttonsF(tampo,menJou,choixNbJ,victoire,j1,j2,j3,j4,nb_joueurs,cj,plato);
 	if mens.menus = true then affiFin(jGagnant)
 	else victoire := false;
 end;

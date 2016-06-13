@@ -38,14 +38,14 @@ begin
 		end;
 	end;
 
-	{for j := 0 to 99 do begin
-		if plat[j].p.clr <> 2) and plat[j].p.clr <> 3) and plat[j].p.clr <> 4) then valeur := true
+	for j := 0 to 99 do begin
+		if ((plato[j].p.clr <> 2) and (plato[j].p.clr <> 3) and (plato[j].p.clr <> 4)) then valeur := true
 		else begin
 			valeur := false;
 			break;
 		end;
 
-	end;}
+	end;
 
 	joueur1Gagne := valeur;
 end;
@@ -62,6 +62,16 @@ begin
 			break;
 		end;
 	end;
+
+	for j := 0 to 99 do begin
+		if (plato[j].p.clr <> 1) and (plato[j].p.clr <> 3) and (plato[j].p.clr <> 4) then valeur := true
+		else begin
+			valeur := false;
+			break;
+		end;
+
+	end;
+
 	joueur2Gagne := valeur;
 end;
 
@@ -79,6 +89,16 @@ begin
 			break;
 		end;
 	until (j = 80);
+
+	for j := 0 to 99 do begin
+		if (plato[j].p.clr <> 2) and (plato[j].p.clr <> 1) and (plato[j].p.clr <> 4) then valeur := true
+		else begin
+			valeur := false;
+			break;
+		end;
+
+	end;
+
 	joueur3Gagne := valeur;
 end;
 
@@ -96,6 +116,16 @@ begin
 			break;
 		end;
 	until (j = 89);
+
+	for j := 0 to 99 do begin
+		if (plato[j].p.clr <> 2) and (plato[j].p.clr <> 3) and (plato[j].p.clr <> 1) then valeur := true
+		else begin
+			valeur := false;
+			break;
+		end;
+
+	end;
+
 	joueur4Gagne := valeur;
 end;
 
