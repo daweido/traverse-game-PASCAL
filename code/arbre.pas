@@ -8,7 +8,7 @@ uses highlights,changements,eval,deplacementIA,profondeur1,minimax;
 procedure CreaArbre(plato : plateauDyn;var i_dd,i_aa : integer);
 
 Implementation
-procedure parcourArbreEval(sommet : pnoeud;var j : integer);forward;
+procedure parcourArbreEval(sommet : pnoeud;var j : longint);forward;
 
 /////////////Création de sous plateau
 procedure sous_plateaux(sommet :pnoeud;plato:plateauDyn);
@@ -22,7 +22,7 @@ end;
 procedure CreaArbre(plato : plateauDyn;var i_dd,i_aa : integer);
 VAR
     sommet:pnoeud;
-		j : integer;
+		j : longint;
 BEGIN
 		j := 0;
     writeln('creation du plateau de base');
@@ -38,7 +38,7 @@ BEGIN
 		writeln('Nombre de tableau : ',j);
 end;
 
-procedure accesFilsPro4(tmp2 : pfils;var j : integer);
+procedure accesFilsPro4(tmp2 : pfils;var j : longint);
 var
 	tmp3 : pfils;
 	i : integer;
@@ -54,7 +54,7 @@ begin
 	end;
 end;
 
-procedure accesFilsPro3(tmp1 : pfils;var j : integer);
+procedure accesFilsPro3(tmp1 : pfils;var j : longint);
 var
 	tmp2 : pfils;
 begin
@@ -66,7 +66,7 @@ begin
 	end;
 end;
 
-procedure accesFilsPro2(tmp : pfils;var j : integer);
+procedure accesFilsPro2(tmp : pfils;var j : longint);
 VAR
 	tmp1 : pfils;
 begin
@@ -78,7 +78,7 @@ begin
 	end;
 end;
 
-procedure parcourArbreEval(sommet : pnoeud;var j : integer);
+procedure parcourArbreEval(sommet : pnoeud;var j : longint);
 VAR
 	tmp:pfils;
 begin

@@ -1,7 +1,7 @@
 unit fin;
 
 interface
-uses gLib2D,SDL_TTF,menu,highlights,restart;
+uses gLib2D,SDL_TTF,menu,highlights,restart,loadImages;
 
 const
 x_max_tt = 641;
@@ -16,16 +16,16 @@ y_min_menu = 475;
 y_max_quitter = 700;
 y_min_quitter = 620;
 
-procedure menuFin(var mens : men;VAR victoire,tampo,menJou,choixNbJ,j1,j2,j3,j4: boolean;var nb_joueurs,cj : integer;jGagnant : integer;VAR plato : plateauDyn);
+procedure menuFin(var mens : men;VAR victoire,tampo,menJou,choixNbJ,j1,j2,j3,j4: boolean;var nb_joueurs,cj : integer;jGagnant : integer;VAR plato : plateauDyn;theme : images);
 
 Implementation
 
-procedure loadFin(VAR findepartie : gImage;jGagnant : integer);
+procedure loadFin(VAR findepartie : gImage;jGagnant : integer;theme : images);
 begin
-	if jGagnant = 1 then findepartie := gTexLoad('./images/findepartieJ1.png');
-	if jGagnant = 2 then findepartie := gTexLoad('./images/findepartieJ2.png');
-	if jGagnant = 3 then findepartie := gTexLoad('./images/findepartieJ3.png');
-	if jGagnant = 4 then findepartie := gTexLoad('./images/findepartieJ4.png');
+	if jGagnant = 1 then findepartie := theme.menus[7];
+	if jGagnant = 2 then findepartie := theme.menus[8];
+	if jGagnant = 3 then findepartie := theme.menus[9];
+	if jGagnant = 4 then findepartie := theme.menus[10];
 end;
 
 function bouttonsF(VAR tampo,menJou,choixNbJ,victoire,j1,j2,j3,j4 : boolean;var nb_joueurs,cj : integer;var plato : plateauDyn): men;
@@ -68,12 +68,12 @@ begin
 	bouttonsF := tmp;
 end;
 
-procedure affiFin(jGagnant : integer);
+procedure affiFin(jGagnant : integer;theme : images);
 var
 	findepartie :gImage;
 	x,y : integer;
 begin
-	loadFin(findepartie,jGagnant);
+	loadFin(findepartie,jGagnant,theme);
 	x := SCR_W div 2;
 	y := SCR_H div 2;
 	gBeginRects(findepartie);
@@ -84,10 +84,10 @@ begin
 	gEnd();
 end;
 
-procedure menuFin(var mens : men;VAR victoire,tampo,menJou,choixNbJ,j1,j2,j3,j4: boolean;var nb_joueurs,cj : integer;jGagnant : integer;VAR plato : plateauDyn);
+procedure menuFin(var mens : men;VAR victoire,tampo,menJou,choixNbJ,j1,j2,j3,j4: boolean;var nb_joueurs,cj : integer;jGagnant : integer;VAR plato : plateauDyn;theme : images);
 begin
 	mens := bouttonsF(tampo,menJou,choixNbJ,victoire,j1,j2,j3,j4,nb_joueurs,cj,plato);
-	if mens.menus = true then affiFin(jGagnant)
+	if mens.menus = true then affiFin(jGagnant,theme)
 	else victoire := false;
 end;
 end.

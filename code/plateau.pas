@@ -1,11 +1,11 @@
 unit plateau;
 
 interface
-uses gLib2D,SDL,SDL_TTF,sysutils,pions,deplacements,highlights,paused,intelligence;
+uses gLib2D,SDL,SDL_TTF,sysutils,pions,deplacements,highlights,paused,intelligence,loadImages;
 
 
 function creaPlateau():plateauDyn;
-procedure affiPlateau(VAR plato : plateauDyn;VAR tampo,selectione,j1,j2,j3,j4,saut,pause,menJou,choixNbJ,loaded : boolean;VAR i_d, i_a,i_dAncien,cj : integer;nb_joueurs : integer);
+procedure affiPlateau(VAR plato : plateauDyn;VAR tampo,selectione,j1,j2,j3,j4,saut,pause,menJou,choixNbJ,loaded : boolean;VAR i_d, i_a,i_dAncien,cj : integer;nb_joueurs : integer;theme : images);
 procedure def_nb_joueurs(VAR plato : plateauDyn;nb_joueurs : integer);
 
 
@@ -128,16 +128,16 @@ begin
 	else ini_4j(plato);
 end;
 
-procedure affiPions(plato : plateauDyn);
+procedure affiPions(plato : plateauDyn;theme : images);
 var
 	i : integer;
 begin
 	for i := 0 to 99 do begin
 		case plato[i].p.identif of
-			1 : carres(plato[i].x,plato[i].y,plato[i].p.clr);
-			2 : triangles(plato[i].x,plato[i].y,plato[i].p.clr);
-			3 : losanges(plato[i].x,plato[i].y,plato[i].p.clr);
-			4 : cercles(plato[i].x,plato[i].y,plato[i].p.clr)
+			1 : carres(plato[i].x,plato[i].y,plato[i].p.clr,theme);
+			2 : triangles(plato[i].x,plato[i].y,plato[i].p.clr,theme);
+			3 : losanges(plato[i].x,plato[i].y,plato[i].p.clr,theme);
+			4 : cercles(plato[i].x,plato[i].y,plato[i].p.clr,theme)
 		end;
 	end;
 end;
@@ -158,7 +158,7 @@ begin
 	else bon_pion := true;
 end;
 
-procedure selectionCase(VAR plato : plateauDyn;VAR selectione,j1,j2,j3,j4,saut : boolean;VAR i_d, i_a,i_dAncien,cj : integer;nb_joueurs : integer);
+procedure selectionCase(VAR plato : plateauDyn;VAR selectione,j1,j2,j3,j4,saut : boolean;VAR i_d, i_a,i_dAncien,cj : integer;nb_joueurs : integer;theme : images);
 var
 	i,xm,ym : integer; // i départ ; i arrivé
 begin
@@ -187,7 +187,7 @@ begin
 			end;
 		end;
 	end;
-	if (selectione = true) then highlight(plato,i_d,i_dAncien,saut);
+	if (selectione = true) then highlight(plato,i_d,i_dAncien,saut,theme);
 end;
 
 function gamePause(pause : boolean): boolean;
@@ -201,18 +201,18 @@ begin
 	if ((sdl_get_keypressed = SDLK_ESCAPE) {or ((sdl_get_mouse_x < x_max) and (sdl_get_mouse_x > x_min) and (sdl_get_mouse_y < y_max) and (sdl_get_mouse_y > y_min))}) then pause := gamePause(pause);
 end;
 
-procedure affiPlateau(VAR plato : plateauDyn;VAR tampo,selectione,j1,j2,j3,j4,saut,pause,menJou,choixNbJ,loaded : boolean;VAR i_d, i_a,i_dAncien,cj : integer;nb_joueurs : integer);
+procedure affiPlateau(VAR plato : plateauDyn;VAR tampo,selectione,j1,j2,j3,j4,saut,pause,menJou,choixNbJ,loaded : boolean;VAR i_d, i_a,i_dAncien,cj : integer;nb_joueurs : integer;theme : images);
 var
 	i : integer;
 begin
 	gclear(WHITE);
 	for i := 0 to 99 do gFillRect(plato[i].x,plato[i].y,60,60,plato[i].couleur);
 	gDrawRect(200,75,600,600,BLACK);
-	affiPions(plato);
+	affiPions(plato,theme);
 	actionPause(pause);
-	if pause then drawMenuPause(tampo,pause,menJou,choixNbJ,j1,j2,j3,j4,loaded,plato,cj,nb_joueurs)
+	if pause then drawMenuPause(tampo,pause,menJou,choixNbJ,j1,j2,j3,j4,loaded,plato,cj,nb_joueurs,theme)
 	else if (nb_joueurs = 1) and (not j1) then IA(plato,selectione,j1,j2,j3,j4,saut,i_dAncien,cj,nb_joueurs)
-	else selectionCase(plato,selectione,j1,j2,j3,j4,saut,i_d,i_a,i_dAncien,cj,nb_joueurs);
+	else selectionCase(plato,selectione,j1,j2,j3,j4,saut,i_d,i_a,i_dAncien,cj,nb_joueurs,theme);
 end;
 
 end.

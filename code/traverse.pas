@@ -1,6 +1,6 @@
 program traverse;
 
-uses gLib2D,SDL_TTF,sysutils,plateau,menu,deplacements,highlights,fin,gagne,saveLoad,tours;
+uses gLib2D,SDL_TTF,sysutils,plateau,menu,deplacements,highlights,fin,gagne,saveLoad,tours,loadImages;
 
 var
 	plato : plateauDyn;
@@ -10,7 +10,9 @@ var
 	tampo,selectione,j1,j2,j3,j4,saut,victoire,pause,menJou,choixNbJ,retCmt,loaded,
 	retReg : boolean;
 	menuJ,menuC,menuR : gImage;
+	theme1,theme2,theme3,theme : images;
 begin
+	chargerImages(theme1,theme2,theme3);
 	j1 := true;
 	j2 := false;
 	pause := false;
@@ -22,9 +24,6 @@ begin
 	jGagnant := 0;
 	plato := creaPlateau();
 	loaded := false;
-	menuJ := iniMenus(1);
-	menuC := iniMenus(2);
-	menuR := iniMenus(3);
 	////////Menus
 	tampo := true;
 	menJou := true;
@@ -33,11 +32,15 @@ begin
 	retReg := true;
 	victoire := false;
 ///////////////////
+	theme := theme1;
 	selectione := false;
 	saut := false;
 	cj := 0;
 	nb_joueurs := 0;
 	while true do begin
+		menuJ := theme.menus[1];
+		menuC := theme.menus[2];
+		menuR := theme.menus[3];
 		if cj = 30 then begin
 			effacePerdants(plato);
 			verifTours(plato,j1,j2,j3,j4,nb_joueurs,cj);
@@ -46,19 +49,19 @@ begin
 			if (sdl_do_quit) then exit; (* Clic sur la croix pour fermer *)
 			if victoire = true then begin
 				writeln('VICTOIRE');
-				menuFin(mens,victoire,tampo,menJou,choixNbJ,j1,j2,j3,j4,nb_joueurs,cj,jGagnant,plato);
+				menuFin(mens,victoire,tampo,menJou,choixNbJ,j1,j2,j3,j4,nb_joueurs,cj,jGagnant,plato,theme);
 			end
 			else if tampo = true then principalMenu(tampo,mens,menuJ)
 			else begin
 				if mens.id = 1 then begin
-					if menJou = true then menuJouer(mn,menJou)
+					if menJou = true then menuJouer(mn,menJou,theme)
 					else begin
 						if mn.id = 1 then begin
-							if choixNbJ = true then menuNvPartie(mNb,choixNbJ)
+							if choixNbJ = true then menuNvPartie(mNb,choixNbJ,theme)
 							else begin
 								if mNb.id = 0 then begin
 									jGagnant := gagnant(victoire,plato,cj);
-									affiPlateau(plato,tampo,selectione,j1,j2,j3,j4,saut,pause,menJou,choixNbJ,loaded,i_d,i_a,i_dAncien,cj,nb_joueurs);
+									affiPlateau(plato,tampo,selectione,j1,j2,j3,j4,saut,pause,menJou,choixNbJ,loaded,i_d,i_a,i_dAncien,cj,nb_joueurs,theme);
 								end;
 								if mNb.id = 1 then begin
 									j1 :=false;
@@ -101,7 +104,7 @@ begin
 								load(plato,nbb,cjb,j1,j2,j3,j4,loaded);
 							end
 							else begin
-								affiPlateau(plato,tampo,selectione,j1,j2,j3,j4,saut,pause,menJou,choixNbJ,loaded,i_d,i_a,i_dAncien,cj,nb_joueurs);
+								affiPlateau(plato,tampo,selectione,j1,j2,j3,j4,saut,pause,menJou,choixNbJ,loaded,i_d,i_a,i_dAncien,cj,nb_joueurs,theme);
 							end;
 						end;
 						if mn.id = 3 then begin
@@ -126,18 +129,21 @@ begin
 					else begin
 						if mnR.id = 1 then begin
 							writeln('Thème1');
+							theme := theme1;
 							retReg := true;
 							mnR.id := 0;
 							mnR.menus := true;
 						end;
 						if mnR.id = 2 then begin
 							writeln('Thème2');
+							theme := theme2;
 							retReg := true;
 							mnR.id := 0;
 							mnR.menus := true;
 						end;
 						if mnR.id = 3 then begin
 							writeln('Thème3');
+							theme := theme3;
 							retReg := true;
 							mnR.id := 0;
 							mnR.menus := true;

@@ -1,7 +1,7 @@
 unit paused;
 
 interface
-uses gLib2D,saveLoad,restart,highlights;
+uses gLib2D,saveLoad,restart,highlights,loadImages;
 
 const
 	pause_x_min = 374;
@@ -13,7 +13,7 @@ const
 	pause_quity_min = 471;
 	pause_quity_max = 529;
 
-procedure drawMenuPause(var tampo,pause,menJou,choixNbJ,j1,j2,j3,j4,loaded : boolean;VAR plato : plateauDyn;VAR cj : integer;nb_joueurs : integer);
+procedure drawMenuPause(var tampo,pause,menJou,choixNbJ,j1,j2,j3,j4,loaded : boolean;VAR plato : plateauDyn;VAR cj : integer;nb_joueurs : integer;theme : images);
 
 Implementation
 
@@ -41,9 +41,9 @@ begin
 	end;
 end;
 
-procedure loadPause(var pauseMenu : gImage);
+procedure loadPause(var pauseMenu : gImage;theme : images);
 begin
-	pauseMenu := gTexLoad('./images/pause.png');
+	pauseMenu := theme.menus[6];
 	gBeginRects(pauseMenu);
 		gSetCoordMode(G_CENTER);
 		gSetScaleWH(500,375);
@@ -52,12 +52,12 @@ begin
 	gEnd();
 end;
 
-procedure drawMenuPause(var tampo,pause,menJou,choixNbJ,j1,j2,j3,j4,loaded : boolean;VAR plato : plateauDyn;VAR cj : integer;nb_joueurs : integer);
+procedure drawMenuPause(var tampo,pause,menJou,choixNbJ,j1,j2,j3,j4,loaded : boolean;VAR plato : plateauDyn;VAR cj : integer;nb_joueurs : integer;theme : images);
 var
 	pauseMenu : gImage;
 begin
 	gFillRectAlpha(0, 0, 1000, 750,BLACK,125);
-	loadPause(pauseMenu);
+	loadPause(pauseMenu,theme);
 	 menu_pause(tampo,pause,menJou,choixNbJ,j1,j2,j3,j4,loaded,plato,cj,nb_joueurs);
 end;
 

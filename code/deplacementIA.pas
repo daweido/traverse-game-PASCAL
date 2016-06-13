@@ -113,20 +113,40 @@ begin
 		changement(platoC0,i,i+10);
 		sommet := ajoutfils(0,i,i+10,platoC0,sommet);
 	end;
+	if ((i <= 79) and (plato[i+10].p.identif <> 0) and (plato[i+20].p.identif = 0)) then begin
+		platoC0 := copiePlat(plato);
+		changement(platoC0,i,i+20);
+		sommet := ajoutfils(0,i,i+20,platoC0,sommet);
+	end;
 	if ((i >= 10) and (plato[i-10].p.identif = 0)) then begin
 		platoC0 := copiePlat(plato);
 		changement(platoC0,i,i-10);
 		sommet := ajoutfils(0,i,i-10,platoC0,sommet);
+	end;
+	if ((i >= 20) and (plato[i-10].p.identif <> 0) and (plato[i-20].p.identif = 0)) then begin
+		platoC0 := copiePlat(plato);
+		changement(platoC0,i,i-20);
+		sommet := ajoutfils(0,i,i-20,platoC0,sommet);
 	end;
 	if ((i <= 98) and (plato[i+1].p.identif = 0)) then begin
 		platoC0 := copiePlat(plato);
 		changement(platoC0,i,i+1);
 		sommet := ajoutfils(0,i,i+1,platoC0,sommet);
 	end;
+	if ((i <= 97) and (plato[i+1].p.identif <> 0) and (plato[i+2].p.identif = 0)) then begin
+		platoC0 := copiePlat(plato);
+		changement(platoC0,i,i+2);
+		sommet := ajoutfils(0,i,i+2,platoC0,sommet);
+	end;
 	if ((i >= 1) and (plato[i-1].p.identif = 0)) then begin
 		platoC0 := copiePlat(plato);
 		changement(platoC0,i,i-1);
 		sommet := ajoutfils(0,i,i-1,platoC0,sommet);
+	end;
+	if ((i >= 2) and (plato[i-1].p.identif <> 0) and (plato[i-2].p.identif = 0)) then begin
+		platoC0 := copiePlat(plato);
+		changement(platoC0,i,i-2);
+		sommet := ajoutfils(0,i,i-2,platoC0,sommet);
 	end;
 end;
 //////////Triangle
@@ -139,15 +159,30 @@ begin
 		changement(platoT0,i,i+10);
 		sommet := ajoutfils(0,i,i+10,platoT0,sommet);
 	end;
+	if ((i <= 79) and (plato[i+10].p.identif <> 0) and (plato[i+20].p.identif = 0)) then begin
+		platoT0 := copiePlat(plato);
+		changement(platoT0,i,i+20);
+		sommet := ajoutfils(0,i,i+20,platoT0,sommet);
+	end;
 	if ((i >= 9) and (plato[i-9].p.identif = 0)) then begin
 		platoT0 := copiePlat(plato);
 		changement(platoT0,i,i-9);
 		sommet := ajoutfils(0,i,i-9,platoT0,sommet);
 	end;
+	if ((i >= 18) and (plato[i-9].p.identif <> 0) and (plato[i-18].p.identif = 0)) then begin
+		platoT0 := copiePlat(plato);
+		changement(platoT0,i,i-18);
+		sommet := ajoutfils(0,i,i-18,platoT0,sommet);
+	end;
 	if ((i >= 11) and (plato[i-11].p.identif = 0)) then begin
 		platoT0 := copiePlat(plato);
 		changement(platoT0,i,i-11);
 		sommet := ajoutfils(0,i,i-11,platoT0,sommet);
+	end;
+	if ((i >= 22) and (plato[i-11].p.identif <> 0) and (plato[i-22].p.identif = 0)) then begin
+		platoT0 := copiePlat(plato);
+		changement(platoT0,i,i-22);
+		sommet := ajoutfils(0,i,i-22,platoT0,sommet);
 	end;
 end;
 
@@ -160,18 +195,31 @@ begin
 		changement(platoT0,i,i+10);
 		sommet := ajoutfils(0,i,i-10,platoT0,sommet);
 	end;
-
+	if ((i >= 20) and (plato[i-10].p.identif <> 0) and (plato[i-20].p.identif = 0)) then begin
+		platoT0 := copiePlat(plato);
+		changement(platoT0,i,i-20);
+		sommet := ajoutfils(0,i,i-20,platoT0,sommet);
+	end;
 	if ((i <= 90) and (plato[i+9].p.identif = 0)) then begin
 		platoT0 := copiePlat(plato);
 		changement(platoT0,i,i+9);
 		sommet := ajoutfils(0,i,i+9,platoT0,sommet);
+	end;
+	if ((i <= 81) and (plato[i+9].p.identif <> 0) and (plato[i+18].p.identif = 0)) then begin
+		platoT0 := copiePlat(plato);
+		changement(platoT0,i,i+18);
+		sommet := ajoutfils(0,i,i+18,platoT0,sommet);
 	end;
 	if ((i <= 88) and (plato[i+11].p.identif = 0)) then begin
 		platoT0 := copiePlat(plato);
 		changement(platoT0,i,i+11);
 		sommet := ajoutfils(0,i,i+11,platoT0,sommet);
 	end;
-
+	if ((i <= 77) and (plato[i+11].p.identif <> 0) and (plato[i+22].p.identif = 0)) then begin
+		platoT0 := copiePlat(plato);
+		changement(platoT0,i,i+22);
+		sommet := ajoutfils(0,i,i+22,platoT0,sommet);
+	end;
 end;
 ////////Losange
 procedure depILos(plato : plateauDyn;i : integer;sommet : pnoeud);
@@ -183,20 +231,40 @@ begin
 		changement(platoL0,i,i+11);
 		sommet := ajoutfils(0,i,i+11,platoL0,sommet);
 	end;
+	if ((i <= 77) and (plato[i+11].p.identif <> 0) and (plato[i+22].p.identif = 0)) then begin
+		platoL0 := copiePlat(plato);
+		changement(platoL0,i,i+22);
+		sommet := ajoutfils(0,i,i+22,platoL0,sommet);
+	end;
 	if ((i >= 11) and (plato[i-11].p.identif = 0)) then begin
 		platoL0 := copiePlat(plato);
 		changement(platoL0,i,i-11);
 		sommet := ajoutfils(0,i,i-11,platoL0,sommet);
 	end;
-	if ((i <= 9) and (plato[i+9].p.identif = 0)) then begin
+	if ((i >= 22) and (plato[i-11].p.identif <> 0) and (plato[i-22].p.identif = 0)) then begin
+		platoL0 := copiePlat(plato);
+		changement(platoL0,i,i-22);
+		sommet := ajoutfils(0,i,i-22,platoL0,sommet);
+	end;
+	if ((i <= 90) and (plato[i+9].p.identif = 0)) then begin
 		platoL0 := copiePlat(plato);
 		changement(platoL0,i,i+9);
 		sommet := ajoutfils(0,i,i+9,platoL0,sommet);
+	end;
+	if ((i <= 81) and (plato[i+9].p.identif <> 0) and (plato[i+18].p.identif = 0)) then begin
+		platoL0 := copiePlat(plato);
+		changement(platoL0,i,i+18);
+		sommet := ajoutfils(0,i,i+18,platoL0,sommet);
 	end;
 	if ((i >= 9) and (plato[i-9].p.identif = 0)) then begin
 		platoL0 := copiePlat(plato);
 		changement(platoL0,i,i-9);
 		sommet := ajoutfils(0,i,i-9,platoL0,sommet);
+	end;
+	if ((i >= 18) and (plato[i-9].p.identif <> 0) and (plato[i-18].p.identif = 0)) then begin
+		platoL0 := copiePlat(plato);
+		changement(platoL0,i,i-18);
+		sommet := ajoutfils(0,i,i-18,platoL0,sommet);
 	end;
 end;
 //////Cercle
@@ -209,40 +277,80 @@ begin
 		changement(platoCe0,i,i+1);
 		sommet := ajoutfils(0,i,i+1,platoCe0,sommet);
 	end;
+	if ((i <= 97) and (plato[i+1].p.identif <> 0) and (plato[i+2].p.identif = 0)) then begin
+		platoCe0 := copiePlat(plato);
+		changement(platoCe0,i,i+2);
+		sommet := ajoutfils(0,i,i+2,platoCe0,sommet);
+	end;
 	if ((i >= 1) and (plato[i-1].p.identif = 0)) then begin
 		platoCe0 := copiePlat(plato);
 		changement(platoCe0,i,i-1);
 		sommet := ajoutfils(0,i,i-1,platoCe0,sommet);
+	end;
+	if ((i >= 2) and (plato[i-1].p.identif <> 0) and (plato[i-2].p.identif = 0)) then begin
+		platoCe0 := copiePlat(plato);
+		changement(platoCe0,i,i-2);
+		sommet := ajoutfils(0,i,i-2,platoCe0,sommet);
 	end;
 	if ((i <= 90) and (plato[i+9].p.identif = 0)) then begin
 		platoCe0 := copiePlat(plato);
 		changement(platoCe0,i,i+9);
 		sommet := ajoutfils(0,i,i+9,platoCe0,sommet);
 	end;
+	if ((i <= 81) and (plato[i+9].p.identif <> 0) and (plato[i+18].p.identif = 0)) then begin
+		platoCe0 := copiePlat(plato);
+		changement(platoCe0,i,i+18);
+		sommet := ajoutfils(0,i,i+18,platoCe0,sommet);
+	end;
 	if ((i >= 9) and (plato[i-9].p.identif = 0)) then begin
 		platoCe0 := copiePlat(plato);
 		changement(platoCe0,i,i-9);
 		sommet := ajoutfils(0,i,i-9,platoCe0,sommet);
+	end;
+	if ((i >= 18) and (plato[i-9].p.identif <> 0) and (plato[i-18].p.identif = 0)) then begin
+		platoCe0 := copiePlat(plato);
+		changement(platoCe0,i,i-18);
+		sommet := ajoutfils(0,i,i-18,platoCe0,sommet);
 	end;
 	if ((i <= 89) and (plato[i+10].p.identif = 0)) then begin
 		platoCe0 := copiePlat(plato);
 		changement(platoCe0,i,i+10);
 		sommet := ajoutfils(0,i,i+10,platoCe0,sommet);
 	end;
+	if ((i <= 79) and (plato[i+10].p.identif <> 0) and (plato[i+20].p.identif = 0)) then begin
+		platoCe0 := copiePlat(plato);
+		changement(platoCe0,i,i+20);
+		sommet := ajoutfils(0,i,i+20,platoCe0,sommet);
+	end;
 	if ((i >= 10) and (plato[i-10].p.identif = 0)) then begin
 		platoCe0 := copiePlat(plato);
 		changement(platoCe0,i,i-10);
 		sommet := ajoutfils(0,i,i-10,platoCe0,sommet);
+	end;
+	if ((i >= 20) and (plato[i-10].p.identif <> 0) and (plato[i-20].p.identif = 0)) then begin
+		platoCe0 := copiePlat(plato);
+		changement(platoCe0,i,i-20);
+		sommet := ajoutfils(0,i,i-20,platoCe0,sommet);
 	end;
 	if ((i <= 88) and (plato[i+11].p.identif = 0)) then begin
 		platoCe0 := copiePlat(plato);
 		changement(platoCe0,i,i+11);
 		sommet := ajoutfils(0,i,i+11,platoCe0,sommet);
 	end;
+	if ((i <= 77) and (plato[i+11].p.identif <> 0) and (plato[i+22].p.identif = 0)) then begin
+		platoCe0 := copiePlat(plato);
+		changement(platoCe0,i,i+22);
+		sommet := ajoutfils(0,i,i+22,platoCe0,sommet);
+	end;
 	if ((i >= 11) and (plato[i-11].p.identif = 0)) then begin
 		platoCe0 := copiePlat(plato);
 		changement(platoCe0,i,i-11);
 		sommet := ajoutfils(0,i,i-11,platoCe0,sommet);
+	end;
+	if ((i >= 22) and (plato[i-11].p.identif <> 0) and (plato[i-22].p.identif = 0)) then begin
+		platoCe0 := copiePlat(plato);
+		changement(platoCe0,i,i-22);
+		sommet := ajoutfils(0,i,i-22,platoCe0,sommet);
 	end;
 end;
 

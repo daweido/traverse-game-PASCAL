@@ -1,7 +1,7 @@
 unit menu;
 
 interface
-uses gLib2D,SDL,plateau,deplacements,highlights,saveLoad;
+uses gLib2D,SDL,plateau,deplacements,highlights,saveLoad,loadImages;
 
 type men = record
 		menus : boolean;
@@ -60,25 +60,17 @@ const
 	bouton3_y_min = 494;
 	bouton3_y_max = 574;
 
-function iniMenus(i : integer):gImage;
 function bouttonsJ: men;
 procedure affiMenu(image : gImage);
 procedure principalMenu(var tampo : boolean; var mens : men;menuJ: gImage);
 procedure commentMenu(var retCmt : boolean; var mCmt : men;menuC : gImage);
 procedure reglagesMenu(var retReg : boolean; var mnR : men;menuR :gImage);
-procedure menuJouer(var mn : men;var menJou : boolean);
-procedure menuNvPartie(var mNb : men;var choixNbJ : boolean);
+procedure menuJouer(var mn : men;var menJou : boolean;theme : images);
+procedure menuNvPartie(var mNb : men;var choixNbJ : boolean;theme : images);
 
 
 Implementation
 ////////////////Menu Principal
-// Si plusieurs image faire un tableau d'image
-function iniMenus(i : integer):gImage;
-begin
-	if i = 1 then iniMenus := gTexLoad('./images/menu.png')
-	else if i = 2 then iniMenus := gTexLoad('./images/commentJouer.png')
-	else iniMenus := gTexLoad('./images/reglages.png')
-end;
 
 procedure affiMenu(image : gImage);
 var
@@ -236,13 +228,13 @@ end;
 choixJouer := tmp;
 end;
 
-procedure menuJouer(var mn : men;var menJou : boolean);
+procedure menuJouer(var mn : men;var menJou : boolean;theme : images);
 var
 	menuJou : gImage;
 begin
 	mn := choixJouer();
 	if mn.menus = true then begin
-		menuJou := gTexLoad('./images/jouer.png');
+		menuJou := theme.menus[4];
 		affiMenu(menuJou);
 	end
 	else menJou := false;
@@ -289,13 +281,13 @@ else tmp.menus := true;
 choixNbJoueurs := tmp;
 end;
 
-procedure menuNvPartie(var mNb : men;var choixNbJ : boolean);
+procedure menuNvPartie(var mNb : men;var choixNbJ : boolean;theme : images);
 var
 	menuNv : gImage;
 begin
 	mNb := choixNbJoueurs();
 	if mNb.menus = true then begin
-		menuNv := gTexLoad('./images/nouvellePartie.png');
+		menuNv := theme.menus[5];
 		affiMenu(menuNv);
 	end
 	else choixNbJ := false;
